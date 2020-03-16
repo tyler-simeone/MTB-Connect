@@ -7,6 +7,7 @@ import { Route, Redirect } from "react-router-dom"
 // Home goes here
 import Home from "./home/Home"
 // Trails goes here
+import Trails from "./trails/Trails"
 // Friends goes here
 // Pending Reqs goes here
 
@@ -28,9 +29,9 @@ const ApplicationViews = props => {
             <Route exact path="/home" render={props => {
                 return <Home />
             }}/>
-            {/* <Route exact path="/trailsearch" render={props => {
-                return <TrailSearch {...props} />
-            }}/> */}
+            <Route exact path="/trails" render={props => {
+                return <Trails {...props} />
+            }}/>
             {/* below route will render upon trail search, based on zip code */}
             {/* <Route path="/trailslist" render={props => {
                 return <TrailsList {...props} />

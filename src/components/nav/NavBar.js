@@ -13,7 +13,7 @@ const NavBar = props => {
             </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/trailsearch">
+            <Link className="nav-link" to="/trails">
               Trails
             </Link>
           </li>
