@@ -1,5 +1,5 @@
 import React from "react"
-import { Route } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 
 // Welcome goes here
 import Welcome from "./welcome/Welcome"
@@ -37,10 +37,18 @@ const ApplicationViews = props => {
                 return <Register {...props} />
             }}/> */}
             <Route exact path="/home" render={props => {
-                return <Home />
+                if (hasUser) {
+                    return <Home />
+                } else {
+                    return <Redirect to="/welcome" />
+                }
             }}/>
             <Route exact path="/trails" render={props => {
-                return <Trails {...props} />
+                if (hasUser) {
+                    return <Trails {...props} />
+                } else {
+                    return <Redirect to="/welcome" />
+                }
             }}/>
             {/* below route will render upon trail search, based on zip code */}
             {/* <Route path="/trailslist" render={props => {
@@ -50,10 +58,18 @@ const ApplicationViews = props => {
                 return <TrailDetails {...props} />
             }}/> */}
             <Route exact path="/friends" render={props => {
-                return <Friends {...props} />
+                if (hasUser) {
+                    return <Friends {...props} />
+                } else {
+                    return <Redirect to="/welcome" />
+                }
             }}/>
             <Route exact path="/pending" render={props => {
-                return <PendingFriends {...props} />
+                if (hasUser) {
+                    return <PendingFriends {...props} />
+                } else {
+                    return <Redirect to="/welcome" />
+                }
             }}/>
         </>
     )
