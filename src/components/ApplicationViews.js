@@ -11,6 +11,7 @@ import Trails from "./trails/Trails"
 // Friends goes here
 import Friends from "./friends/Friends"
 // Pending Reqs goes here
+import PendingFriends from "./pending/PendingFriends"
 
 // TODO: create the first components needed below and import them above
 
@@ -43,9 +44,9 @@ const ApplicationViews = props => {
             <Route exact path="/friends" render={props => {
                 return <Friends {...props} />
             }}/>
-            {/* <Route exact path="/pending" render={props => {
-                return <PendingRequestsList {...props} />
-            }}/> */}
+            <Route exact path="/pending" render={props => {
+                return <PendingFriends {...props} />
+            }}/>
         </>
     )
 }
