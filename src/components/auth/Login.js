@@ -12,6 +12,7 @@ const Login = props => {
 
   const handleLogin = evt => {
     evt.preventDefault();
+    props.setUser(credentials)
     props.history.push("/home");
   };
 
