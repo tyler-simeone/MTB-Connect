@@ -1,7 +1,8 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import "./Welcome.css";
 
-const Welcome = () => {
+const Welcome = props => {
   return (
     <>
       <header className="header">
@@ -14,9 +15,11 @@ const Welcome = () => {
       </header>
       <div className="backgroundImageContainer">
         <div className="buttonContainer">
-          <button type="button" className="loginButton">
-            Login
-          </button>
+          <Link to="/login">
+            <button type="button" className="loginButton">
+              Login
+            </button>
+          </Link>
           <button type="button" className="registerButton">
             Register
           </button>
