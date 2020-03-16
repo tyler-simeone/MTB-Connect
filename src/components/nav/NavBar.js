@@ -3,6 +3,9 @@ import { withRouter, Link } from "react-router-dom";
 // import "./NavBar.css"
 
 const NavBar = props => {
+  const hasUser = props.hasUser;
+  const clearUser = props.clearUser;
+
   return (
     <header>
       <nav>
@@ -27,6 +30,13 @@ const NavBar = props => {
               Pending Requests
             </Link>
           </li>
+          {props.hasUser ? (
+            <li>
+              <Link onClick={clearUser} className="nav-link" to="/welcome">
+                Logout
+              </Link>
+            </li>
+          ) : null}
         </ul>
       </nav>
     </header>
