@@ -1,7 +1,8 @@
 import React from "react"
-import { Route, Redirect } from "react-router-dom"
+import { Route } from "react-router-dom"
 
 // Welcome goes here
+import Welcome from "./welcome/Welcome"
 // Register goes here
 // Login goes here
 // Home goes here
@@ -19,9 +20,10 @@ const ApplicationViews = props => {
     return (
         <>
             {/* TODO: will add these routes when ready */}
-            {/* <Route exact path="/welcome" render={props => {
-                return <Home />
+            <Route exact path="/welcome" render={props => {
+                return <Welcome />
             }}/>
+            {/*
             <Route exact path="/login" render={props => {
                 return <Login {...props} />
             }}/>
