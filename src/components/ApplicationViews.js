@@ -1,9 +1,11 @@
 import React from "react"
-import { Route, Redirect } from "react-router-dom"
+import { Route } from "react-router-dom"
 
 // Welcome goes here
+import Welcome from "./welcome/Welcome"
 // Register goes here
 // Login goes here
+import Login from "./auth/Login"
 // Home goes here
 import Home from "./home/Home"
 // Trails goes here
@@ -16,15 +18,21 @@ import PendingFriends from "./pending/PendingFriends"
 // TODO: create the first components needed below and import them above
 
 const ApplicationViews = props => {
+
+    const hasUser = props.hasUser;
+    const setUser = props.setUser;
+    
     return (
         <>
             {/* TODO: will add these routes when ready */}
-            {/* <Route exact path="/welcome" render={props => {
-                return <Home />
+            <Route exact path="/welcome" render={props => {
+                return <Welcome {...props} />
             }}/>
+            
             <Route exact path="/login" render={props => {
-                return <Login {...props} />
+                return <Login setUser={setUser} {...props} />
             }}/>
+            {/*
             <Route exact path="/register" render={props => {
                 return <Register {...props} />
             }}/> */}

@@ -1,0 +1,45 @@
+.header-banner-one {
+    max-height: 30px;
+    min-height: 30px;
+    background-color: #2C77B8;
+}
+
+.header-banner-two {
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+
+.text-size--large {
+    text-align: center;
+    margin: 0;
+    font-size: 4em;
+    color: gray;
+}
+
+.backgroundImageContainer {
+    margin-left: 200px;
+    border: 2px solid gray;
+    min-height: 667px;
+    max-height: 667px;
+    min-width: 1000px;
+    max-width: 1000px;
+    background-image: url("Welcome-img.jpg");
+    background-repeat: no-repeat;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.loginButton {
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.registerButton {
+    font-size: 20px;
+    cursor: pointer;
+}
