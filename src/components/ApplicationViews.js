@@ -4,6 +4,7 @@ import { Route, Redirect } from "react-router-dom"
 // Welcome goes here
 import Welcome from "./welcome/Welcome"
 // Register goes here
+import Register from "./auth/Register"
 // Login goes here
 import Login from "./auth/Login"
 // Home goes here
@@ -32,10 +33,9 @@ const ApplicationViews = props => {
             <Route exact path="/login" render={props => {
                 return <Login setUser={setUser} {...props} />
             }}/>
-            {/*
             <Route exact path="/register" render={props => {
                 return <Register {...props} />
-            }}/> */}
+            }}/> 
             <Route exact path="/home" render={props => {
                 if (hasUser) {
                     return <Home />
