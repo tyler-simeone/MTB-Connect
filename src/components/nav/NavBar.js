@@ -30,7 +30,7 @@ const NavBar = props => {
               Pending Requests
             </Link>
           </li>
-          {props.hasUser ? (
+          {hasUser ? (
             <li>
               <Link onClick={clearUser} className="nav-link" to="/welcome">
                 Logout

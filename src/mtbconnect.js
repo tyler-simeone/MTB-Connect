@@ -5,12 +5,12 @@ import "./MtbConnect.css";
 
 const MtbConnect = () => {
 
-  const isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
+  const isAuthenticated = () => sessionStorage.getItem("Active User Id") !== null;
 
   const [hasUser, setHasUser] = useState(isAuthenticated());
 
   const setUser = user => {
-    sessionStorage.setItem("credentials", JSON.stringify(user));
+    sessionStorage.setItem("Active User Id", JSON.stringify(user));
     setHasUser(isAuthenticated());
   }
 
