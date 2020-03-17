@@ -34,7 +34,7 @@ const ApplicationViews = props => {
                 return <Login setUser={setUser} {...props} />
             }}/>
             <Route exact path="/register" render={props => {
-                return <Register {...props} />
+                return <Register setUser={setUser} {...props} />
             }}/> 
             <Route exact path="/home" render={props => {
                 if (hasUser) {

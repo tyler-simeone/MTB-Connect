@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LoginManager from "../../modules/LoginManager";
 import RegisterManager from "../../modules/RegisterManager";
-import "./Register.css"
+import "./Register.css";
 
 const Register = props => {
   const [credentials, setCredentials] = useState({
@@ -51,10 +51,16 @@ const Register = props => {
           setIsLoading(true);
 
           RegisterManager.post(newUser).then(() => {
-              RegisterManager.getAll().then(users => {
-                  const activeUser = users.find(user => user.email === newUser.email)
-              })
-          })
+            RegisterManager.getAll().then(users => {
+              const activeUser = users.find(
+                user => user.email === newUser.email
+              );
+
+              props.setUser(activeUser.id);
+
+              props.history.push("/home");
+            });
+          });
         }
       });
     }
@@ -72,43 +78,55 @@ const Register = props => {
       </header>
       <form onSubmit={handleRegister} className="registerFormContainer">
         <fieldset>
-          <label htmlFor="registerName">Full Name:</label>
-          <input
-            onChange={handleFieldChange}
-            type="text"
-            id="fullName"
-            placeholder="Luke Skywalker"
-            autoFocus=""
-          ></input>
-          <label htmlFor="registerUsername">Username:</label>
-          <input
-            onChange={handleFieldChange}
-            type="text"
-            id="username"
-            placeholder="LukeIAmYoFather"
-          ></input>
-          <label htmlFor="registerEmail">Email:</label>
-          <input
-            onChange={handleFieldChange}
-            type="email"
-            id="email"
-            placeholder="lukeskywalker@gmail.com"
-          ></input>
-          <label htmlFor="confirmEmail">Confirm Email:</label>
-          <input
-            onChange={handleFieldChange}
-            type="email"
-            id="confirmEmail"
-            placeholder="Confirm email address"
-          ></input>
-          <label htmlFor="avatarImg">Profile Image:</label>
-          <input
-            onChange={handleFieldChange}
-            type="text"
-            id="avatarImg"
-            placeholder="Save image link here"
-          ></input>
-          <button type="submit" disabled={isLoading}>Register!</button>
+          <div className="fullNameContainer">
+            <label htmlFor="registerName">Full Name:</label>
+            <input
+              onChange={handleFieldChange}
+              type="text"
+              id="fullName"
+              placeholder="Luke Skywalker"
+              autoFocus=""
+            ></input>
+          </div>
+          <div className="usernameContainer">
+            <label htmlFor="registerUsername">Username:</label>
+            <input
+              onChange={handleFieldChange}
+              type="text"
+              id="username"
+              placeholder="LukeIAmYoFather"
+            ></input>
+          </div>
+          <div className="emailContainer">
+            <label htmlFor="registerEmail">Email:</label>
+            <input
+              onChange={handleFieldChange}
+              type="email"
+              id="email"
+              placeholder="lukeskywalker@gmail.com"
+            ></input>
+          </div>
+          <div className="confirmEmailContainer">
+            <label htmlFor="confirmEmail">Confirm Email:</label>
+            <input
+              onChange={handleFieldChange}
+              type="email"
+              id="confirmEmail"
+              placeholder="Confirm email address"
+            ></input>
+          </div>
+          <div className="avatarContainer">
+            <label htmlFor="avatarImg">Profile Image:</label>
+            <input
+              onChange={handleFieldChange}
+              type="text"
+              id="avatarImg"
+              placeholder="Save image link here"
+            ></input>
+          </div>
+          <button type="submit" disabled={isLoading}>
+            Register!
+          </button>
         </fieldset>
       </form>
     </>

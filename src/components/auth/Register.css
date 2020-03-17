@@ -20,3 +20,10 @@
     max-width: 400px;
     margin: 0 auto;
 }
+.fullNameContainer,
+.usernameContainer,
+.emailContainer, 
+.confirmEmailContainer,
+.avatarContainer {
+    display: inline-block;
+}
