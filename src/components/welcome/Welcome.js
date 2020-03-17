@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import "./Welcome.css";
 
 const Welcome = props => {
@@ -20,9 +20,11 @@ const Welcome = props => {
               Login
             </button>
           </Link>
-          <button type="button" className="registerButton">
-            Register
-          </button>
+          <Link to="/register">
+            <button type="button" className="registerButton">
+              Register
+            </button>
+          </Link>
         </div>
       </div>
     </>

@@ -9,8 +9,8 @@ const MtbConnect = () => {
 
   const [hasUser, setHasUser] = useState(isAuthenticated());
 
-  const setUser = user => {
-    sessionStorage.setItem("Active User Id", JSON.stringify(user));
+  const setUser = userId => {
+    sessionStorage.setItem("Active User Id", JSON.stringify(userId));
     setHasUser(isAuthenticated());
   }
 
