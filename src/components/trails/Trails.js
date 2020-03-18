@@ -6,27 +6,16 @@ const Trails = props => {
   const [zipcode, setZipcode] = useState({ zipcode: "" });
   const [trails, setTrails] = useState([]);
 
-  const getTrails = evt => {
-    evt.preventDefault()
-
-    TrailsManager.getAll().then(trailsFromApi => {
-
-      const matchingTrails = trailsFromApi.filter(trail => trail.zipcode === zipcode.zipcode)
-
-      console.log(matchingTrails)
-      
-      // setTrails(matchingTrails);
-      
-
-      // trailsFromApi.filter(trail => {
-      //   if (trail.zipcode === zipcode.zipcode) {
-      //     setTrails(trail);
-      //     console.log(trails)
-      //   }
-      // });
-
-    });
+  // TODO: either run the function here to get all trails from API and set them to state here on submit btn click, or redirect to 
+  // different module (TrailsList) that does that...
+  const getTrails = () => {
+    // For some reason this code isn't updating the trails state... (setTrails re-renders page & is async so won't see update yet b4 page relod)
+    return TrailsManager.getAll().then(trailsFromApi => {
+      setTrails(trailsFromApi)
+    })
   };
+
+  const matchingTrails = trails.filter(trail => trail.zipcode === zipcode.zipcode)
 
   const handleFieldChange = evt => {
     const stateToChange = { ...zipcode };
@@ -54,9 +43,18 @@ const Trails = props => {
         ></input>
         <button type="submit">Search</button>
       </form>
-      <div className="searchDescriptionContainer">
+      {trails === null ? 
+      (<div className="searchDescriptionContainer">
         <h1 className="searchDescription">Search For Nearby Trails!</h1>
-      </div>
+      </div>) :
+      (<div>
+        <section>
+          {matchingTrails.map(trail => {
+            
+          })}
+        </section>
+      </div>)
+      }
     </>
   );
 };
