@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./TrailDetails.css";
+import TrailRiderCard from "./TrailRiderCard"
 import TrailsManager from "../../modules/TrailsManager";
+import UsersManager from "../../modules/UsersManager"
+import "./TrailDetails.css";
 
 const TrailDetails = props => {
   const [trail, setTrail] = useState({
@@ -9,21 +11,16 @@ const TrailDetails = props => {
     description: "",
     zipcode: ""
   });
+  // Will end up mapping 'riders' to render RiderCard (which will be a preview, and when clicked on [anywhere] will render RiderDetails)
+  // to add rider as friend and send msg
   const [riders, setRiders] = useState([]);
 
   const findTrailUsers = () => {
-    //   So right now this would get all objs from trailUsers table, and 'trailUsers' would hold all objs whose trailId matches the
-    // trail whose details we're viewing. NOW we need to extrapolate the riders/users objs out to setRiders... 
-    TrailUsersManager.getAll().then(users => {
-        const trailUsers = users.filter(user => user.trailId === props.trailId);
-        console.log(trailUsers)
-    });
-
-    // I think another option would be to save userId to 'trails' table's objs, then getAll users with trails (embed), and filter for
-    // only users with trails whose trailId matches the trail being viewed. 
-    UsersManager.getUsersWithTrails().then(usersWithTrails => {
-        console.log(usersWithTrails)
-    
+    // so Kristen helped me change the qs parameters in my fetch call so now fetching the join-table and only the objects whose trailId
+    // matches the id of the trail being viewed, and we're expanding the users to get all the data we need for our Riders cards.
+    UsersManager.getUsersWithTrails(props.trailId).then(usersWithTrails => {
+        console.log(usersWithTrails)      
+        setRiders(usersWithTrails)
     });
   };
 
@@ -58,13 +55,13 @@ const TrailDetails = props => {
         </button>
       </div>
 
-      {/* {riders.length === 0 ? null : (
+      {riders.length === 0 ? null : (
         <section className="recentRidersContainer">
           {riders.map(rider => {
-            return <RiderCard key={rider.id} rider={rider} {...props} />;
+            return <TrailRiderCard key={rider.id} rider={rider} {...props} />;
           })}
         </section>
-      )} */}
+      )}
     </>
   );
 };
