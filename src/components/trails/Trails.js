@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Trails.css";
 import TrailsManager from "../../modules/TrailsManager";
 import TrailCard from "./TrailCard";
