@@ -7,29 +7,39 @@ const Trails = props => {
   const [zipcode, setZipcode] = useState({ zipcode: "" });
   const [trails, setTrails] = useState([]);
 
+  // Wasn't setting with filtered trails bc this runs first via useEffect so zipcode doesn't exist to filter with yet...
   const getTrails = () => {
-    // For some reason this code isn't updating the trails state... (setTrails re-renders page & is async so won't see update yet b4 page relod)
     return TrailsManager.getAll().then(trailsFromApi => {
       setTrails(trailsFromApi);
     });
   };
 
+// TODO: Attempt 2 with incorporating the filter and setting into this func on btn click
+  // let matchingTrails = "";
+
+  // const getTrails = (evt) => {
+  //   evt.preventDefault()
+
+  //   return TrailsManager.getAll().then(trailsFromApi => {
+  //     matchingTrails = trailsFromApi.filter(trail => trail.zipcode === zipcode.zipcode)
+  //     setTrails(matchingTrails)
+  //   });
+  // };
+
+// TODO: This runs SECOND, saves value of user input (zipcode) .... NOW NEED TO filter trails to a new array....
+  const handleFieldChange = evt => {
+    const stateToChange = { ...zipcode };
+    stateToChange[evt.target.id] = evt.target.value;
+    setZipcode(stateToChange)
+  };
+// TODO: This runs FIRST, sets trails state to arr of JSON DB trail objects
   useEffect(() => {
     getTrails();
   }, []);
 
-  const findMatchingTrails = () => {
-    trails.filter(
-      trail => trail.zipcode === zipcode.zipcode
-    );
-  } 
-
-  const handleFieldChange = evt => {
-    const stateToChange = { ...zipcode };
-    stateToChange[evt.target.id] = evt.target.value;
-    setZipcode(stateToChange);
-    // console.log(stateToChange);
-  };
+  // TODO: I need this to run after zipcode state is set...
+  const matchingTrails = trails.filter(trail => trail.zipcode === zipcode.zipcode);
+  console.log(`Matching Trails: ${matchingTrails}`)
 
   return (
     <>
@@ -42,7 +52,7 @@ const Trails = props => {
         </div>
       </header>
 
-      <form onSubmit={findMatchingTrails} className="trailSearchBox">
+      <form className="trailSearchBox">
         <input
           id="zipcode"
           type="text"
@@ -52,7 +62,7 @@ const Trails = props => {
         <button type="submit">Search</button>
       </form>
 
-      {matchingTrails === null ? (
+      {matchingTrails === "" ? (
         <div className="searchDescriptionContainer">
           <h1 className="searchDescription">Search For Nearby Trails!</h1>
         </div>
