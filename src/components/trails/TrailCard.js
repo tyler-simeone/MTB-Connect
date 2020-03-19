@@ -9,7 +9,7 @@ const TrailCard = props => {
         <figure className="imageContainer">
           {/* <img src={require(`${props.trail.img}`)} alt="Trail Image" /> */}
         </figure>
-        <Link to="/traildetails">
+        <Link to={`/trails/${props.trail.id}`}>
           <button type="button">Details</button>
         </Link>
         <section className="trailCard">

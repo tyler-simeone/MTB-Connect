@@ -11,6 +11,7 @@ import Login from "./auth/Login"
 import Home from "./home/Home"
 // Trails goes here
 import TrailList from "./trails/TrailList"
+import TrailDetails from "./trails/TrailDetails"
 // Friends goes here
 import Friends from "./friends/Friends"
 // Pending Reqs goes here
@@ -54,9 +55,13 @@ const ApplicationViews = props => {
             {/* <Route path="/trailslist" render={props => {
                 return <TrailsList {...props} />
             }}/> */}
-            {/* <Route path="/traildetails" render={props => {
-                return <TrailDetails {...props} />
-            }}/> */}
+            <Route path="/trails/:trailId(\d+)" render={props => {
+                if (hasUser) {
+                    return <TrailDetails trailId={parseInt(props.match.params.trailId)} {...props} />
+                } else {
+                    return <Redirect to="/welcome" />
+                }
+            }}/>
             <Route exact path="/friends" render={props => {
                 if (hasUser) {
                     return <Friends {...props} />

@@ -1,0 +1,14 @@
+.trailRiderCardContainer {
+    display: flex;
+    border: 1px solid gray;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 200px;
+}
+
+.riderImageContainer {
+    border: 1px solid gray;
+    padding: 50px;
+    max-height: 40px;
+}
