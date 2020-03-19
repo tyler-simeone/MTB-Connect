@@ -25,6 +25,13 @@ const TrailDetails = props => {
         <h2>{trail.name}</h2>
         <p>{trail.description}</p>
       </section>
+
+      <button className="viewRecentRiders" type="button">
+        View Recent Riders
+      </button>
+      <button className="addRecentRider" type="button">
+        I've Ridden Here Recently!
+      </button>
     </div>
   );
 };

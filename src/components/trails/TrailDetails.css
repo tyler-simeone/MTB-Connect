@@ -9,3 +9,15 @@
     border: 1px solid gray;
     padding: 100px;
 }
+
+.viewRecentRiders,
+.addRecentRider {
+    margin-top: 180px;
+    max-width: 200px;
+    max-height: 40px;
+    font-size: .8em;
+}
+
+.viewRecentRiders {
+    margin-right: 20px;
+}
