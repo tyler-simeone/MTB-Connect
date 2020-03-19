@@ -1,6 +1,9 @@
 const baseURL = "http://localhost:5002";
 
 export default {
+  get(trailId) {
+    return fetch(`${baseURL}/trails/${trailId}`).then(resp => resp.json());
+  },
   getAll() {
     return fetch(`${baseURL}/trails`).then(resp => resp.json());
   },
