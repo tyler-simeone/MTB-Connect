@@ -3,8 +3,13 @@ import "./Trails.css";
 import TrailsManager from "../../modules/TrailsManager";
 import TrailCard from "./TrailCard";
 
+// TODO: Something else you could do is get the zipcode state here, then on btn click redirect to a new TrailsList module, passing
+// zipcode state down as a prop, then in that new component run useEffect() to get all and filter for props.zipcode (there the zipcode
+// will exist before filter method runs...)
+// Talk to instructor about a more DRY approach.
+
 const Trails = props => {
-  const [zipcode, setZipcode] = useState({ zipcode: "" });
+  const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
 
   // Wasn't setting with filtered trails bc this runs first via useEffect so zipcode doesn't exist to filter with yet...
@@ -37,9 +42,17 @@ const Trails = props => {
     getTrails();
   }, []);
 
-  // TODO: I need this to run after zipcode state is set...
-  const matchingTrails = trails.filter(trail => trail.zipcode === zipcode.zipcode);
-  console.log(`Matching Trails: ${matchingTrails}`)
+  // TODO: I need this to run after zipcode state is set... K now it is, but matchingTrails var is not updating to update page...
+  let matchingTrails = ""
+  const findMatchingTrails = (evt) => {
+    // evt.preventDefault()
+    console.log(matchingTrails)
+    matchingTrails = trails.filter(trail => trail.zipcode === zipcode.value);
+    console.log(matchingTrails)
+    return matchingTrails;
+  }
+  // How do I get this var to hold the updated value after filter runs, need it to have global scope...
+  
 
   return (
     <>
@@ -52,9 +65,9 @@ const Trails = props => {
         </div>
       </header>
 
-      <form className="trailSearchBox">
+      <form onSubmit={findMatchingTrails} className="trailSearchBox">
         <input
-          id="zipcode"
+          id="value"
           type="text"
           onChange={handleFieldChange}
           placeholder="Enter Zip Code"
