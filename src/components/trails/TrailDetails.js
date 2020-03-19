@@ -12,8 +12,7 @@ const TrailDetails = props => {
     zipcode: ""
   });
   const [riders, setRiders] = useState([]);
-  const [isClicked, setIsClicked] = useState(false);
-
+  
   // Runs on 'View Recent Riders' btn click
   const findTrailUsers = () => {
     // so Kristen helped me change the qs parameters in my fetch call so now fetching the join-table w/ only the objects whose trailId
@@ -29,16 +28,18 @@ const TrailDetails = props => {
     console.log(activeUserId);
 
     const newUser = {
-      userId: activeUserId,
+      userId: parseInt(activeUserId),
       trailId: props.trailId
     };
 
     UsersManager.addUserWithTrail(newUser).then(() => {
-        
+      UsersManager.getUsersWithTrails(props.trailId).then(usersWithTrails => {
+        setRiders(usersWithTrails);
+      });
     });
   };
 
-  // Just to view Trail Details...
+  // Just to view the current Trail Details
   // Second useEffect arg means watch the path and when it includes a trail Id (meaning this page is being loaded), then run useEffect().
   useEffect(() => {
     TrailsManager.get(props.trailId).then(trail => setTrail(trail));
@@ -74,7 +75,11 @@ const TrailDetails = props => {
         >
           View Recent Riders
         </button>
-        <button onClick={addRecentRider} className="addRecentRider" type="button">
+        <button
+          onClick={addRecentRider}
+          className="addRecentRider"
+          type="button"
+        >
           I've Ridden Here Recently!
         </button>
       </div>
