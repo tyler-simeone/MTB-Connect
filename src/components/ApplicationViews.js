@@ -10,7 +10,7 @@ import Login from "./auth/Login"
 // Home goes here
 import Home from "./home/Home"
 // Trails goes here
-import Trails from "./trails/Trails"
+import TrailList from "./trails/TrailList"
 // Friends goes here
 import Friends from "./friends/Friends"
 // Pending Reqs goes here
@@ -45,7 +45,7 @@ const ApplicationViews = props => {
             }}/>
             <Route exact path="/trails" render={props => {
                 if (hasUser) {
-                    return <Trails {...props} />
+                    return <TrailList {...props} />
                 } else {
                     return <Redirect to="/welcome" />
                 }

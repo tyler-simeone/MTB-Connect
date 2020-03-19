@@ -3,7 +3,7 @@ import "./Trails.css";
 import TrailsManager from "../../modules/TrailsManager";
 import TrailCard from "./TrailCard";
 
-const Trails = props => {
+const TrailList = props => {
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
 
@@ -60,4 +60,4 @@ const Trails = props => {
   );
 };
 
-export default Trails;
+export default TrailList;
