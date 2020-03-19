@@ -6,7 +6,7 @@ const TrailRiderCard = props => {
   return (
     <>
       <div className="trailRiderCardContainer">
-        <figure className="imageContainer">
+        <figure className="riderImageContainer">
           {/* <img src={require(`${props.trail.img}`)} alt="Trail Image" /> */}
         </figure>
         <section className="trailRiderCard">
