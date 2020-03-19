@@ -13,6 +13,7 @@ const TrailRiderCard = props => {
           <h2>{props.rider.user.fullName}</h2>
           <p>{props.rider.user.username}</p>
         </section>
+        {/* Insert 'Add Friend' Icon here as Link component when ready */}
       </div>
     </>
   );

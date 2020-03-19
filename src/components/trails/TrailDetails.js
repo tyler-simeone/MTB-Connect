@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import TrailRiderCard from "./TrailRiderCard"
+import TrailRiderCard from "./TrailRiderCard";
 import TrailsManager from "../../modules/TrailsManager";
-import UsersManager from "../../modules/UsersManager"
+import UsersManager from "../../modules/UsersManager";
 import "./TrailDetails.css";
 
 const TrailDetails = props => {
@@ -19,8 +19,8 @@ const TrailDetails = props => {
     // so Kristen helped me change the qs parameters in my fetch call so now fetching the join-table and only the objects whose trailId
     // matches the id of the trail being viewed, and we're expanding the users to get all the data we need for our Riders cards.
     UsersManager.getUsersWithTrails(props.trailId).then(usersWithTrails => {
-        console.log(usersWithTrails)      
-        setRiders(usersWithTrails)
+      console.log(usersWithTrails);
+      setRiders(usersWithTrails);
     });
   };
 
@@ -31,6 +31,15 @@ const TrailDetails = props => {
 
   return (
     <>
+      <header className="header">
+        <div className="header-banner-one"></div>
+        <div className="header-banner-two">
+          {/* Insert React Burger here */}
+          <h1 className="text-size--large">MTB Connect</h1>
+          {/* Insert avatar/link here */}
+        </div>
+      </header>
+      
       <div className="trailCardContainer">
         <figure className="imageContainer">
           {/* <img src={require(`${props.trail.img}`)} alt="Trail Image" /> */}
