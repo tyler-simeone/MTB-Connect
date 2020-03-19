@@ -11,19 +11,34 @@ const TrailDetails = props => {
     description: "",
     zipcode: ""
   });
-  // Will end up mapping 'riders' to render RiderCard (which will be a preview, and when clicked on [anywhere] will render RiderDetails)
-  // to add rider as friend and send msg
   const [riders, setRiders] = useState([]);
+  const [isClicked, setIsClicked] = useState(false);
 
+  // Runs on 'View Recent Riders' btn click
   const findTrailUsers = () => {
-    // so Kristen helped me change the qs parameters in my fetch call so now fetching the join-table and only the objects whose trailId
+    // so Kristen helped me change the qs parameters in my fetch call so now fetching the join-table w/ only the objects whose trailId
     // matches the id of the trail being viewed, and we're expanding the users to get all the data we need for our Riders cards.
     UsersManager.getUsersWithTrails(props.trailId).then(usersWithTrails => {
-      console.log(usersWithTrails);
       setRiders(usersWithTrails);
     });
   };
 
+  //   TODO: this fn should 1) add user to trailUsers table as a new user of that trail, and 2) set isClicked state to true (renders)
+  const addRecentRider = () => {
+    const activeUserId = sessionStorage.getItem("Active User Id");
+    console.log(activeUserId);
+
+    const newUser = {
+      userId: activeUserId,
+      trailId: props.trailId
+    };
+
+    UsersManager.addUserWithTrail(newUser).then(() => {
+        
+    });
+  };
+
+  // Just to view Trail Details...
   // Second useEffect arg means watch the path and when it includes a trail Id (meaning this page is being loaded), then run useEffect().
   useEffect(() => {
     TrailsManager.get(props.trailId).then(trail => setTrail(trail));
@@ -39,7 +54,7 @@ const TrailDetails = props => {
           {/* Insert avatar/link here */}
         </div>
       </header>
-      
+
       <div className="trailCardContainer">
         <figure className="imageContainer">
           {/* <img src={require(`${props.trail.img}`)} alt="Trail Image" /> */}
@@ -59,7 +74,7 @@ const TrailDetails = props => {
         >
           View Recent Riders
         </button>
-        <button className="addRecentRider" type="button">
+        <button onClick={addRecentRider} className="addRecentRider" type="button">
           I've Ridden Here Recently!
         </button>
       </div>
@@ -71,6 +86,14 @@ const TrailDetails = props => {
           })}
         </section>
       )}
+
+      {/* {isClicked ? : (
+          <form className="addRider">
+              <fieldset>
+
+              </fieldset>
+          </form>
+      )} */}
     </>
   );
 };
