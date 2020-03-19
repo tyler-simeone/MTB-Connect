@@ -1,0 +1,11 @@
+.trailCardContainer {
+    display: flex;
+    border: 1px solid gray;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+.imageContainer {
+    border: 1px solid gray;
+    padding: 100px;
+}
