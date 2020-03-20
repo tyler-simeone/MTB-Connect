@@ -14,13 +14,14 @@ import TrailList from "./trails/TrailList"
 import TrailDetails from "./trails/TrailDetails"
 // Friends goes here
 import Friends from "./friends/Friends"
+import AddFriendForm from "./friends/AddFriendForm"
 // Pending Reqs goes here
 import PendingFriends from "./pending/PendingFriends"
 
 // TODO: create the first components needed below and import them above
 
 const ApplicationViews = props => {
-
+    const activeUser = sessionStorage.getItem("Active User Id");
     const hasUser = props.hasUser;
     const setUser = props.setUser;
     
@@ -51,13 +52,16 @@ const ApplicationViews = props => {
                     return <Redirect to="/welcome" />
                 }
             }}/>
-            {/* below route will render upon trail search, based on zip code */}
-            {/* <Route path="/trailslist" render={props => {
-                return <TrailsList {...props} />
-            }}/> */}
             <Route path="/trails/:trailId(\d+)" render={props => {
                 if (hasUser) {
                     return <TrailDetails trailId={parseInt(props.match.params.trailId)} {...props} />
+                } else {
+                    return <Redirect to="/welcome" />
+                }
+            }}/>
+            <Route path="/trails/addFriend" render={props => {
+                if (hasUser) {
+                    return <AddFriendForm activeUser={parseInt(activeUser)} {...props} />
                 } else {
                     return <Redirect to="/welcome" />
                 }
