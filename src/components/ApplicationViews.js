@@ -59,13 +59,6 @@ const ApplicationViews = props => {
                     return <Redirect to="/welcome" />
                 }
             }}/>
-            {/* <Route path="/trails/addFriend" render={props => {
-                if (hasUser) {
-                    return <AddFriendForm activeUser={parseInt(activeUser)} {...props} />
-                } else {
-                    return <Redirect to="/welcome" />
-                }
-            }}/> */}
             <Route exact path="/friends" render={props => {
                 if (hasUser) {
                     return <Friends {...props} />
