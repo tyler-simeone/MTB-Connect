@@ -68,7 +68,7 @@ const ApplicationViews = props => {
             }}/>
             <Route exact path="/pending" render={props => {
                 if (hasUser) {
-                    return <PendingFriends {...props} />
+                    return <PendingFriends activeUserId={parseInt(activeUser)} {...props} />
                 } else {
                     return <Redirect to="/welcome" />
                 }
