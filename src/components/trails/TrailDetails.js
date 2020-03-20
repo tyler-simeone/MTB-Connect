@@ -25,7 +25,6 @@ const TrailDetails = props => {
   //   TODO: this fn should 1) add user to trailUsers table as a new user of that trail, and 2) set isClicked state to true (renders)
   const addRecentRider = () => {
     const activeUserId = sessionStorage.getItem("Active User Id");
-    console.log(activeUserId);
 
     const newUser = {
       userId: parseInt(activeUserId),
@@ -87,18 +86,10 @@ const TrailDetails = props => {
       {riders.length === 0 ? null : (
         <section className="recentRidersContainer">
           {riders.map(rider => {
-            return <TrailRiderCard key={rider.id} rider={rider} {...props} />;
+            return <TrailRiderCard key={rider.id} activeUserId={props.activeUserId} rider={rider} {...props} />;
           })}
         </section>
       )}
-
-      {/* {isClicked ? : (
-          <form className="addRider">
-              <fieldset>
-
-              </fieldset>
-          </form>
-      )} */}
     </>
   );
 };
