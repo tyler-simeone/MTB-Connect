@@ -86,7 +86,7 @@ const TrailDetails = props => {
       {riders.length === 0 ? null : (
         <section className="recentRidersContainer">
           {riders.map(rider => {
-            return <TrailRiderCard key={rider.id} trailId={props.trailId} rider={rider} {...props} />;
+            return <TrailRiderCard key={rider.id} activeUserId={props.activeUserId} rider={rider} {...props} />;
           })}
         </section>
       )}

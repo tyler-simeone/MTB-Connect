@@ -12,3 +12,10 @@
     padding: 50px;
     max-height: 40px;
 }
+
+.addFriendBtn {
+    max-width: 50px;
+    max-height: 30px;
+    margin: 20px 0 0 20px;
+    border-radius: 10px;
+}

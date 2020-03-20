@@ -14,7 +14,7 @@ import TrailList from "./trails/TrailList"
 import TrailDetails from "./trails/TrailDetails"
 // Friends goes here
 import Friends from "./friends/Friends"
-import AddFriendForm from "./friends/AddFriendForm"
+// import AddFriendForm from "./friends/AddFriendForm"
 // Pending Reqs goes here
 import PendingFriends from "./pending/PendingFriends"
 
@@ -54,18 +54,18 @@ const ApplicationViews = props => {
             }}/>
             <Route path="/trails/:trailId(\d+)" render={props => {
                 if (hasUser) {
-                    return <TrailDetails trailId={parseInt(props.match.params.trailId)} {...props} />
+                    return <TrailDetails trailId={parseInt(props.match.params.trailId)} activeUserId={parseInt(activeUser)} {...props} />
                 } else {
                     return <Redirect to="/welcome" />
                 }
             }}/>
-            <Route path="/trails/addFriend" render={props => {
+            {/* <Route path="/trails/addFriend" render={props => {
                 if (hasUser) {
                     return <AddFriendForm activeUser={parseInt(activeUser)} {...props} />
                 } else {
                     return <Redirect to="/welcome" />
                 }
-            }}/>
+            }}/> */}
             <Route exact path="/friends" render={props => {
                 if (hasUser) {
                     return <Friends {...props} />
