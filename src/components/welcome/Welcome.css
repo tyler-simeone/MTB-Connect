@@ -17,7 +17,7 @@
 }
 
 .backgroundImageContainer {
-    margin-left: 200px;
+    margin: 0 auto;
     border: 2px solid gray;
     min-height: 667px;
     max-height: 667px;

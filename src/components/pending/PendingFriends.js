@@ -5,6 +5,7 @@ import "./PendingFriends.css";
 
 const PendingFriends = props => {
   const [friendRequests, setFriendRequests] = useState([]);
+  const activeUserId = props.activeUserId;
 
   const viewFriendRequests = () => {
     FriendsManager.getAllRequests(props.activeUserId).then(requests => {
@@ -30,7 +31,7 @@ const PendingFriends = props => {
 
       <div className="pendingFriendsBox">
         {friendRequests.map(request => {
-          return <FriendRequestCard key={request.id} request={request} />
+          return <FriendRequestCard key={request.id} activeUserId={activeUserId} request={request} />
         })}
       </div>
     </>

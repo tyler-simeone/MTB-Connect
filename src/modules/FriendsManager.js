@@ -2,7 +2,7 @@ const baseURL = "http://localhost:5002";
 
 export default {
   getWithoutExpand(activeUserId) {
-    return fetch(`${baseURL}/trails/${trailId}`).then(resp => resp.json());
+    return fetch(`${baseURL}/friends/${activeUserId}`).then(resp => resp.json());
   },
   getAllRequests(activeUserId) {
     return fetch(
