@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FriendsManager from "../../modules/FriendsManager";
 
 const TrailRiderCard = props => {
-  // const [updatedRequest, setUpdatedRequest] = useState({})
+  const [updatedRequest, setUpdatedRequest] = useState({})
 
   // acceptFriendRequest() will change 'isAccepted' friend request property boolean from 'false' to 'true'
   const acceptFriendRequest = () => {
@@ -17,12 +17,10 @@ const TrailRiderCard = props => {
     // friendRequestId is how the fetch PUT knows which object to update
     const friendRequestId = props.request.id;
 
-    // TODO: see if when multiple requests are accepted by one user, this function will work respective of each request's properties.
     FriendsManager.updateRequest(updatedRequest, friendRequestId).then(() => {
       FriendsManager.getAllRequests(props.activeUserId).then(
         acceptedRequests => {
-          console.log(acceptedRequests);
-          // setUpdatedRequest(acceptedRequests)
+          setUpdatedRequest(acceptedRequests)
         }
       );
     });
