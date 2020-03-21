@@ -1,13 +1,22 @@
 const baseURL = "http://localhost:5002";
 
 export default {
-  //   get(trailId) {
-  //     return fetch(`${baseURL}/trails/${trailId}`).then(resp => resp.json());
-  //   },
+  getWithoutExpand(activeUserId) {
+    return fetch(`${baseURL}/trails/${trailId}`).then(resp => resp.json());
+  },
   getAllRequests(activeUserId) {
     return fetch(
       `${baseURL}/friends?_expand=user&friendId=${activeUserId}`
     ).then(resp => resp.json());
+  },
+  updateRequest(updatedRequest, requestId) {
+    return fetch(`${baseURL}/friends/${requestId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedRequest)
+    }).then(resp => resp.json());
   },
   //   // This qs parameter is saying find and return any whose 'key = {value}'
   //   getSomeTrails(zipcode) {
