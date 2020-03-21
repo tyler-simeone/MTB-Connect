@@ -18,6 +18,9 @@ export default {
       body: JSON.stringify(updatedRequest)
     }).then(resp => resp.json());
   },
+  getRequest(requestId) {
+    return fetch(`${baseURL}/friends/${requestId}`).then(resp => resp.json());
+  },
   //   // This qs parameter is saying find and return any whose 'key = {value}'
   //   getSomeTrails(zipcode) {
   //     return fetch(`${baseURL}/trails?zipcode=${zipcode}`).then(resp => resp.json());

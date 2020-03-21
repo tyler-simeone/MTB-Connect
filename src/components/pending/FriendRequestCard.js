@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import FriendsManager from "../../modules/FriendsManager";
 
 const TrailRiderCard = props => {
-  const [updatedRequest, setUpdatedRequest] = useState({})
+
+  const requestId = props.request.id;
 
   // acceptFriendRequest() will change 'isAccepted' friend request property boolean from 'false' to 'true'
   const acceptFriendRequest = () => {
@@ -18,11 +19,8 @@ const TrailRiderCard = props => {
     const friendRequestId = props.request.id;
 
     FriendsManager.updateRequest(updatedRequest, friendRequestId).then(() => {
-      FriendsManager.getAllRequests(props.activeUserId).then(
-        acceptedRequests => {
-          setUpdatedRequest(acceptedRequests)
-        }
-      );
+      props.updatedRequests(requestId)
+      // props.updatedRequests(friendRequestId);
     });
   };
 
