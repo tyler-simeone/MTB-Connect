@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Friends.css";
+import FriendCard from "./FriendCard"
+import FriendsManager from "../../modules/FriendsManager";
 
 const Friends = props => {
+  const activeUser = props.activeUserId;
+  const [friends, setFriends] = useState([]);
+
+  const getAllFriends = () => {
+    FriendsManager.getAllFriends(activeUser).then(friends => {
+      setFriends(friends);
+    });
+  };
+  // NOTE: Will set friends arr state to all friends (both pending & )
+  useEffect(() => {
+    getAllFriends();
+  }, [])
+
   return (
     <>
       <header className="header">
@@ -14,10 +29,12 @@ const Friends = props => {
       </header>
 
       <div className="friendsListBox">
-          
+        {friends.map(friend => {
+          return (<FriendCard key={friend.id} friend={friend} />)
+        })}
       </div>
     </>
   );
 };
 
-export default Friends
+export default Friends;
