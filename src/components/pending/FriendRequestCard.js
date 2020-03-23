@@ -8,8 +8,8 @@ const TrailRiderCard = props => {
   // updated data obj and console.log it.
   const acceptFriendRequest = () => {
     const updatedRequest = {
-      senderId: props.request.userId,
-      receiverId: props.request.friendId,
+      senderId: props.request.senderId,
+      receiverId: props.request.receiverId,
       isRequestPending: props.request.isRequestPending,
       isAccepted: true
     };

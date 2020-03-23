@@ -2,22 +2,29 @@ import React, { useState, useEffect } from "react";
 import FriendsManager from "../../modules/FriendsManager";
 
 const FriendCard = props => {
+  // used to hold user obj from DB to display user info on page (when we get the user by its id via friend obj FK's)
   const [user, setUser] = useState({});
 
+// TODO: It's deleting from DB but not updating user state to trigger ternary to remove card from page. 
+// REVIEW: (with the renderFriend() it is removing from page after hard refresh but not realtime...)
   const deleteFriend = friendId => {
-    FriendsManager.deleteFriend(friendId);
+    FriendsManager.deleteFriend(friendId).then(() => {
+        renderFriend();
+        // FriendsManager.getFriend(friendId).then(friend => setUser(friend))
+    });
   };
 
-  // This fn will render the data being display in the friend card respective of which user is logged in, the sender OR the receiver.
   const renderFriend = () => {
+    //   will run if logged in as the user who received/accepted friend request (getting & setting data for user who sent request)
     if (props.friend.receiverId === props.activeUser) {
       FriendsManager.getFriendUserInfo(props.friend.senderId).then(friend => {
-        console.log(friend)
+        console.log(friend);
         setUser(friend);
       });
+    //   will run if logged in as the user who sent friend request (getting & setting data for user who accepted request)
     } else if (props.friend.senderId === props.activeUser) {
       FriendsManager.getFriendUserInfo(props.friend.receiverId).then(friend => {
-        console.log(friend)
+        console.log(friend);
         setUser(friend);
       });
     }
@@ -27,33 +34,29 @@ const FriendCard = props => {
     renderFriend();
   }, []);
 
-  //   TODO: so the big issue here is something called cascading JSON something (which is why it was deleting both the data with the
-  // id val matching, AND the data with the friendId val matching)...
-  // And since I have a friends table and a friendId, I needed to change the friendId, but I also then wouldn't be able to expand userId
-  // anymore for the data (and you still need the sender of the friend request to be able to see their new friends as well, so need to add
-  // new conditional for that...)
-
-  // NOTE: Create useEffect to see if props.friend.receiverId === props.activeUser -> getOneUser(senderId)
-  // vice versa --> if props.friend.senderId === activeUserId -> getOneUser(receiverId)
+  //   NOTE: so the big issue here is something called cascading JSON delete (where deleting an obj with FK will delete obj that FK is
+  // referencing too, assuming won't need that data anymore either)...
 
   return (
     <>
-      <div className="friendCardContainer">
-        <figure className="riderImageContainer">
-          {/* <img src={require(`${props.trail.img}`)} alt="Trail Image" /> */}
-        </figure>
-        <section className="trailRiderCard">
-          <h2>{user.fullName}</h2>
-          <p>{user.username}</p>
-        </section>
-        <button
-          onClick={() => deleteFriend(props.friend.id)}
-          className="deleteFriendButton"
-          type="button"
-        >
-          Delete
-        </button>
-      </div>
+      {user.fullName != null ? (
+        <div className="friendCardContainer">
+          <figure className="riderImageContainer">
+            {/* <img src={require(`${props.trail.img}`)} alt="Trail Image" /> */}
+          </figure>
+          <section className="trailRiderCard">
+            <h2>{user.fullName}</h2>
+            <p>{user.username}</p>
+          </section>
+          <button
+            onClick={() => deleteFriend(props.friend.id)}
+            className="deleteFriendButton"
+            type="button"
+          >
+            Delete
+          </button>
+        </div>
+      ) : null}
     </>
   );
 };

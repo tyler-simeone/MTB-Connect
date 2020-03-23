@@ -1,16 +1,32 @@
 const baseURL = "http://localhost:5002";
 
 export default {
+  // active user viewing friend requests
   getAllRequests(activeUserId) {
     return fetch(
       `${baseURL}/friends?receiverId=${activeUserId}`
     ).then(resp => resp.json());
   },
+  // active user viewing friends 
+  // TODO: This doesn't render the friends when the sender of the request logs in to view their friends
   getAllFriends(activeUserId) {
     return fetch(
       `${baseURL}/friends?receiverId=${activeUserId}&isAccepted=true`
     ).then(resp => resp.json());
   },
+  // NOTE: Trying to get these 2 methods to work but they're ran on parent components so not sure how to get them to know when user is
+  // sender vs receiver
+  // getAllSendersFriends(activeUserId) {
+  //   return fetch(
+  //     `${baseURL}/friends?senderId=${activeUserId}&isAccepted=true`
+  //   ).then(resp => resp.json());
+  // },
+  // getAllReceiversFriends(activeUserId) {
+  //   return fetch(
+  //     `${baseURL}/friends?receiverId=${activeUserId}&isAccepted=true`
+  //   ).then(resp => resp.json());
+  // },
+  // active user viewing friend data via accessing the friend's user obj from id
   getFriendUserInfo(id) {
     return fetch(
       `${baseURL}/users/${id}`
