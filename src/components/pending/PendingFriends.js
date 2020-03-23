@@ -3,6 +3,8 @@ import FriendsManager from "../../modules/FriendsManager";
 import FriendRequestCard from "./FriendRequestCard";
 import "./PendingFriends.css";
 
+// NOTE: Pending Friends returns a list of friend request cards and when 'Accept' is clicked on the card, will re-set the state w/
+// updated request obj from DB which will cause a re-render and then the if() on line 36 will update!
 const PendingFriends = props => {
   const [friendRequests, setFriendRequests] = useState([]);
 
@@ -18,8 +20,6 @@ const PendingFriends = props => {
     viewFriendRequests();
   }, []);
 
-  // NOTE: All I had to do was call that function that runs on page load to getAll again AFTER I clicked accept, which re-getsAll &
-  // re-sets state, and then my simple if() will either render or it won't. BOOM
   return (
     <>
       <header className="header">
