@@ -5,8 +5,8 @@ import "./TrailRiderCard.css";
 const TrailRiderCard = props => {
 
   const [friendRequest, setFriendRequest] = useState({
-    userId: props.activeUserId,
-    friendId: props.rider.user.id,
+    senderId: props.activeUserId,
+    receiverId: props.rider.user.id,
     isRequestPending: false,
     isAccepted: false
   });
@@ -14,7 +14,6 @@ const TrailRiderCard = props => {
   const createFriendRequest = () => {
     const newFriendRequest = {...friendRequest}
     setFriendRequest(newFriendRequest.isRequestPending = true)
-    console.log(newFriendRequest);
     FriendsManager.post(newFriendRequest);
   };
 

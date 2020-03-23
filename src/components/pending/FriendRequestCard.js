@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import FriendsManager from "../../modules/FriendsManager";
 
 const TrailRiderCard = props => {
+  const [user, setUser] = useState({});
 
-  // NOTE: acceptFriendRequest() will update 'isAccepted' friend request property from 'false' to 'true', and then will re-fetch the 
+  // NOTE: acceptFriendRequest() will update 'isAccepted' friend request property from 'false' to 'true', and then will re-fetch the
   // updated data obj and console.log it.
   const acceptFriendRequest = () => {
     const updatedRequest = {
-      userId: props.request.userId,
-      friendId: props.request.friendId,
+      senderId: props.request.userId,
+      receiverId: props.request.friendId,
       isRequestPending: props.request.isRequestPending,
       isAccepted: true
     };
@@ -16,9 +17,21 @@ const TrailRiderCard = props => {
     const requestId = props.request.id;
 
     FriendsManager.updateRequest(updatedRequest, requestId).then(() => {
-      props.viewFriendRequests()
+      props.viewFriendRequests();
     });
   };
+
+  // This fn will render the data being display in the friend card respective of which user is logged in, the sender OR the receiver.
+  const renderFriend = () => {
+    FriendsManager.getFriendUserInfo(props.request.senderId).then(friend => {
+      console.log(friend);
+      setUser(friend);
+    });
+  };
+
+  useEffect(() => {
+    renderFriend();
+  }, []);
 
   return (
     <>
@@ -27,8 +40,8 @@ const TrailRiderCard = props => {
           {/* <img src={require(`${props.trail.img}`)} alt="Trail Image" /> */}
         </figure>
         <section className="trailRiderCard">
-          <h2>{props.request.user.fullName}</h2>
-          <p>{props.request.user.username}</p>
+          <h2>{user.fullName}</h2>
+          <p>{user.username}</p>
         </section>
         <button onClick={acceptFriendRequest} className="acceptFriendBtn">
           Accept

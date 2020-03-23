@@ -31,7 +31,7 @@ const Friends = props => {
 
       <div className="friendsListBox">
         {friends.map(friend => {
-          return (<FriendCard key={friend.id} friend={friend} />)
+          return (<FriendCard key={friend.id} activeUser={activeUser} friend={friend} />)
         })}
       </div>
     </>

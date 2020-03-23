@@ -3,12 +3,17 @@ const baseURL = "http://localhost:5002";
 export default {
   getAllRequests(activeUserId) {
     return fetch(
-      `${baseURL}/friends?_expand=user&friendId=${activeUserId}`
+      `${baseURL}/friends?receiverId=${activeUserId}`
     ).then(resp => resp.json());
   },
   getAllFriends(activeUserId) {
     return fetch(
-      `${baseURL}/friends?_expand=user&friendId=${activeUserId}&isAccepted=true`
+      `${baseURL}/friends?receiverId=${activeUserId}&isAccepted=true`
+    ).then(resp => resp.json());
+  },
+  getFriendUserInfo(id) {
+    return fetch(
+      `${baseURL}/users/${id}`
     ).then(resp => resp.json());
   },
   updateRequest(updatedRequest, requestId) {
@@ -29,9 +34,11 @@ export default {
       body: JSON.stringify(newFriendRequest)
     }).then(resp => resp.json());
   },
+  // NOTE: so deleteFriend should be fixed as I renamed FKs to prevent JSON cascading, but now need to refactor so diff users can view 
+  // eachother as friends (2 new 'get' requests), and had to refactor new objs a bit for post and edit (adding/accepting friend)
   deleteFriend(id) {
-    return fetch(`${baseURL}/friends?_id=${id}`, {
+    return fetch(`${baseURL}/friends/${id}`, {
       method: "DELETE"
-    });
+    })
   }
 };
