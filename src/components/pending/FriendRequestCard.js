@@ -3,8 +3,6 @@ import FriendsManager from "../../modules/FriendsManager";
 
 const TrailRiderCard = props => {
 
-  const requestId = props.request.id;
-
   // acceptFriendRequest() will change 'isAccepted' friend request property boolean from 'false' to 'true'
   const acceptFriendRequest = () => {
     // Had to make a new obj copy of the friend request so when fetch PUT runs it wont add the expanded property back to the DB
@@ -16,10 +14,10 @@ const TrailRiderCard = props => {
     };
 
     // friendRequestId is how the fetch PUT knows which object to update
-    const friendRequestId = props.request.id;
+    const requestId = props.request.id;
 
-    FriendsManager.updateRequest(updatedRequest, friendRequestId).then(() => {
-      props.updatedRequests(requestId)
+    FriendsManager.updateRequest(updatedRequest, requestId).then(() => {
+      props.viewUpdatedFriendRequest(requestId)
       // props.updatedRequests(friendRequestId);
     });
   };
