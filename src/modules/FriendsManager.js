@@ -28,5 +28,10 @@ export default {
       },
       body: JSON.stringify(newFriendRequest)
     }).then(resp => resp.json());
+  },
+  deleteFriend(id) {
+    return fetch(`${baseURL}/friends?_id=${id}`, {
+      method: "DELETE"
+    });
   }
 };

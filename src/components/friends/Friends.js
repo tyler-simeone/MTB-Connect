@@ -9,6 +9,7 @@ const Friends = props => {
 
   const getAllFriends = () => {
     FriendsManager.getAllFriends(activeUser).then(friends => {
+      console.log(friends)
       setFriends(friends);
     });
   };
