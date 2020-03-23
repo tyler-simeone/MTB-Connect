@@ -6,6 +6,11 @@ export default {
       `${baseURL}/friends?_expand=user&friendId=${activeUserId}`
     ).then(resp => resp.json());
   },
+  getAllFriends(activeUserId) {
+    return fetch(
+      `${baseURL}/friends?_expand=user&friendId=${activeUserId}&isAccepted=true`
+    ).then(resp => resp.json());
+  },
   updateRequest(updatedRequest, requestId) {
     return fetch(`${baseURL}/friends/${requestId}`, {
       method: "PUT",
@@ -14,9 +19,6 @@ export default {
       },
       body: JSON.stringify(updatedRequest)
     }).then(resp => resp.json());
-  },
-  getRequest(requestId) {
-    return fetch(`${baseURL}/friends/${requestId}`).then(resp => resp.json());
   },
   post(newFriendRequest) {
     return fetch(`${baseURL}/friends`, {

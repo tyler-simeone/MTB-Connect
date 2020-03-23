@@ -11,7 +11,7 @@ const PendingFriends = props => {
   const activeUserId = props.activeUserId;
 
   const viewFriendRequests = () => {
-    FriendsManager.getAllRequests(props.activeUserId).then(requests => {
+    FriendsManager.getAllRequests(activeUserId).then(requests => {
       setFriendRequests(requests);
     });
   };

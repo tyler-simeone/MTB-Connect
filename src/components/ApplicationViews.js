@@ -61,7 +61,7 @@ const ApplicationViews = props => {
             }}/>
             <Route exact path="/friends" render={props => {
                 if (hasUser) {
-                    return <Friends {...props} />
+                    return <Friends activeUserId={parseInt(activeUser)} {...props} />
                 } else {
                     return <Redirect to="/welcome" />
                 }
