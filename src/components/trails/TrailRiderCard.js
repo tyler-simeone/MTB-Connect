@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import FriendsManager from "../../modules/FriendsManager"
+import React, { useState, useEffect } from "react";
+import FriendsManager from "../../modules/FriendsManager";
 import "./TrailRiderCard.css";
 
 const TrailRiderCard = props => {
+  const [alreadyFriends, setAlreadyFriends] = useState({});
 
   const [friendRequest, setFriendRequest] = useState({
     senderId: props.activeUserId,
@@ -12,10 +13,30 @@ const TrailRiderCard = props => {
   });
 
   const createFriendRequest = () => {
-    const newFriendRequest = {...friendRequest}
-    setFriendRequest(newFriendRequest.isRequestPending = true)
+    const newFriendRequest = { ...friendRequest };
+    setFriendRequest((newFriendRequest.isRequestPending = true));
     FriendsManager.post(newFriendRequest);
   };
+  // Getting all friends from DB, going through each friend and seeing if one friend has a receiverId that matches the active user & a
+  // senderId that matches the TrailRiderCard we're viewing, OR vice-versa. If one friend in the DB meets the condition then we will
+  // update state and hide the 'Add Friend' button because that means they're already friends.
+  const getAllFriends = () => {
+    FriendsManager.getAllFriends(props.activeUserId).then(friends => {
+      const friend = friends.find(friend => {
+        if (friend.receiverId === props.activeUserId && friend.senderId === props.rider.user.id) {
+          return true
+        } else if (friend.senderId === props.activeUserId && friend.receiverId === props.rider.user.id) {
+          return true
+        }
+      });
+      console.log(friend);
+      setAlreadyFriends(friend);
+    });
+  };
+
+  useEffect(() => {
+    getAllFriends();
+  }, []);
 
   return (
     <>
@@ -29,9 +50,16 @@ const TrailRiderCard = props => {
         </section>
         {/* Insert 'Add Friend' Icon here as Link component when ready */}
         {/* Thinking should just redirect to new page w/ form to add friend, stretch goal will be to do it all on same trail detail page */}
-        <button onClick={createFriendRequest} className="addFriendBtn">
+        {/* {props.rider.id != props.activeUserId ? ( */}
+        {props.rider.id !== props.activeUserId && alreadyFriends === undefined ? (
+          <button onClick={createFriendRequest} className="addFriendBtn">
+            Add Friend
+          </button>
+        ) : null}
+        {/* <button onClick={createFriendRequest} className="addFriendBtn">
           Add Friend
-        </button>
+        </button> */}
+        {/* ) : null} */}
       </div>
     </>
   );
