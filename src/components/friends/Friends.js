@@ -5,6 +5,7 @@ import FriendsManager from "../../modules/FriendsManager";
 
 const Friends = props => {
   const activeUser = props.activeUserId;
+
   const [friends, setFriends] = useState([]);
 
   // NOTE: The reason I can see the opposite user's data when viewing friends list is because of the conditional that Kristen helped me
@@ -40,9 +41,9 @@ const Friends = props => {
       <div className="friendsListBox">
         {friends.map(friend => {
           if (activeUser == friend.senderId) {
-            return (<FriendCard key={friend.id} activeUser={activeUser} friend={friend} isSender={true} />)
+            return (<FriendCard key={friend.id} activeUser={activeUser} friend={friend} getAllFriends={getAllFriends} isSender={true} />)
           } else {
-            return (<FriendCard key={friend.id} activeUser={activeUser} friend={friend} isSender={false} />)
+            return (<FriendCard key={friend.id} activeUser={activeUser} friend={friend} getAllFriends={getAllFriends} isSender={false} />)
           }
         })}
       </div>

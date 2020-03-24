@@ -8,10 +8,8 @@ export default {
     ).then(resp => resp.json());
   },
   // active user viewing friends 
-  // REVIEW: Did have a problem with only being able to see the opposite person of the request if logged in as the receiver, but NOW
-  // this updated method will get users for sender's friends list and the receiver's friends list
   // NOTE: This fetch is getting me both users who have SENT me a friend req that I've accepted, AND users who I'VE sent
-  // a request to that have accepted. Will now get friends for both the sender and the receiver based on whose logged in.
+  // a request to that have accepted. Will also now be able to get friends for both the sender and the receiver based on whose logged in.
   getAllFriends(activeUserId) {
     return fetch(
       `${baseURL}/friends?receiverId=${activeUserId}&isAccepted=true`

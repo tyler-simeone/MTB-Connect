@@ -9,7 +9,7 @@ const FriendCard = props => {
 // TODO: (with the renderFriend() it is removing from page after hard refresh but not realtime...)
   const deleteFriend = friendId => {
     FriendsManager.deleteFriend(friendId).then(() => {
-        renderFriend();
+        props.getAllFriends()
         // FriendsManager.getFriend(friendId).then(friend => setUser(friend))
     });
   };
