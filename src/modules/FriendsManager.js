@@ -8,11 +8,22 @@ export default {
     ).then(resp => resp.json());
   },
   // active user viewing friends 
-  // TODO: This doesn't render the friends when the sender of the request logs in to view their friends
+  // REVIEW: Did have a problem with only being able to see the opposite person of the request if logged in as the receiver, but NOW
+  // this updated method will get users for sender's friends list and the receiver's friends list
+  // NOTE: This fetch is getting me both users who have SENT me a friend req that I've accepted, AND users who I'VE sent
+  // a request to that have accepted. Will now get friends for both the sender and the receiver based on whose logged in.
   getAllFriends(activeUserId) {
     return fetch(
       `${baseURL}/friends?receiverId=${activeUserId}&isAccepted=true`
-    ).then(resp => resp.json());
+    ).then(resp => resp.json())
+    .then(receiverFriends => {
+        return fetch(
+          `${baseURL}/friends?senderId=${activeUserId}&isAccepted=true`
+        ).then(resp => resp.json())
+        .then(senderFriends => {
+          return receiverFriends.concat(senderFriends)
+        })
+    })
   },
   // NOTE: Trying to get these 2 methods to work but they're ran on parent components so not sure how to get them to know when user is
   // sender vs receiver
@@ -50,7 +61,7 @@ export default {
       body: JSON.stringify(newFriendRequest)
     }).then(resp => resp.json());
   },
-  // NOTE: so deleteFriend should be fixed as I renamed FKs to prevent JSON cascading, but now need to refactor so diff users can view 
+  // NOTE: so deleteFriend should be fixed as I renamed FKs to prevent JSON cascade delete, but now need to refactor so diff users can view 
   // eachother as friends (2 new 'get' requests), and had to refactor new objs a bit for post and edit (adding/accepting friend)
   deleteFriend(id) {
     return fetch(`${baseURL}/friends/${id}`, {
