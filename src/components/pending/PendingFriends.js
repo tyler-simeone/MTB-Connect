@@ -3,8 +3,8 @@ import FriendsManager from "../../modules/FriendsManager";
 import FriendRequestCard from "./FriendRequestCard";
 import "./PendingFriends.css";
 
-// NOTE: Pending Friends returns a list of friend request cards and when 'Accept' is clicked on the card, will re-set the state w/
-// updated request obj from DB which will cause a re-render and then the if() on line 36 will update!
+// NOTE: Pending Friends returns a list of friend request cards. And when 'Accept' is clicked on the card, will re-set friendRequests 
+// state w/ updated request obj from DB (whose 'isAccepted' property is true), which will cause a re-render and then the if() on line 36 will update!
 const PendingFriends = props => {
   const [friendRequests, setFriendRequests] = useState([]);
 
