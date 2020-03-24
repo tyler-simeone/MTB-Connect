@@ -4,8 +4,6 @@ import FriendsManager from "../../modules/FriendsManager";
 const TrailRiderCard = props => {
   const [user, setUser] = useState({});
 
-  // NOTE: acceptFriendRequest() will update 'isAccepted' friend request property from 'false' to 'true', and then will re-fetch the
-  // updated data obj and console.log it.
   const acceptFriendRequest = () => {
     const updatedRequest = {
       senderId: props.request.senderId,
@@ -13,7 +11,7 @@ const TrailRiderCard = props => {
       isRequestPending: props.request.isRequestPending,
       isAccepted: true
     };
-    // requestId is how the fetch PUT knows which object to update
+    // requestId is how the fetch PUT knows which 'friend' object to update
     const requestId = props.request.id;
 
     FriendsManager.updateRequest(updatedRequest, requestId).then(() => {
@@ -24,7 +22,6 @@ const TrailRiderCard = props => {
   // This fn will render the data being display in the friend card respective of which user is logged in, the sender OR the receiver.
   const renderFriend = () => {
     FriendsManager.getFriendUserInfo(props.request.senderId).then(friend => {
-      console.log(friend);
       setUser(friend);
     });
   };
