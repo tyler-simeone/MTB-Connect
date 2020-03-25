@@ -1,6 +1,11 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
 
+
+/**** 
+ THIS IS MY MVP BRANCH
+****/
+
 // Welcome goes here
 import Welcome from "./welcome/Welcome"
 // Register goes here
@@ -14,7 +19,6 @@ import TrailList from "./trails/TrailList"
 import TrailDetails from "./trails/TrailDetails"
 // Friends goes here
 import Friends from "./friends/Friends"
-// import AddFriendForm from "./friends/AddFriendForm"
 // Pending Reqs goes here
 import PendingFriends from "./pending/PendingFriends"
 
