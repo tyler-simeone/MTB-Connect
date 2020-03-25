@@ -53,7 +53,7 @@ const TrailRiderCard = props => {
     <>
       <div className="trailRiderCardContainer">
         <figure className="riderImageContainer">
-          {/* <img src={require(`${props.trail.img}`)} alt="Trail Image" /> */}
+          {/* <img src={require(`${props.rider.user.avatarImg}`)} alt="Trail Rider Image" /> */}
         </figure>
         <section className="trailRiderCard">
           <h2>{props.rider.user.fullName}</h2>
