@@ -12,6 +12,8 @@ const TrailDetails = props => {
     zipcode: ""
   });
   const [riders, setRiders] = useState([]);
+
+  const [isNewRiderLoading, setIsNewRiderLoading] = useState(false);
   
   // Runs on 'View Recent Riders' btn click
   const findTrailUsers = () => {
@@ -22,10 +24,10 @@ const TrailDetails = props => {
 
   // Runs when user wishes to add his/herself as a recent rider of the trail
   const addRecentRider = () => {
-    const activeUserId = sessionStorage.getItem("Active User Id");
+    setIsNewRiderLoading(true)
 
     const newUser = {
-      userId: parseInt(activeUserId),
+      userId: props.activeUserId,
       trailId: props.trailId
     };
 
@@ -73,6 +75,7 @@ const TrailDetails = props => {
           onClick={addRecentRider}
           className="addRecentRider"
           type="button"
+          disabled={isNewRiderLoading}
         >
           I've Ridden Here Recently!
         </button>
@@ -81,7 +84,7 @@ const TrailDetails = props => {
       {riders.length === 0 ? null : (
         <section className="recentRidersContainer">
           {riders.map(rider => {
-            return <TrailRiderCard key={rider.id} activeUserId={props.activeUserId} rider={rider} {...props} />;
+            return <TrailRiderCard key={rider.id} activeUserId={props.activeUserId} rider={rider} findTrailUsers={findTrailUsers} {...props} />;
           })}
         </section>
       )}

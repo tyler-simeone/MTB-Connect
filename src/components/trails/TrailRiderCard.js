@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import FriendsManager from "../../modules/FriendsManager";
+import UsersManager from "../../modules/UsersManager";
 import "./TrailRiderCard.css";
 
 const TrailRiderCard = props => {
   const [alreadyFriends, setAlreadyFriends] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const [friendRequest, setFriendRequest] = useState({
     senderId: props.activeUserId,
@@ -15,8 +17,16 @@ const TrailRiderCard = props => {
   const createFriendRequest = () => {
     const newFriendRequest = { ...friendRequest };
     setFriendRequest((newFriendRequest.isRequestPending = true));
+    setIsLoading(true);
     FriendsManager.post(newFriendRequest);
   };
+
+  const removeFromRidersList = () => {
+    UsersManager.deleteUserWithTrail(props.rider.id).then(() => {
+      props.findTrailUsers();
+    })
+  }
+
   // Getting all friends from DB, going through each friend and seeing if one friend has a receiverId that matches the active user & a
   // senderId that matches the TrailRiderCard we're viewing, OR vice-versa. If one friend in the DB meets the condition then we will
   // update state and hide the 'Add Friend' button for this card because that means they're already friends.
@@ -50,10 +60,13 @@ const TrailRiderCard = props => {
           <p>{props.rider.user.username}</p>
         </section>
         {/* Insert 'Add Friend' Icon here as Link component when ready */}
-        {props.rider.id !== props.activeUserId && alreadyFriends === undefined ? (
-          <button onClick={createFriendRequest} className="addFriendBtn">
+        {props.rider.user.id !== props.activeUserId && alreadyFriends === undefined ? (
+          <button onClick={createFriendRequest} className="addFriendBtn" disabled={isLoading}>
             Add Friend
           </button>
+        ) : null}
+        {props.rider.user.id === props.activeUserId ? (
+          <button onClick={removeFromRidersList} className="removeRiderBtn">Remove</button>
         ) : null}
       </div>
     </>

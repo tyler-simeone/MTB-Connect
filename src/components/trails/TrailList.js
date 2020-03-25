@@ -4,22 +4,23 @@ import TrailsManager from "../../modules/TrailsManager";
 import TrailCard from "./TrailCard";
 
 const TrailList = props => {
+  const activeUserId = props.activeUserId
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
 
   const handleFieldChange = evt => {
     const stateToChange = { ...zipcode };
     stateToChange[evt.target.id] = evt.target.value;
-    setZipcode(stateToChange)
+    setZipcode(stateToChange);
   };
 
-  const findMatchingTrails = (evt) => {
-    evt.preventDefault()
+  const findMatchingTrails = evt => {
+    evt.preventDefault();
 
     TrailsManager.getSomeTrails(zipcode.value).then(trailsFromApi => {
       setTrails(trailsFromApi);
     });
-  }  
+  };
 
   return (
     <>
@@ -38,8 +39,13 @@ const TrailList = props => {
           type="text"
           onChange={handleFieldChange}
           placeholder="Enter Zip Code"
+          className="trailSearch"
         ></input>
         <button type="submit">Search</button>
+
+        <button className="addTrailBtn" onClick={() => props.history.push("/trails/addTrail")}>
+          Add a Trail
+        </button>
       </form>
 
       {/* Before submit btn clicked and api fetch runs, trails.length is 0, after search its length is > than 0 so will render the cards!! */}
@@ -51,7 +57,7 @@ const TrailList = props => {
         <div>
           <section>
             {trails.map(trail => {
-              return <TrailCard key={trail.id} trail={trail} {...props} />;
+              return <TrailCard key={trail.id} activeUserId={activeUserId} trail={trail} {...props} />;
             })}
           </section>
         </div>

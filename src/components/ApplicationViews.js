@@ -16,7 +16,9 @@ import Login from "./auth/Login"
 import Home from "./home/Home"
 // Trails goes here
 import TrailList from "./trails/TrailList"
+import CreateTrail from "./trails/CreateTrail"
 import TrailDetails from "./trails/TrailDetails"
+import TrailEdit from "./trails/EditTrail"
 // Friends goes here
 import Friends from "./friends/Friends"
 // Pending Reqs goes here
@@ -48,14 +50,28 @@ const ApplicationViews = props => {
             }}/>
             <Route exact path="/trails" render={props => {
                 if (hasUser) {
-                    return <TrailList {...props} />
+                    return <TrailList activeUserId={parseInt(activeUser)} {...props} />
                 } else {
                     return <Redirect to="/welcome" />
                 }
             }}/>
-            <Route path="/trails/:trailId(\d+)" render={props => {
+            <Route exact path="/trails/addTrail" render={props => {
+                if (hasUser) {
+                    return <CreateTrail activeUserId={parseInt(activeUser)} {...props} />
+                } else {
+                    return <Redirect to="/welcome" />
+                }
+            }}/>
+            <Route exact path="/trails/:trailId(\d+)" render={props => {
                 if (hasUser) {
                     return <TrailDetails trailId={parseInt(props.match.params.trailId)} activeUserId={parseInt(activeUser)} {...props} />
+                } else {
+                    return <Redirect to="/welcome" />
+                }
+            }}/>
+            <Route path="/trails/:trailId(\d+)/edit" render={props => {
+                if (hasUser) {
+                    return <TrailEdit trailId={parseInt(props.match.params.trailId)} {...props} />
                 } else {
                     return <Redirect to="/welcome" />
                 }

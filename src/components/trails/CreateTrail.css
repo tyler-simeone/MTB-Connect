@@ -1,0 +1,30 @@
+.createTrailForm {
+    border: 2px solid gray;
+    margin: 0 auto;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.createTrailForm input {
+    line-height: 20px;
+    min-width: 350px;
+    max-width: 350px;
+    margin: 5px auto;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+.createTrailForm input:first-of-type {
+    margin-top: 10px;
+}
+
+.createTrailForm input:last-of-type {
+    margin-bottom: 10px;
+}
+
+.createTrailForm button {
+    max-width: 100px;
+    min-width: 100px;
+    margin: 0 auto;
+}
