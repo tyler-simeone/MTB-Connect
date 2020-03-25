@@ -7,7 +7,8 @@ const CreateTrail = props => {
     name: "",
     img: "",
     description: "",
-    zipcode: ""
+    zipcode: "",
+    creatorId: props.activeUserId
   });
   const [isLoading, setIsLoading] = useState(false)
 

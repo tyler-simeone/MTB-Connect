@@ -4,6 +4,7 @@ import TrailsManager from "../../modules/TrailsManager";
 import TrailCard from "./TrailCard";
 
 const TrailList = props => {
+  const activeUserId = props.activeUserId
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
 
@@ -56,7 +57,7 @@ const TrailList = props => {
         <div>
           <section>
             {trails.map(trail => {
-              return <TrailCard key={trail.id} trail={trail} {...props} />;
+              return <TrailCard key={trail.id} activeUserId={activeUserId} trail={trail} {...props} />;
             })}
           </section>
         </div>
