@@ -1,6 +1,11 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
 
+
+/**** 
+ THIS IS MY MVP BRANCH
+****/
+
 // Welcome goes here
 import Welcome from "./welcome/Welcome"
 // Register goes here
@@ -14,11 +19,8 @@ import TrailList from "./trails/TrailList"
 import TrailDetails from "./trails/TrailDetails"
 // Friends goes here
 import Friends from "./friends/Friends"
-// import AddFriendForm from "./friends/AddFriendForm"
 // Pending Reqs goes here
 import PendingFriends from "./pending/PendingFriends"
-
-// TODO: create the first components needed below and import them above
 
 const ApplicationViews = props => {
     const activeUser = sessionStorage.getItem("Active User Id");
@@ -27,7 +29,6 @@ const ApplicationViews = props => {
     
     return (
         <>
-            {/* TODO: will add these routes when ready */}
             <Route exact path="/welcome" render={props => {
                 return <Welcome {...props} />
             }}/>
