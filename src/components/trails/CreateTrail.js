@@ -15,7 +15,6 @@ const CreateTrail = props => {
   const handleFieldChange = evt => {
     const stateToChange = { ...newTrail };
     stateToChange[evt.target.id] = evt.target.value;
-    console.log(stateToChange)
     setNewTrail(stateToChange);
   };
 
