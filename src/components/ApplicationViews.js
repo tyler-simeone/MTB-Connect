@@ -16,6 +16,7 @@ import Login from "./auth/Login"
 import Home from "./home/Home"
 // Trails goes here
 import TrailList from "./trails/TrailList"
+import CreateTrail from "./trails/CreateTrail"
 import TrailDetails from "./trails/TrailDetails"
 // Friends goes here
 import Friends from "./friends/Friends"
@@ -49,6 +50,13 @@ const ApplicationViews = props => {
             <Route exact path="/trails" render={props => {
                 if (hasUser) {
                     return <TrailList {...props} />
+                } else {
+                    return <Redirect to="/welcome" />
+                }
+            }}/>
+            <Route exact path="/trails/addTrail" render={props => {
+                if (hasUser) {
+                    return <CreateTrail {...props} />
                 } else {
                     return <Redirect to="/welcome" />
                 }

@@ -26,6 +26,9 @@
     margin-top: 370px;
     margin-left: 20px;
 }
+.addTrailBtn {
+    margin-left: 300px;
+}
 
 .searchDescriptionContainer {
     border: 1px solid gray;
