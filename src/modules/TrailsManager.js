@@ -9,7 +9,9 @@ export default {
   },
   // This qs parameter is saying find and return any whose 'key = {value}'
   getSomeTrails(zipcode) {
-    return fetch(`${baseURL}/trails?zipcode=${zipcode}`).then(resp => resp.json());
+    return fetch(`${baseURL}/trails?zipcode=${zipcode}`).then(resp =>
+      resp.json()
+    );
   },
   // I believe we'll use this to post a new trail user to a specific trail.
   post(newTrailUser) {
@@ -19,6 +21,15 @@ export default {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(newTrailUser)
+    }).then(resp => resp.json());
+  },
+  update(newTrail, trailId) {
+    return fetch(`${baseURL}/trails/${trailId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newTrail)
     }).then(resp => resp.json());
   }
 };

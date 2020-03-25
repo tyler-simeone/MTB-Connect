@@ -18,6 +18,7 @@ import Home from "./home/Home"
 import TrailList from "./trails/TrailList"
 import CreateTrail from "./trails/CreateTrail"
 import TrailDetails from "./trails/TrailDetails"
+import TrailEdit from "./trails/EditTrail"
 // Friends goes here
 import Friends from "./friends/Friends"
 // Pending Reqs goes here
@@ -70,7 +71,7 @@ const ApplicationViews = props => {
             }}/>
             <Route path="/trails/:trailId(\d+)/edit" render={props => {
                 if (hasUser) {
-                    return <TrailDetails trailId={parseInt(props.match.params.trailId)} activeUserId={parseInt(activeUser)} {...props} />
+                    return <TrailEdit trailId={parseInt(props.match.params.trailId)} {...props} />
                 } else {
                     return <Redirect to="/welcome" />
                 }

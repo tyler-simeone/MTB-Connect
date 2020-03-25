@@ -14,7 +14,7 @@ const TrailCard = props => {
         </Link>
         {props.trail.creatorId === props.activeUserId ? (
           <Link to={`/trails/${props.trail.id}/edit`}>
-            <button type="button">Details</button>
+            <button type="button">Edit</button>
           </Link>
         ) : null}
         <section className="trailCard">
