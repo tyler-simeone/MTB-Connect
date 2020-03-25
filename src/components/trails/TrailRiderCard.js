@@ -19,17 +19,18 @@ const TrailRiderCard = props => {
   };
   // Getting all friends from DB, going through each friend and seeing if one friend has a receiverId that matches the active user & a
   // senderId that matches the TrailRiderCard we're viewing, OR vice-versa. If one friend in the DB meets the condition then we will
-  // update state and hide the 'Add Friend' button because that means they're already friends.
+  // update state and hide the 'Add Friend' button for this card because that means they're already friends.
+
+  // These conditionals are to hide the 'Add Friend' button on the card if the card is either the active user or their friend (via friend req sent to them or they sent req to me).
   const getAllFriends = () => {
     FriendsManager.getAllFriends(props.activeUserId).then(friends => {
       const friend = friends.find(friend => {
-        if (friend.receiverId === props.activeUserId && friend.senderId === props.rider.user.id) {
+        if (friend.receiverId === props.activeUserId && friend.senderId === props.rider.user.id || props.rider.user.id === props.activeUserId) {
           return true
-        } else if (friend.senderId === props.activeUserId && friend.receiverId === props.rider.user.id) {
+        } else if (friend.senderId === props.activeUserId && friend.receiverId === props.rider.user.id || props.rider.user.id === props.activeUserId) {
           return true
         }
       });
-      console.log(friend);
       setAlreadyFriends(friend);
     });
   };
@@ -56,10 +57,6 @@ const TrailRiderCard = props => {
             Add Friend
           </button>
         ) : null}
-        {/* <button onClick={createFriendRequest} className="addFriendBtn">
-          Add Friend
-        </button> */}
-        {/* ) : null} */}
       </div>
     </>
   );
