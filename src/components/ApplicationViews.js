@@ -22,8 +22,6 @@ import Friends from "./friends/Friends"
 // Pending Reqs goes here
 import PendingFriends from "./pending/PendingFriends"
 
-// TODO: create the first components needed below and import them above
-
 const ApplicationViews = props => {
     const activeUser = sessionStorage.getItem("Active User Id");
     const hasUser = props.hasUser;
@@ -31,7 +29,6 @@ const ApplicationViews = props => {
     
     return (
         <>
-            {/* TODO: will add these routes when ready */}
             <Route exact path="/welcome" render={props => {
                 return <Welcome {...props} />
             }}/>
