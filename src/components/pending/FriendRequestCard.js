@@ -19,7 +19,6 @@ const TrailRiderCard = props => {
     });
   };
 
-  // This fn will render the data being display in the friend card respective of which user is logged in, the sender OR the receiver.
   const renderFriend = () => {
     FriendsManager.getFriendUserInfo(props.request.senderId).then(friend => {
       setUser(friend);

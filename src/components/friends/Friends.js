@@ -12,6 +12,7 @@ const Friends = props => {
   // write in the FriendCard.js , BUT that was based on correct data coming in from DB, which is what Bryan helped me with this morning.
   // Prior to this morning I was missing half of the data (the people that have sent friend requests couldn't see their new friends that
   // accepted those requests) and only the receivers could see the opposite user's data.
+
   // NOTE: This updated fetch now allows me to get all friends (in a concatenated array) who I've accepted requests from,
   // AND who have accepted requests from me. And will also allow the renderFriend() fn that Kristen helped me with to work correctly.
   const getAllFriends = () => {
@@ -46,12 +47,6 @@ const Friends = props => {
             />
           );
         })}
-
-        {/* if (activeUser == friend.senderId) {
-            return (<FriendCard key={friend.id} activeUser={activeUser} friend={friend} getAllFriends={getAllFriends} />)
-          } else {
-            return (<FriendCard key={friend.id} activeUser={activeUser} friend={friend} getAllFriends={getAllFriends} isSender={false} />)
-          } */}
       </div>
     </>
   );

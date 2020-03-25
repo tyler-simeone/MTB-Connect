@@ -21,7 +21,7 @@ const TrailRiderCard = props => {
   // senderId that matches the TrailRiderCard we're viewing, OR vice-versa. If one friend in the DB meets the condition then we will
   // update state and hide the 'Add Friend' button for this card because that means they're already friends.
 
-  // These conditionals are to hide the 'Add Friend' button on the card if the card is either the active user or their friend (via friend req sent to them or they sent req to me).
+  // These conditionals are to hide the 'Add Friend' button on the card if the card is either the active user or their friend (via friend req sent to them or they sent req to active user).
   const getAllFriends = () => {
     FriendsManager.getAllFriends(props.activeUserId).then(friends => {
       const friend = friends.find(friend => {
@@ -50,8 +50,6 @@ const TrailRiderCard = props => {
           <p>{props.rider.user.username}</p>
         </section>
         {/* Insert 'Add Friend' Icon here as Link component when ready */}
-        {/* Thinking should just redirect to new page w/ form to add friend, stretch goal will be to do it all on same trail detail page */}
-        {/* {props.rider.id != props.activeUserId ? ( */}
         {props.rider.id !== props.activeUserId && alreadyFriends === undefined ? (
           <button onClick={createFriendRequest} className="addFriendBtn">
             Add Friend
