@@ -4,6 +4,7 @@ import "./TrailRiderCard.css";
 
 const TrailRiderCard = props => {
   const [alreadyFriends, setAlreadyFriends] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const [friendRequest, setFriendRequest] = useState({
     senderId: props.activeUserId,
@@ -15,6 +16,7 @@ const TrailRiderCard = props => {
   const createFriendRequest = () => {
     const newFriendRequest = { ...friendRequest };
     setFriendRequest((newFriendRequest.isRequestPending = true));
+    setIsLoading(true);
     FriendsManager.post(newFriendRequest);
   };
   // Getting all friends from DB, going through each friend and seeing if one friend has a receiverId that matches the active user & a
@@ -51,7 +53,7 @@ const TrailRiderCard = props => {
         </section>
         {/* Insert 'Add Friend' Icon here as Link component when ready */}
         {props.rider.id !== props.activeUserId && alreadyFriends === undefined ? (
-          <button onClick={createFriendRequest} className="addFriendBtn">
+          <button onClick={createFriendRequest} className="addFriendBtn" disabled={isLoading}>
             Add Friend
           </button>
         ) : null}
