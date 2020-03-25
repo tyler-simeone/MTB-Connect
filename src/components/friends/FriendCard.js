@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import FriendsManager from "../../modules/FriendsManager";
 
 const FriendCard = props => {
-  // NOTE: used to hold user obj from DB to display user info on page
   const [user, setUser] = useState({});
 
   const deleteFriend = friendId => {
