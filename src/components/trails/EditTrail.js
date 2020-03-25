@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import TrailRiderCard from "./TrailRiderCard";
 import TrailsManager from "../../modules/TrailsManager";
 // import "./TrailEdit.css";
 
@@ -15,16 +14,16 @@ const TrailEdit = props => {
   const handleFieldChange = evt => {
     const stateToChange = { ...trail };
     stateToChange[evt.target.id] = evt.target.value;
-    console.log(stateToChange);
-    // setTrail(stateToChange);
+    setTrail(stateToChange);
   };
 
   const updateTrailDescription = evt => {
     evt.preventDefault();
     setIsLoading(true);
+    
     // will create new trail and then return user to trails page (where they will then have to search for that trail)
     TrailsManager.update(trail, props.trailId).then(() => {
-      props.history.push(`/trails/${props.trail.id}`);
+      props.history.push(`/trails/${props.trailId}`);
     });
   };
 
@@ -53,7 +52,7 @@ const TrailEdit = props => {
           <form onSubmit={updateTrailDescription}>
             <h2>{trail.name}</h2>
             <textarea
-              placeholder={trail.description}
+              value={trail.description}
               onChange={handleFieldChange}
               id="description"
             ></textarea>
