@@ -14,5 +14,10 @@ export default {
       },
       body: JSON.stringify(newUser)
     }).then(resp => resp.json());
+  },
+  deleteUserWithTrail(id) {
+    return fetch(`${baseURL}/trailUsers/${id}`, {
+      method: "DELETE"
+    });
   }
 };
