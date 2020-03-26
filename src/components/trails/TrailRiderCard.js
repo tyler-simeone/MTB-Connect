@@ -33,6 +33,8 @@ const TrailRiderCard = props => {
 
   // These conditionals are to hide the 'Add Friend' button on the card if the card is either the active user or their friend (via friend req sent to them or they sent req to active user).
   const getAllFriends = () => {
+    // TODO: See what this logs....
+    console.log(props.rider.user.avatarImg)
     FriendsManager.getAllFriends(props.activeUserId).then(friends => {
       const friend = friends.find(friend => {
         if (friend.receiverId === props.activeUserId && friend.senderId === props.rider.user.id || props.rider.user.id === props.activeUserId) {
@@ -52,9 +54,9 @@ const TrailRiderCard = props => {
   return (
     <>
       <div className="trailRiderCardContainer">
-        <figure className="riderImageContainer">
-          {/* <img src={require(`${props.rider.user.avatarImg}`)} alt="Trail Rider Image" /> */}
-        </figure>
+        <div className="riderImageContainer">
+          <img src={require(`${props.rider.user.avatarImg}`)} alt="Trail Rider Image" />
+        </div>
         <section className="trailRiderCard">
           <h2>{props.rider.user.fullName}</h2>
           <p>{props.rider.user.username}</p>

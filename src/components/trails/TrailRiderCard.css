@@ -8,9 +8,18 @@
 }
 
 .riderImageContainer {
+    margin: 10px 10px 0 10px;
     border: 1px solid gray;
-    padding: 50px;
-    max-height: 40px;
+    border-radius: 3px;
+    max-height: 100px;
+    max-width: 100px;
+    width: 100px;
+}
+
+img {
+    height: 100px;
+    max-height: 100px;
+    max-width: 100px;
 }
 
 .addFriendBtn {
