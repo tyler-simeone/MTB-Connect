@@ -9,11 +9,7 @@ const NavBar = props => {
 
   return (
     <header className="header">
-      <div className="header-banner-one"></div>
-      <div className="header-banner-two">
-        {/* Insert React Burger here */}
-        <h1 className="text-size--large">MTB Connect</h1>
-        {/* Insert avatar/link here */}
+      <div className="headerBannerOne">
         <div className="navContainer">
           <nav>
             {/* <Menu> */}
@@ -49,6 +45,11 @@ const NavBar = props => {
             {/* </Menu> */}
           </nav>
         </div>
+      </div>
+      <div className="headerBannerTwo">
+        {/* Insert React Burger here */}
+        <h1 className="text-size--large">MTB Connect</h1>
+        {/* Insert avatar/link here */}
       </div>
     </header>
   );

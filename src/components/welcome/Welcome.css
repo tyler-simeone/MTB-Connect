@@ -1,21 +1,3 @@
-.header-banner-one {
-    max-height: 30px;
-    min-height: 30px;
-    background-color: #2C77B8;
-}
-
-.header-banner-two {
-    border-top: 2px solid gray;
-    border-bottom: 2px solid gray;
-}
-
-.text-size--large {
-    text-align: center;
-    margin: 0;
-    font-size: 4em;
-    color: gray;
-}
-
 .backgroundImageContainer {
     margin: 0 auto;
     border: 2px solid gray;

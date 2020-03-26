@@ -1,18 +1,3 @@
-.header {
-    margin-bottom: 50px;
-}
-
-.header-banner-one {
-    max-height: 30px;
-    min-height: 30px;
-    background-color: #2C77B8;
-}
-
-.header-banner-two {
-    border-top: 2px solid gray;
-    border-bottom: 2px solid gray;
-}
-
 .trailSearchBox {
     border: 1px solid gray;
     min-width: 500px;

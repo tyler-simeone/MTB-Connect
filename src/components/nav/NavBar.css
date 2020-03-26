@@ -1,16 +1,25 @@
 header {
-    display: inline-block;
     width: 100%;
 }
 
-.header-banner-two {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+.headerBannerOne {
+    border: 2px solid #2C77B8;
+    height: 50px;
+    background-color: #2C77B8;
 }
 
-.header-banner-two > h1 {
-    margin-right: 540px;
+.headerBannerTwo {
+    display: flex;
+    justify-content: center;
+    border: 2px solid rgba(184, 184, 184, 0.82);
+    background-color: rgba(184, 184, 184, 0.82);
+    width: 100%;
+    margin: 10px auto;
+    font-size: 1.5em;
+}
+
+.headerBannerTwo > h1 {
+    margin: 0 auto;
 }
 
 ul > li {
