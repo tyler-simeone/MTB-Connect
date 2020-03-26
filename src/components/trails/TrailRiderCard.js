@@ -61,7 +61,7 @@ const TrailRiderCard = props => {
 
   return (
     <>
-      <div className="trailRiderCardContainer">
+      <div className="riderCardContainer">
         <div className="riderImageContainer">
           <img
             src={`${props.rider.user.avatarImg}`}

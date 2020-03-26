@@ -1,0 +1,17 @@
+.friendCardContainer {
+    display: flex;
+    border: 1px solid gray;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 200px;
+}
+
+.friendImageContainer {
+    margin: 10px 10px 0 10px;
+    border: 1px solid gray;
+    border-radius: 3px;
+    max-height: 100px;
+    max-width: 100px;
+    width: 100px;
+}
