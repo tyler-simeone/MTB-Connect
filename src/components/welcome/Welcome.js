@@ -14,7 +14,7 @@ const Welcome = props => {
         </div>
       </header>
       <div className="backgroundImageContainer">
-        <div className="buttonContainer">
+        <div className="registerButtonContainer">
           <Link to="/login">
             <button type="button" className="loginButton">
               Login
