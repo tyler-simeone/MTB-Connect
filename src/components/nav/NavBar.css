@@ -1,0 +1,18 @@
+header {
+    display: inline-block;
+    width: 100%;
+}
+
+.header-banner-two {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.header-banner-two > h1 {
+    margin-right: 540px;
+}
+
+ul > li {
+    display: inline-block;
+}
