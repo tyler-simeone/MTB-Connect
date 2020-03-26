@@ -26,10 +26,10 @@
     cursor: pointer;
     font-size: .8em;
     border-radius: 3px;
-
 }
 
 .trailCardButton:hover {
     color: white;
     background-color: #737676;
+    font-weight: 500;
 }

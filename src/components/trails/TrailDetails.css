@@ -29,6 +29,7 @@
 .trailDetailsButtonContainer > button:hover {
     color: white;
     background-color: #737676;
+    font-weight: 500;
 }
 
 .viewRecentRiders {
