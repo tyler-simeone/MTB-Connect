@@ -55,7 +55,7 @@ const TrailRiderCard = props => {
     <>
       <div className="trailRiderCardContainer">
         <div className="riderImageContainer">
-          <img src={`${props.rider.user.avatarImg}`} alt="Trail Rider Image" />
+          <img src={`${props.rider.user.avatarImg}`} width="100" height="100" alt="Trail Rider Image" />
         </div>
         <section className="trailRiderCard">
           <h2>{props.rider.user.fullName}</h2>
