@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FriendsManager from "../../modules/FriendsManager";
+import "./FriendRequestCard.css";
 
 const TrailRiderCard = props => {
   const [user, setUser] = useState({});
@@ -33,15 +34,23 @@ const TrailRiderCard = props => {
     <>
       <div className="friendRequestCardContainer">
         <figure className="riderImageContainer">
-          {/* <img src={require(`${props.trail.img}`)} alt="Trail Image" /> */}
+          <img
+            src={`${user.avatarImg}`}
+            height="100"
+            width="100"
+            alt="Pending Friend Image"
+          />
         </figure>
-        <section className="trailRiderCard">
-          <h2>{user.fullName}</h2>
-          <p>{user.username}</p>
-        </section>
-        <button onClick={acceptFriendRequest} className="acceptFriendBtn">
-          Accept
-        </button>
+        
+        <div className="stackContent">
+          <section className="trailRiderCard">
+            <h2>{user.fullName}</h2>
+            <p>{user.username}</p>
+          </section>
+          <button onClick={acceptFriendRequest} className="acceptFriendBtn">
+            Accept
+          </button>
+        </div>
       </div>
     </>
   );

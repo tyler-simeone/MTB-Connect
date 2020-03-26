@@ -27,7 +27,7 @@
     background-repeat: no-repeat;
 }
 
-.buttonContainer {
+.registerButtonContainer {
     display: flex;
     justify-content: center;
     margin-top: 60px;

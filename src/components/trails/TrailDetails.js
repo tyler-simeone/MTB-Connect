@@ -14,7 +14,7 @@ const TrailDetails = props => {
   const [riders, setRiders] = useState([]);
 
   const [isNewRiderLoading, setIsNewRiderLoading] = useState(false);
-  
+
   // Runs on 'View Recent Riders' btn click
   const findTrailUsers = () => {
     UsersManager.getUsersWithTrails(props.trailId).then(usersWithTrails => {
@@ -24,7 +24,7 @@ const TrailDetails = props => {
 
   // Runs when user wishes to add his/herself as a recent rider of the trail
   const addRecentRider = () => {
-    setIsNewRiderLoading(true)
+    setIsNewRiderLoading(true);
 
     const newUser = {
       userId: props.activeUserId,
@@ -54,37 +54,51 @@ const TrailDetails = props => {
         </div>
       </header>
 
-      <div className="trailCardContainer">
-        <figure className="imageContainer">
-          {/* <img src={require(`${props.trail.img}`)} alt="Trail Image" /> */}
-        </figure>
+      <div className="trailDetailsContainer">
+        <img
+          src={`${trail.img}`}
+          alt={`${trail.name}`}
+          height="100%"
+          width="296"
+        />
+        <div className="stackContent">
+          <section className="trailInfo">
+            <h2>{trail.name}</h2>
+            <p>{trail.description}</p>
+          </section>
 
-        <section className="trailCard">
-          <h2>{trail.name}</h2>
-          <p>{trail.description}</p>
-        </section>
-
-        <button
-          onClick={findTrailUsers}
-          className="viewRecentRiders"
-          type="button"
-        >
-          View Recent Riders
-        </button>
-        <button
-          onClick={addRecentRider}
-          className="addRecentRider"
-          type="button"
-          disabled={isNewRiderLoading}
-        >
-          I've Ridden Here Recently!
-        </button>
+          <div className="trailDetailsButtonContainer">
+            <button
+              onClick={findTrailUsers}
+              className="viewRecentRiders"
+              type="button"
+            >
+              View Recent Riders
+            </button>
+            <button
+              onClick={addRecentRider}
+              className="addRecentRider"
+              type="button"
+              disabled={isNewRiderLoading}
+            >
+              I've Ridden Here Recently!
+            </button>
+          </div>
+        </div>
       </div>
 
       {riders.length === 0 ? null : (
         <section className="recentRidersContainer">
           {riders.map(rider => {
-            return <TrailRiderCard key={rider.id} activeUserId={props.activeUserId} rider={rider} findTrailUsers={findTrailUsers} {...props} />;
+            return (
+              <TrailRiderCard
+                key={rider.id}
+                activeUserId={props.activeUserId}
+                rider={rider}
+                findTrailUsers={findTrailUsers}
+                {...props}
+              />
+            );
           })}
         </section>
       )}

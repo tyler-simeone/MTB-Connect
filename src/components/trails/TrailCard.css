@@ -5,7 +5,31 @@
     margin: 20px auto;
 }
 
-.imageContainer {
-    border: 1px solid gray;
-    padding: 100px;
+.stackContent {
+    display: block;
+    position: relative;
+}
+
+.trailInfo {
+    margin: 10px 0 0 25px;
+    max-width: 500px;
+    line-height: 1.5em;
+}
+
+.trailCardButtonContainer {
+    position: absolute;
+    bottom: 20px;
+    margin-left: 20px;
+}
+
+.trailCardButton {
+    cursor: pointer;
+    font-size: .8em;
+    border-radius: 3px;
+}
+
+.trailCardButton:hover {
+    color: white;
+    background-color: #737676;
+    font-weight: 500;
 }

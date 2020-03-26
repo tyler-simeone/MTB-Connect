@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import FriendsManager from "../../modules/FriendsManager";
+import "./FriendCard.css";
 
 const FriendCard = props => {
   const [user, setUser] = useState({});
 
   const deleteFriend = friendId => {
     FriendsManager.deleteFriend(friendId).then(() => {
-        props.getAllFriends()
+      props.getAllFriends();
     });
   };
 
@@ -31,20 +32,28 @@ const FriendCard = props => {
     <>
       {user.fullName != null ? (
         <div className="friendCardContainer">
-          <figure className="riderImageContainer">
-            {/* <img src={require(`${props.trail.img}`)} alt="Trail Image" /> */}
-          </figure>
-          <section className="trailRiderCard">
-            <h2> {user.fullName}</h2>
-            <p>{user.username}</p>
-          </section>
-          <button
-            onClick={() => deleteFriend(props.friend.id)}
-            className="deleteFriendButton"
-            type="button"
-          >
-            Delete
-          </button>
+          <div className="friendImageContainer">
+            <img
+              src={`${user.avatarImg}`}
+              alt={`${user.fullName}`}
+              height="100"
+              width="100"
+            />
+          </div>
+          
+          <div className="stackContent">
+            <section className="trailRiderCard">
+              <h2> {user.fullName}</h2>
+              <p>{user.username}</p>
+            </section>
+            <button
+              onClick={() => deleteFriend(props.friend.id)}
+              className="deleteFriendButton"
+              type="button"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       ) : null}
     </>

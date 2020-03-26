@@ -1,4 +1,4 @@
-.trailRiderCardContainer {
+.riderCardContainer {
     display: flex;
     border: 1px solid gray;
     border-radius: 10px;
@@ -8,21 +8,22 @@
 }
 
 .riderImageContainer {
+    margin: 10px 10px 0 10px;
     border: 1px solid gray;
-    padding: 50px;
-    max-height: 40px;
+    border-radius: 3px;
+    max-height: 100px;
+    max-width: 100px;
+    width: 100px;
 }
 
-.addFriendBtn {
-    max-width: 50px;
-    max-height: 30px;
-    margin: 20px 0 0 20px;
-    border-radius: 10px;
+.trailRiderCardBtn {
+    cursor: pointer;
+    font-size: .8em;
+    border-radius: 3px;
 }
 
-.removeRiderBtn {
-    max-width: 70px;
-    max-height: 30px;
-    margin: 20px 0 0 20px;
-    border-radius: 10px;
+.trailRiderCardBtn:hover {
+    color: white;
+    background-color: #737676;
+    font-weight: 500;
 }

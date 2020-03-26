@@ -1,11 +1,6 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
 
-
-/**** 
- THIS IS MY MVP BRANCH
-****/
-
 // Welcome goes here
 import Welcome from "./welcome/Welcome"
 // Register goes here
