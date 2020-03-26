@@ -58,7 +58,7 @@ const Register = props => {
 
               props.setUser(activeUser.id);
 
-              props.history.push("/home");
+              props.history.push("/trails");
             });
           });
         }

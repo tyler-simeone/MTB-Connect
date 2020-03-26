@@ -22,7 +22,7 @@ const Login = props => {
           const user = users.find(user => user.email === credentials.email);
 
           props.setUser(user.id);
-          props.history.push("/home");
+          props.history.push("/trails");
         } else {
             window.alert("Invalid email")
         }
