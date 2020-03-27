@@ -11,6 +11,7 @@ const TrailCard = props => {
           alt={`${props.trail.name}`}
           height="237"
           width="296"
+          className="trailCardImg"
         />
 
         <div className="stackContent">

@@ -1,16 +1,10 @@
-.header {
-    margin-bottom: 50px;
+.trailListContainer {
+    /* background-color: #ADC5D9; */
+    z-index: 1;
 }
 
-.header-banner-one {
-    max-height: 30px;
-    min-height: 30px;
-    background-color: #2C77B8;
-}
-
-.header-banner-two {
-    border-top: 2px solid gray;
-    border-bottom: 2px solid gray;
+.trailListImageContainer {
+    
 }
 
 .trailSearchBox {
@@ -19,6 +13,12 @@
     min-height: 400px;
     max-width: 700px;
     max-height: 400px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.dynamicTrailListContainer {
+    max-width: 700px;
     margin: 0 auto;
 }
 
