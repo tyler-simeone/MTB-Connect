@@ -26,6 +26,14 @@ const TrailList = props => {
     <>
       <div className="trailListContainer">
         <form onSubmit={findMatchingTrails} className="trailSearchBox">
+          <div className="trailListImageContainer">
+            {/* <img
+              src={`${props.trail.img}`}
+              alt={`${props.trail.name}`}
+              height="237"
+              width="296"
+            /> */}
+          </div>
           <input
             id="value"
             type="text"

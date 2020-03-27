@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
 import "./NavBar.css";
@@ -13,7 +13,7 @@ const NavBar = props => {
         <div className="navContainer">
 
           <nav>
-            <Menu>
+            <Menu disableAutoFocus>
             <ul>
               <li>
                 <Link className="menu-item" to="/home">

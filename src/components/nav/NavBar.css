@@ -11,8 +11,8 @@ header {
 .headerBannerTwo {
   display: flex;
   justify-content: center;
-  border: 2px solid rgba(184, 184, 184, 0.82);
-  background-color: rgba(184, 184, 184, 0.82);
+  /* border: 2px solid rgba(184, 184, 184, 0.82); */
+  /* background-color: rgba(184, 184, 184, 0.82); */
   width: 100%;
   margin: 10px auto;
   font-size: 1.5em;
@@ -78,7 +78,7 @@ ul > li {
   padding: 1.5em 1.5em 0;
   font-size: 1.15em;
   line-height: 3em;
-  /* max-height: 300px; */
+  max-height: 350px;
   /* max-width: 200px; */
   position: relative;
 }
