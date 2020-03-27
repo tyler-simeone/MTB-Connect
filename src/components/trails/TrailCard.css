@@ -33,3 +33,7 @@
     background-color: #737676;
     font-weight: 500;
 }
+
+.trailCardImg {
+    min-width: 296px;
+}
