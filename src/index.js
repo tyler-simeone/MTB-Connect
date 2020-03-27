@@ -4,7 +4,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import MtbConnect from "./MtbConnect"
 import * as serviceWorker from "./serviceWorker";
-import 'semantic-ui-css/semantic.min.css'
 
 ReactDOM.render(
   <Router>

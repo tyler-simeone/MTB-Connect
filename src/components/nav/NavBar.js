@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-// import { slide as Menu } from "react-burger-menu";
+import { slide as Menu } from "react-burger-menu";
 import "./NavBar.css";
 
 const NavBar = props => {
@@ -11,8 +11,9 @@ const NavBar = props => {
     <header className="header">
       <div className="headerBannerOne">
         <div className="navContainer">
+
           <nav>
-            {/* <Menu> */}
+            <Menu>
             <ul>
               <li>
                 <Link className="menu-item" to="/home">
@@ -36,13 +37,13 @@ const NavBar = props => {
               </li>
               {hasUser ? (
                 <li>
-                  <Link onClick={clearUser} className="nav-link" to="/welcome">
+                  <Link onClick={clearUser} className="menu-item" to="/welcome">
                     Logout
                   </Link>
                 </li>
               ) : null}
             </ul>
-            {/* </Menu> */}
+            </Menu>
           </nav>
         </div>
       </div>
