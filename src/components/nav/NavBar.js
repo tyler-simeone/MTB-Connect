@@ -11,7 +11,6 @@ const NavBar = props => {
     <header className="header">
       <div className="headerBannerOne">
         <div className="navContainer">
-
           <nav>
             <Menu disableAutoFocus>
             <ul>
