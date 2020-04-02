@@ -70,7 +70,7 @@ const TrailCard = props => {
             {props.trail.creatorId === props.activeUserId ? (
               <>
                 <Button href={`/trails/${props.trail.id}/edit`}>Edit</Button>
-                <Button onClick={deleteTrail}>Delete</Button>
+                <Button onClick={deleteTrail} color="secondary">Delete</Button>
               </>
             ) : null}
           </div>
