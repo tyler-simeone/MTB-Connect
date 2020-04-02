@@ -14,6 +14,8 @@ const useStyles = makeStyles(theme => ({
   // },
   formContent: {
     display: "flex",
+    // flexDirection: "column",
+    // alignItems: "center"
     justifyContent: "space-evenly"
   },
   searchContainer: {},
@@ -39,7 +41,7 @@ const TrailList = props => {
 
   const handleFieldChange = evt => {
     const stateToChange = { ...zipcode };
-    stateToChange[evt.target.id] = evt.target.value;
+    stateToChange.value = evt.target.value;
     setZipcode(stateToChange);
   };
 
@@ -66,7 +68,8 @@ const TrailList = props => {
               onChange={handleFieldChange}
             />
             <Button
-              onClick={findMatchingTrails}
+              // onClick={findMatchingTrails}
+              type="submit"
               size="small"
               className={classes.searchButton}
             >
@@ -74,6 +77,13 @@ const TrailList = props => {
             </Button>
           </div>
 
+          {/* <input
+            id="value"
+            type="text"
+            onChange={handleFieldChange}
+            placeholder="Enter Zip Code"
+            className="trailSearch"
+          ></input> */}
           <Button href="/trails/addTrail" size="small" className={classes.addTrailButton}>
             Add a Trail
           </Button>
