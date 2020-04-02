@@ -2,7 +2,40 @@ import React, { useState, useEffect } from "react";
 import TrailsManager from "../../modules/TrailsManager";
 // import "./TrailEdit.css";
 
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex",
+    margin: "20px auto",
+    maxWidth: "1000px"
+  },
+  details: {
+    display: "flex",
+    flexDirection: "column-reverse"
+  },
+  content: {
+    flex: "1 0 auto"
+  },
+  cover: {
+    minWidth: 296,
+    minHeight: 237
+  },
+  buttons: {
+    marginTop: "15px",
+    marginLeft: "-7px"
+  }
+}));
+
 const TrailEdit = props => {
+  const classes = useStyles();
+  const theme = useTheme();
+
   const [trail, setTrail] = useState({
     name: "",
     img: "",
@@ -34,9 +67,32 @@ const TrailEdit = props => {
 
   return (
     <>
-      <div className="trailCardContainer">
+      <Card className={classes.root}>
+        <CardMedia
+          className={classes.cover}
+          image={`${trail.img}`}
+          title="Trail Image"
+        />
+        <div className={classes.details}>
+          <CardContent className={classes.content}>
+            <Typography component="h5" variant="h5">
+              {trail.name}
+            </Typography>
+            <textarea
+              value={trail.description}
+              onChange={handleFieldChange}
+              id="description"
+            ></textarea>
+            <div className={classes.buttons}>
+              <Button onClick={updateTrailDescription} disabled={isLoading}>Submit</Button>
+            </div>
+          </CardContent>
+        </div>
+      </Card>
+
+      {/* <div className="trailCardContainer">
         <figure className="imageContainer">
-          {/* <img src={require(`${props.trail.img}`)} alt="Trail Image" /> */}
+          <img src={require(`${props.trail.img}`)} alt="Trail Image" />
         </figure>
 
         <section className="trailCard">
@@ -52,7 +108,7 @@ const TrailEdit = props => {
             </button>
           </form>
         </section>
-      </div>
+      </div> */}
     </>
   );
 };

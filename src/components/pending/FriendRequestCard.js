@@ -90,27 +90,6 @@ const TrailRiderCard = props => {
           </CardContent>
         </div>
       </Card>
-
-      {/* <div className="friendRequestCardContainer">
-        <figure className="riderImageContainer">
-          <img
-            src={`${user.avatarImg}`}
-            height="100"
-            width="100"
-            alt="Pending Friend Image"
-          />
-        </figure>
-        
-        <div className="stackContent">
-          <section className="trailRiderCard">
-            <h2>{user.fullName}</h2>
-            <p>{user.username}</p>
-          </section>
-          <button onClick={acceptFriendRequest} className="acceptFriendBtn">
-            Accept
-          </button>
-        </div>
-      </div> */}
     </>
   );
 };

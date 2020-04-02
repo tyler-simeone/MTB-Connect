@@ -44,7 +44,8 @@ const TrailDetails = props => {
     name: "",
     img: "",
     description: "",
-    zipcode: ""
+    zipcode: "",
+    creatorId: ""
   });
   const [riders, setRiders] = useState([]);
   const [isNewRiderLoading, setIsNewRiderLoading] = useState(false);
@@ -97,11 +98,11 @@ const TrailDetails = props => {
               <Button onClick={findTrailUsers}>View Recent Riders</Button>
               <Button onClick={addRecentRider} disabled={isNewRiderLoading}>I've Ridden Here Recently!</Button>
 
-              {/* {props.trail.creatorId === props.activeUserId ? (
-              <Button href={`/trails/${props.trail.id}/edit`}>
+              {trail.creatorId === props.activeUserId ? (
+              <Button href={`/trails/${trail.id}/edit`}>
                 Edit
               </Button>
-            ) : null} */}
+            ) : null}
             </div>
           </CardContent>
         </div>
