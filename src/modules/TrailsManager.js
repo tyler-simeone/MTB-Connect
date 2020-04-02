@@ -31,5 +31,10 @@ export default {
       },
       body: JSON.stringify(newTrail)
     }).then(resp => resp.json());
+  },
+  delete(trailId) {
+    return fetch(`${baseURL}/trails/${trailId}`, {
+      method: "DELETE"
+    })
   }
 };

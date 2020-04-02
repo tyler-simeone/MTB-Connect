@@ -2,23 +2,16 @@ import React, { useState } from "react";
 import "./Trails.css";
 import TrailsManager from "../../modules/TrailsManager";
 import TrailCard from "./TrailCard";
+
 import { TextField } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
-  // root: {
-  //   display: "flex",
-  //   margin: "20px auto",
-  //   maxWidth: "1000px"
-  // },
-  formContent: {
+  root: {
     display: "flex",
-    // flexDirection: "column",
-    // alignItems: "center"
     justifyContent: "space-evenly"
   },
-  searchContainer: {},
   textInput: {
     margin: "10px 5px 10px 0"
   },
@@ -36,6 +29,7 @@ const TrailList = props => {
   const theme = useTheme();
 
   const activeUserId = props.activeUserId;
+  
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
 
@@ -45,6 +39,7 @@ const TrailList = props => {
     setZipcode(stateToChange);
   };
 
+  // runs when user hits search button with zipcode
   const findMatchingTrails = evt => {
     evt.preventDefault();
 
@@ -53,11 +48,18 @@ const TrailList = props => {
     });
   };
 
+  // runs when user deletes a trail they created to re-set state and remove deleted trail from list in realtime (got this idea from Friends.js component)
+  const findUpdatedTrails = () => {
+    TrailsManager.getSomeTrails(zipcode.value).then(trailsFromApi => {
+      setTrails(trailsFromApi);
+    });
+  }
+
   return (
     <>
       <div className="trailListContainer">
         <div className="trailSearchBox"></div>
-        <form onSubmit={findMatchingTrails} className={classes.formContent}>
+        <form onSubmit={findMatchingTrails} className={classes.root}>
           <div className={classes.searchContainer}>
             <TextField
               id="outlined-basic"
@@ -68,7 +70,6 @@ const TrailList = props => {
               onChange={handleFieldChange}
             />
             <Button
-              // onClick={findMatchingTrails}
               type="submit"
               size="small"
               className={classes.searchButton}
@@ -77,13 +78,6 @@ const TrailList = props => {
             </Button>
           </div>
 
-          {/* <input
-            id="value"
-            type="text"
-            onChange={handleFieldChange}
-            placeholder="Enter Zip Code"
-            className="trailSearch"
-          ></input> */}
           <Button href="/trails/addTrail" size="small" className={classes.addTrailButton}>
             Add a Trail
           </Button>
@@ -104,6 +98,7 @@ const TrailList = props => {
                       key={trail.id}
                       activeUserId={activeUserId}
                       trail={trail}
+                      findUpdatedTrails={findUpdatedTrails}
                       {...props}
                     />
                   );

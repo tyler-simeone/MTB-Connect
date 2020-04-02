@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import TrailsManager from "../../modules/TrailsManager";
 import "./TrailCard.css";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -36,6 +37,18 @@ const TrailCard = props => {
   const classes = useStyles();
   const theme = useTheme();
 
+  const deleteTrail = () => {
+    const trailToDelete = props.trail.id;
+
+    const result = window.confirm("Are you sure you want to delete this trail?");
+
+    if (result) {
+      TrailsManager.delete(trailToDelete).then(() => {
+        props.findUpdatedTrails();
+      });
+    }
+  };
+
   return (
     <Card className={classes.root}>
       <CardMedia
@@ -55,9 +68,10 @@ const TrailCard = props => {
             <Button href={`/trails/${props.trail.id}`}>Details</Button>
 
             {props.trail.creatorId === props.activeUserId ? (
-              <Button href={`/trails/${props.trail.id}/edit`}>
-                Edit
-              </Button>
+              <>
+                <Button href={`/trails/${props.trail.id}/edit`}>Edit</Button>
+                <Button onClick={deleteTrail}>Delete</Button>
+              </>
             ) : null}
           </div>
         </CardContent>
