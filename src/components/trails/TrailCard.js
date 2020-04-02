@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./TrailCard.css";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -24,10 +23,12 @@ const useStyles = makeStyles(theme => ({
   cover: {
     width: 151,
     minWidth: 296,
-    minHeight: 250
+    minHeight: 237
   },
   buttons: {
-    textDecoration: "none"
+    textDecoration: "none",
+    marginTop: "15px",
+    marginLeft: "-7px"
   }
 }));
 
@@ -52,6 +53,7 @@ const TrailCard = props => {
           </Typography>
           <div className={classes.buttons}>
             <Button href={`/trails/${props.trail.id}`}>Details</Button>
+
             {props.trail.creatorId === props.activeUserId ? (
               <Button href={`/trails/${props.trail.id}/edit`}>
                 Edit
@@ -61,40 +63,6 @@ const TrailCard = props => {
         </CardContent>
       </div>
     </Card>
-
-    // <>
-    //   <div className="trailCardContainer">
-    //     <img
-    //       src={`${props.trail.img}`}
-    //       alt={`${props.trail.name}`}
-    //       height="237"
-    //       width="296"
-    //       className="trailCardImg"
-    //     />
-
-    //     <div className="stackContent">
-    //       <section className="trailInfo">
-    //         <h2>{props.trail.name}</h2>
-    //         <p>{props.trail.description}</p>
-    //       </section>
-
-    //       <div className="trailCardButtonContainer">
-    //         <Link to={`/trails/${props.trail.id}`}>
-    //           <button className="trailCardButton" type="button">
-    //             Details
-    //           </button>
-    //         </Link>
-    //         {props.trail.creatorId === props.activeUserId ? (
-    //           <Link to={`/trails/${props.trail.id}/edit`}>
-    //             <button className="trailCardButton" type="button">
-    //               Edit
-    //             </button>
-    //           </Link>
-    //         ) : null}
-    //       </div>
-    //     </div>
-    //   </div>
-    // </>
   );
 };
 
