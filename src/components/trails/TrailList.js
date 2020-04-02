@@ -2,8 +2,37 @@ import React, { useState } from "react";
 import "./Trails.css";
 import TrailsManager from "../../modules/TrailsManager";
 import TrailCard from "./TrailCard";
+import { TextField } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+
+const useStyles = makeStyles(theme => ({
+  // root: {
+  //   display: "flex",
+  //   margin: "20px auto",
+  //   maxWidth: "1000px"
+  // },
+  formContent: {
+    display: "flex",
+    justifyContent: "space-evenly"
+  },
+  searchContainer: {},
+  textInput: {
+    margin: "10px 5px 10px 0"
+  },
+  addTrailButton: {
+    textDecoration: "none",
+    marginTop: "10px"
+  },
+  searchButton: {
+    marginTop: "20px"
+  }
+}));
 
 const TrailList = props => {
+  const classes = useStyles();
+  const theme = useTheme();
+
   const activeUserId = props.activeUserId;
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
@@ -25,30 +54,29 @@ const TrailList = props => {
   return (
     <>
       <div className="trailListContainer">
-        <form onSubmit={findMatchingTrails} className="trailSearchBox">
-          <div className="trailListImageContainer">
-            {/* <img
-              src={`${props.trail.img}`}
-              alt={`${props.trail.name}`}
-              height="237"
-              width="296"
-            /> */}
+        <div className="trailSearchBox"></div>
+        <form onSubmit={findMatchingTrails} className={classes.formContent}>
+          <div className={classes.searchContainer}>
+            <TextField
+              id="outlined-basic"
+              label="Enter Zip Code"
+              variant="outlined"
+              size="small"
+              className={classes.textInput}
+              onChange={handleFieldChange}
+            />
+            <Button
+              onClick={findMatchingTrails}
+              size="small"
+              className={classes.searchButton}
+            >
+              Search
+            </Button>
           </div>
-          <input
-            id="value"
-            type="text"
-            onChange={handleFieldChange}
-            placeholder="Enter Zip Code"
-            className="trailSearch"
-          ></input>
-          <button type="submit">Search</button>
 
-          <button
-            className="addTrailBtn"
-            onClick={() => props.history.push("/trails/addTrail")}
-          >
+          <Button href="/trails/addTrail" size="small" className={classes.addTrailButton}>
             Add a Trail
-          </button>
+          </Button>
         </form>
 
         <div className="dynamicTrailListContainer">
