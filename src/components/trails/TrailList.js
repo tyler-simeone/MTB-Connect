@@ -6,6 +6,7 @@ import TrailCard from "./TrailCard";
 import { TextField } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,10 +18,14 @@ const useStyles = makeStyles(theme => ({
   },
   addTrailButton: {
     textDecoration: "none",
-    marginTop: "10px"
+    marginTop: "10px",
+    marginRight: "40px"
   },
   searchButton: {
     marginTop: "20px"
+  },
+  searchContainer: {
+    marginLeft: "40px"
   }
 }));
 
@@ -29,7 +34,7 @@ const TrailList = props => {
   const theme = useTheme();
 
   const activeUserId = props.activeUserId;
-  
+
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
 
@@ -53,7 +58,7 @@ const TrailList = props => {
     TrailsManager.getSomeTrails(zipcode.value).then(trailsFromApi => {
       setTrails(trailsFromApi);
     });
-  }
+  };
 
   return (
     <>
@@ -69,16 +74,16 @@ const TrailList = props => {
               className={classes.textInput}
               onChange={handleFieldChange}
             />
-            <Button
-              type="submit"
-              size="small"
-              className={classes.searchButton}
-            >
+            <Button type="submit" size="small" className={classes.searchButton}>
               Search
             </Button>
           </div>
 
-          <Button href="/trails/addTrail" size="small" className={classes.addTrailButton}>
+          <Button
+            href="/trails/addTrail"
+            size="small"
+            className={classes.addTrailButton}
+          >
             Add a Trail
           </Button>
         </form>
@@ -87,7 +92,9 @@ const TrailList = props => {
           {/* Before submit btn clicked and api fetch runs, trails.length is 0, after search its length is > than 0 so will render the cards!! */}
           {trails.length === 0 ? (
             <div className="searchDescriptionContainer">
-              <h1 className="searchDescription">Search For Nearby Trails!</h1>
+              <Typography className="searchDescription" component="h3" variant="h3">
+                Search For Nearby Trails!
+              </Typography>
             </div>
           ) : (
             <div>

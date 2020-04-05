@@ -9,28 +9,30 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     margin: "20px auto",
-    maxWidth: "500px"
+    maxWidth: "500px",
   },
   details: {
     display: "flex",
     flexDirection: "column-reverse"
   },
   content: {
-    flex: "1 0 auto"
+    flex: "1 0 auto",
+    paddingBottom: "10px"
   },
   cover: {
-    height: "100px",
     width: "100px",
     borderRadius: "3px"
   },
   buttons: {
     textDecoration: "none",
-    marginLeft: "-5px"
+    marginLeft: "-5px",
+    marginBottom: "-10px"
   }
 }));
 
@@ -112,6 +114,7 @@ const TrailRiderCard = props => {
             {props.rider.user.id !== props.activeUserId &&
             alreadyFriends === undefined ? (
               <Button size="small" onClick={createFriendRequest} disabled={isLoading}>
+                <PersonAddIcon className="addFriendIcon"></PersonAddIcon>
                 Add Friend
               </Button>
             ) : null}

@@ -24,3 +24,7 @@
     margin-bottom: 15px;
 }
 
+.submitBtn {
+    max-width: 200px;
+    align-self: center;
+}
