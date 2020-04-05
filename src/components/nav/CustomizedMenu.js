@@ -1,15 +1,20 @@
+/*** 
+ Copied this code for dropdown menu component from Material UI - https://material-ui.com/components/lists/
+***/
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import ListItem from '@material-ui/core/ListItem';
+import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-// import ListItemLink from "@material-ui/core/ListItemLink";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
+import FilterHdrIcon from "@material-ui/icons/FilterHdr";
+import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import MenuIcon from "@material-ui/icons/Menu";
+
+import "./CustomizedMenu.css";
 
 const StyledMenu = withStyles({
   paper: {
@@ -34,7 +39,7 @@ const StyledMenu = withStyles({
 const StyledMenuItem = withStyles(theme => ({
   root: {
     "&:focus": {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: "#2c77b8",
       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
         color: theme.palette.common.white
       }
@@ -43,8 +48,8 @@ const StyledMenuItem = withStyles(theme => ({
 }))(MenuItem);
 
 function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
-  };
+  return <ListItem button component="a" {...props} />;
+}
 
 export default function CustomizedMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -59,15 +64,17 @@ export default function CustomizedMenu() {
 
   return (
     <div>
-      <Button
-        aria-controls="customized-menu"
-        aria-haspopup="true"
-        variant="contained"
-        color="primary"
-        onClick={handleClick}
-      >
-        Open Menu
-      </Button>
+      <div className="burgerBtnContainer">
+        <Button
+          aria-controls="customized-menu"
+          aria-haspopup="true"
+          variant="text"
+          onClick={handleClick}
+          className="menuIcon"
+        >
+          <MenuIcon fontSize="large" />
+        </Button>
+      </div>
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}
@@ -77,7 +84,7 @@ export default function CustomizedMenu() {
       >
         <StyledMenuItem>
           <ListItemIcon>
-            <SendIcon fontSize="small" />
+            <FilterHdrIcon fontSize="normal" />
           </ListItemIcon>
           <ListItemLink href="/trails">
             <ListItemText primary="Trails" />
@@ -85,15 +92,19 @@ export default function CustomizedMenu() {
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
-            <DraftsIcon fontSize="small" />
+            <PersonOutlineIcon fontSize="normal" />
           </ListItemIcon>
-          <ListItemText primary="Drafts" />
+          <ListItemLink href="/friends">
+            <ListItemText primary="Friends" />
+          </ListItemLink>
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
-            <InboxIcon fontSize="small" />
+            <PersonAddIcon fontSize="normal" />
           </ListItemIcon>
-          <ListItemText primary="Inbox" />
+          <ListItemLink href="/pending">
+            <ListItemText primary="Pending" />
+          </ListItemLink>
         </StyledMenuItem>
       </StyledMenu>
     </div>

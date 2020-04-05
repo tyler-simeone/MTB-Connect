@@ -114,12 +114,12 @@ const TrailRiderCard = props => {
             {props.rider.user.id !== props.activeUserId &&
             alreadyFriends === undefined ? (
               <Button size="small" onClick={createFriendRequest} disabled={isLoading}>
-                <PersonAddIcon className="addFriendIcon"></PersonAddIcon>
+                <PersonAddIcon fontSize="small" className="addFriendIcon"></PersonAddIcon>
                 Add Friend
               </Button>
             ) : null}
             {props.rider.user.id === props.activeUserId ? (
-              <Button size="small" onClick={removeFromRidersList}>Remove</Button>
+              <Button size="small" onClick={removeFromRidersList}>Remove Me From List</Button>
             ) : null}
           </div>
         </CardContent>
