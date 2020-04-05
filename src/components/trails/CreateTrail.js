@@ -74,7 +74,7 @@ const CreateTrail = props => {
           size="small"
           placeholder="Zipcode"
         ></TextField>
-        <Button type="submit" disabled={isLoading}>Add Trail</Button>
+        <Button type="submit" disabled={isLoading} className="submitBtn">Add Trail</Button>
       </form>
     </>
   );
