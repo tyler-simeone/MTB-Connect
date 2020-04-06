@@ -17,7 +17,7 @@ const NavBar = props => {
         <div className="logoutBtn">
         {hasUser ? (
           // <Link onClick={clearUser} className="menu-item" to="/welcome">
-          <Button onClick={clearUser} className="menu-item" href="/welcome">
+          <Button onClick={clearUser} className="logoutBtn" href="/welcome">
             Logout
           </Button>
           // </Link>

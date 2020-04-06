@@ -51,6 +51,7 @@ const CreateTrail = props => {
           onChange={handleFieldChange}
           size="small"
           placeholder="Name"
+          className="textField"
         ></TextField>
         <TextField
           id="img"

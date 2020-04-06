@@ -30,6 +30,11 @@ ul > li {
   color: white;
 }
 
+.logoutBtn {
+  margin-top: -45px;
+  margin-left: 1200px;
+}
+
 /* BURGER MENU CSS */
 
 /* Position and sizing of burger button */

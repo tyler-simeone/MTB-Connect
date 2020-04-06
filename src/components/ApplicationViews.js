@@ -19,6 +19,7 @@ import Friends from "./friends/Friends"
 // Pending Reqs goes here
 import PendingFriends from "./pending/PendingFriends"
 
+// APPLICATION VIEWS calls/invokes the React component functions when the path matches
 const ApplicationViews = props => {
     const activeUser = sessionStorage.getItem("Active User Id");
     const hasUser = props.hasUser;

@@ -19,7 +19,9 @@ const useStyles = makeStyles(theme => ({
   addTrailButton: {
     textDecoration: "none",
     marginTop: "10px",
-    marginRight: "40px"
+    marginBottom: "10px",
+    marginRight: "40px",
+    border: "1px solid lightgray"
   },
   searchButton: {
     marginTop: "20px"
@@ -63,7 +65,10 @@ const TrailList = props => {
   return (
     <>
       <div className="trailListContainer">
-        <div className="trailSearchBox"></div>
+        <div className="trailSearchBox">
+          {/* <img src={require("../welcome/Welcome-img.jpg")} /> */}
+          <img src="https://2qibqm39xjt6q46gf1rwo2g1-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/8212290_web1_L1Darrington-trails-edh-1708.jpg" />
+        </div>
         <form onSubmit={findMatchingTrails} className={classes.root}>
           <div className={classes.searchContainer}>
             <TextField

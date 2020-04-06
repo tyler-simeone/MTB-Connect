@@ -7,6 +7,10 @@
     flex-direction: column;
 }
 
+.textField {
+    border-bottom: none;
+}
+
 .createTrailForm input {
     line-height: 20px;
     min-width: 350px;
