@@ -19,16 +19,10 @@ const useStyles = makeStyles(theme => ({
   addTrailButton: {
     textDecoration: "none",
     marginTop: "10px",
-    marginBottom: "10px",
-    // marginRight: "40px",
-    border: "1px solid gray",
+    marginBottom: "10px"
   },
   searchButton: {
-    marginTop: "14px",
-    border: "1px solid gray",
-  },
-  searchContainer: {
-    // marginLeft: "40px"
+    marginTop: "14px"
   }
 }));
 
@@ -77,7 +71,7 @@ const TrailList = props => {
                 label="Enter Zip Code"
                 variant="outlined"
                 size="small"
-                color="inherit"
+                color="white"
                 className={classes.textInput}
                 onChange={handleFieldChange}
               />
