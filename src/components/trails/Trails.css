@@ -8,7 +8,7 @@
     max-width: 700px;
     max-height: 400px;
     margin: 0 auto;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     margin-bottom: 5px;
 
 }
@@ -17,6 +17,17 @@ img {
     height: 400px;
     width: 700px;
     border-radius: 3px;
+}
+
+.trailSearchBoxContainer {
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    max-width: 700px;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    box-sizing: content-box;
+    background-color: lightgray;
 }
 
 .dynamicTrailListContainer {
