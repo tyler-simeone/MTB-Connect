@@ -21,6 +21,7 @@ const CreateTrail = props => {
     name: "",
     img: "",
     description: "",
+    address: "",
     zipcode: "",
     creatorId: props.activeUserId
   });
@@ -66,6 +67,13 @@ const CreateTrail = props => {
           onChange={handleFieldChange}
           size="small"
           placeholder="Description"
+        ></TextField>
+        <TextField
+          id="address"
+          type="text"
+          onChange={handleFieldChange}
+          size="small"
+          placeholder="Address"
         ></TextField>
         <TextField
           id="zipcode"

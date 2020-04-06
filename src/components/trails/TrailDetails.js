@@ -44,9 +44,11 @@ const TrailDetails = props => {
     name: "",
     img: "",
     description: "",
+    address: "",
     zipcode: "",
     creatorId: ""
   });
+
   const [riders, setRiders] = useState([]);
   const [isNewRiderLoading, setIsNewRiderLoading] = useState(false);
 
@@ -91,18 +93,26 @@ const TrailDetails = props => {
             <Typography component="h5" variant="h5">
               {trail.name}
             </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
-              {trail.description}
-            </Typography>
+            <div className="trailDescription">
+              <Typography variant="subtitle1" color="textSecondary">
+                {trail.description}
+              </Typography>
+            </div>
+            <div className="trailAddress">
+              <Typography color="textPrimary">Address:</Typography>
+              <Typography variant="body2" color="textSecondary">
+                {trail.address}
+              </Typography>
+            </div>
             <div className={classes.buttons}>
               <Button onClick={findTrailUsers}>View Recent Riders</Button>
-              <Button onClick={addRecentRider} disabled={isNewRiderLoading}>I've Ridden Here Recently!</Button>
+              <Button onClick={addRecentRider} disabled={isNewRiderLoading}>
+                I've Ridden Here Recently!
+              </Button>
 
               {trail.creatorId === props.activeUserId ? (
-              <Button href={`/trails/${trail.id}/edit`}>
-                Edit
-              </Button>
-            ) : null}
+                <Button href={`/trails/${trail.id}/edit`}>Edit</Button>
+              ) : null}
             </div>
           </CardContent>
         </div>
