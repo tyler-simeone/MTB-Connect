@@ -1,9 +1,14 @@
 .createTrailForm {
-    border: 2px solid gray;
-    margin: 0 auto;
+    border: 2px solid rgb(97, 96, 96);
+    border-radius: 3px;
+    margin: 30px auto;
     max-width: 500px;
     display: flex;
     flex-direction: column;
+}
+
+.textField {
+    border-bottom: none;
 }
 
 .createTrailForm input {
@@ -16,15 +21,14 @@
 }
 
 .createTrailForm input:first-of-type {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .createTrailForm input:last-of-type {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-.createTrailForm button {
-    max-width: 100px;
-    min-width: 100px;
-    margin: 0 auto;
+.submitBtn {
+    max-width: 200px;
+    align-self: center;
 }

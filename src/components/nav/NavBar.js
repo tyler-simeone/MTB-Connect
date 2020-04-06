@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
 import "./NavBar.css";
+import Typography from "@material-ui/core/Typography";
+import CustomizedMenu from "./CustomizedMenu.js";
+import Button from "@material-ui/core/Button";
 
 const NavBar = props => {
   const hasUser = props.hasUser;
@@ -10,10 +13,20 @@ const NavBar = props => {
   return (
     <header className="header">
       <div className="headerBannerOne">
-        <div className="navContainer">
-
-          <nav>
-            <Menu disableAutoFocus>
+        <CustomizedMenu className="burgerBtn" />
+        <div className="logoutBtn">
+        {hasUser ? (
+          // <Link onClick={clearUser} className="menu-item" to="/welcome">
+          <Button onClick={clearUser} className="logoutBtn" href="/welcome">
+            Logout
+          </Button>
+          // </Link>
+        ) : null}
+      </div>
+      </div>
+      {/* <div className="navMenuContainer">
+        <nav>
+          <Menu disableAutoFocus>
             <ul>
               <li>
                 <Link className="menu-item" to="/home">
@@ -35,21 +48,17 @@ const NavBar = props => {
                   Pending Requests
                 </Link>
               </li>
-              {hasUser ? (
-                <li>
-                  <Link onClick={clearUser} className="menu-item" to="/welcome">
-                    Logout
-                  </Link>
-                </li>
-              ) : null}
+              
             </ul>
-            </Menu>
-          </nav>
-        </div>
-      </div>
+          </Menu>
+        </nav>
+      </div> */}
       <div className="headerBannerTwo">
         {/* Insert React Burger here */}
-        <h1 className="text-size--large">MTB Connect</h1>
+        <Typography component="h1" variant="h2">
+          MTB Connect
+        </Typography>
+        {/* <h1 className="text-size--large">MTB Connect</h1> */}
         {/* Insert avatar/link here */}
       </div>
     </header>

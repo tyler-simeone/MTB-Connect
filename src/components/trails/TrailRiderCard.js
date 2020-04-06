@@ -3,7 +3,43 @@ import FriendsManager from "../../modules/FriendsManager";
 import UsersManager from "../../modules/UsersManager";
 import "./TrailRiderCard.css";
 
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex",
+    margin: "20px auto",
+    maxWidth: "500px",
+  },
+  details: {
+    display: "flex",
+    flexDirection: "column-reverse"
+  },
+  content: {
+    flex: "1 0 auto",
+    paddingBottom: "10px"
+  },
+  cover: {
+    width: "100px",
+    borderRadius: "3px"
+  },
+  buttons: {
+    textDecoration: "none",
+    marginLeft: "-5px",
+    marginBottom: "-10px"
+  }
+}));
+
 const TrailRiderCard = props => {
+  const classes = useStyles();
+  const theme = useTheme();
+
   const [alreadyFriends, setAlreadyFriends] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -60,44 +96,35 @@ const TrailRiderCard = props => {
   }, []);
 
   return (
-    <>
-      <div className="riderCardContainer">
-        <div className="riderImageContainer">
-          <img
-            src={`${props.rider.user.avatarImg}`}
-            width="100"
-            height="100"
-            alt="Trail Rider Image"
-          />
-        </div>
-
-        <div className="stackContent">
-          <section className="trailRiderCard">
-            <h2>{props.rider.user.fullName}</h2>
-            <p>{props.rider.user.username}</p>
-          </section>
-          {/* Insert 'Add Friend' Icon here as Link component when ready */}
-          {props.rider.user.id !== props.activeUserId &&
-          alreadyFriends === undefined ? (
-            <button
-              onClick={createFriendRequest}
-              className="trailRiderCardBtn"
-              disabled={isLoading}
-            >
-              Add Friend
-            </button>
-          ) : null}
-          {props.rider.user.id === props.activeUserId ? (
-            <button
-              onClick={removeFromRidersList}
-              className="trailRiderCardBtn"
-            >
-              Remove
-            </button>
-          ) : null}
-        </div>
+    <Card className={classes.root}>
+      <CardMedia
+        className={classes.cover}
+        image={`${props.rider.user.avatarImg}`}
+        title="Trail Rider Image"
+      />
+      <div className={classes.details}>
+        <CardContent className={classes.content}>
+          <Typography component="h5" variant="h5">
+            {props.rider.user.fullName}
+          </Typography>
+          <Typography variant="subtitle1" color="textSecondary">
+            {props.rider.user.username}
+          </Typography>
+          <div className={classes.buttons}>
+            {props.rider.user.id !== props.activeUserId &&
+            alreadyFriends === undefined ? (
+              <Button size="small" onClick={createFriendRequest} disabled={isLoading}>
+                <PersonAddIcon fontSize="small" className="addFriendIcon"></PersonAddIcon>
+                Add Friend
+              </Button>
+            ) : null}
+            {props.rider.user.id === props.activeUserId ? (
+              <Button size="small" onClick={removeFromRidersList}>Remove Me From List</Button>
+            ) : null}
+          </div>
+        </CardContent>
       </div>
-    </>
+    </Card>
   );
 };
 

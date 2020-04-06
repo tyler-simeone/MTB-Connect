@@ -2,7 +2,21 @@ import React, { useState } from "react";
 import "./CreateTrail.css";
 import TrailsManager from "../../modules/TrailsManager";
 
+import { TextField } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex",
+    justifyContent: "space-evenly"
+  }
+}));
+
 const CreateTrail = props => {
+  const classes = useStyles();
+  const theme = useTheme();
+
   const [newTrail, setNewTrail] = useState({
     name: "",
     img: "",
@@ -30,34 +44,38 @@ const CreateTrail = props => {
   return (
     <>
       <form onSubmit={addNewTrail} className="createTrailForm">
-        <input
+        <TextField
           id="name"
           type="text"
           required
           onChange={handleFieldChange}
-          placeholder="Trail Name"
-        ></input>
-        <input
+          size="small"
+          placeholder="Name"
+          className="textField"
+        ></TextField>
+        <TextField
           id="img"
           type="text"
           onChange={handleFieldChange}
-          placeholder="Trail Image"
-        ></input>
-        <input
+          size="small"
+          placeholder="Image"
+        ></TextField>
+        <TextField
           id="description"
           type="text"
-          required
           onChange={handleFieldChange}
-          placeholder="Trail Description"
-        ></input>
-        <input
+          size="small"
+          placeholder="Description"
+        ></TextField>
+        <TextField
           id="zipcode"
           type="text"
           required
           onChange={handleFieldChange}
-          placeholder="Trail Zipcode"
-        ></input>
-        <button type="submit" disabled={isLoading}>Add Trail</button>
+          size="small"
+          placeholder="Zipcode"
+        ></TextField>
+        <Button type="submit" disabled={isLoading} className="submitBtn">Add Trail</Button>
       </form>
     </>
   );
