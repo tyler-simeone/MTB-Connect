@@ -19,15 +19,10 @@ const useStyles = makeStyles(theme => ({
   addTrailButton: {
     textDecoration: "none",
     marginTop: "10px",
-    marginBottom: "10px",
-    marginRight: "40px",
-    border: "1px solid lightgray"
+    marginBottom: "10px"
   },
   searchButton: {
-    marginTop: "20px"
-  },
-  searchContainer: {
-    marginLeft: "40px"
+    marginTop: "14px"
   }
 }));
 
@@ -65,39 +60,49 @@ const TrailList = props => {
   return (
     <>
       <div className="trailListContainer">
-        <div className="trailSearchBox">
-          {/* <img src={require("../welcome/Welcome-img.jpg")} /> */}
-          <img src="https://2qibqm39xjt6q46gf1rwo2g1-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/8212290_web1_L1Darrington-trails-edh-1708.jpg" />
-        </div>
-        <form onSubmit={findMatchingTrails} className={classes.root}>
-          <div className={classes.searchContainer}>
-            <TextField
-              id="outlined-basic"
-              label="Enter Zip Code"
-              variant="outlined"
-              size="small"
-              className={classes.textInput}
-              onChange={handleFieldChange}
-            />
-            <Button type="submit" size="small" className={classes.searchButton}>
-              Search
-            </Button>
+        <div className="trailSearchBoxContainer">
+          <div className="trailSearchBox">
+            <img src="https://2qibqm39xjt6q46gf1rwo2g1-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/8212290_web1_L1Darrington-trails-edh-1708.jpg" />
           </div>
+          <form onSubmit={findMatchingTrails} className={classes.root}>
+            <div className={classes.searchContainer}>
+              <TextField
+                id="outlined-basic"
+                label="Enter Zip Code"
+                variant="outlined"
+                size="small"
+                color="white"
+                className={classes.textInput}
+                onChange={handleFieldChange}
+              />
+              <Button
+                type="submit"
+                size="small"
+                className={classes.searchButton}
+              >
+                Search
+              </Button>
+            </div>
 
-          <Button
-            href="/trails/addTrail"
-            size="small"
-            className={classes.addTrailButton}
-          >
-            Add a Trail
-          </Button>
-        </form>
-
+            <Button
+              href="/trails/addTrail"
+              size="small"
+              className={classes.addTrailButton}
+            >
+              Add a Trail
+            </Button>
+          </form>
+        </div>
+        
         <div className="dynamicTrailListContainer">
           {/* Before submit btn clicked and api fetch runs, trails.length is 0, after search its length is > than 0 so will render the cards!! */}
           {trails.length === 0 ? (
             <div className="searchDescriptionContainer">
-              <Typography className="searchDescription" component="h3" variant="h3">
+              <Typography
+                className="searchDescription"
+                component="h3"
+                variant="h3"
+              >
                 Search For Nearby Trails!
               </Typography>
             </div>

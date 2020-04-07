@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,6 +29,9 @@ const useStyles = makeStyles(theme => ({
   buttons: {
     marginTop: "15px",
     marginLeft: "-7px"
+  },
+  editInputField: {
+    marginTop: "10px"
   }
 }));
 
@@ -52,7 +56,7 @@ const TrailEdit = props => {
   const updateTrailDescription = evt => {
     evt.preventDefault();
     setIsLoading(true);
-    
+
     // will create new trail and then return user to trails page (where they will then have to search for that trail)
     TrailsManager.update(trail, props.trailId).then(() => {
       props.history.push(`/trails/${props.trailId}`);
@@ -77,13 +81,25 @@ const TrailEdit = props => {
             <Typography component="h5" variant="h5">
               {trail.name}
             </Typography>
-            <textarea
+            {/* <textarea
               value={trail.description}
               onChange={handleFieldChange}
               id="description"
-            ></textarea>
+            ></textarea> */}
+            <div className={classes.editInputField}>
+              <TextField
+                multiline="true"
+                rows="3"
+                variant="outlined"
+                value={trail.description}
+                onChange={handleFieldChange}
+                id="description"
+              ></TextField>
+            </div>
             <div className={classes.buttons}>
-              <Button onClick={updateTrailDescription} disabled={isLoading}>Submit</Button>
+              <Button onClick={updateTrailDescription} disabled={isLoading}>
+                Submit
+              </Button>
             </div>
           </CardContent>
         </div>
