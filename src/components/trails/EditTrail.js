@@ -81,11 +81,6 @@ const TrailEdit = props => {
             <Typography component="h5" variant="h5">
               {trail.name}
             </Typography>
-            {/* <textarea
-              value={trail.description}
-              onChange={handleFieldChange}
-              id="description"
-            ></textarea> */}
             <div className={classes.editInputField}>
               <TextField
                 multiline="true"
@@ -104,26 +99,6 @@ const TrailEdit = props => {
           </CardContent>
         </div>
       </Card>
-
-      {/* <div className="trailCardContainer">
-        <figure className="imageContainer">
-          <img src={require(`${props.trail.img}`)} alt="Trail Image" />
-        </figure>
-
-        <section className="trailCard">
-          <form onSubmit={updateTrailDescription}>
-            <h2>{trail.name}</h2>
-            <textarea
-              value={trail.description}
-              onChange={handleFieldChange}
-              id="description"
-            ></textarea>
-            <button type="submit" disabled={isLoading}>
-              Submit
-            </button>
-          </form>
-        </section>
-      </div> */}
     </>
   );
 };

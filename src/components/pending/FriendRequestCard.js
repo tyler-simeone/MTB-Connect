@@ -80,6 +80,7 @@ const TrailRiderCard = props => {
               {user.username}
             </Typography>
             <div className={classes.buttons}>
+              {/* TODO */}
               {/* <Button onClick={() => deletePendingFriend(props.friend.id)}>
                   Delete
                 </Button> */}
