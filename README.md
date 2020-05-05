@@ -20,7 +20,7 @@ To view full app with data, after running `npm start` open a new tab in the term
 
 If the user isn't logged in they will be brought to the register page, where they can either log in or register a new account. Once logged-in, the user can navigate the three pages on the site. 
 
-The main page is the 'Trails' tab where users can search for trails based on zip-codes. Right now the only zip-codes that will return trail data are 37067 and 37027. 
+The main page is the 'Trails' tab where users can search for trails based on zip codes. Right now the only zip codes that will return trail data are 37067 and 37027. 
 
 A user can create a new trail by clicking 'Add a Trail' on the 'Trails' tab. Once they do this they will see that trail when searching the zip code matching the trail the user just created. A user can also edit and delete a trail they created with the respective 'edit' and 'delete' buttons when viewing their trail. The user should not see these buttons on trails they did not create.
 
