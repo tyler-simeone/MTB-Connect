@@ -12,6 +12,28 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+## Viewing data
+
+To view full app with data, after running `npm start` open a new tab in the terminal and `cd` into the api directory, then run: `json-server -p 5002 -w database.json`
+
+## Using the app
+
+If the user isn't logged in they will be brought to the register page, where they can either log in or register a new account. Once logged-in, the user can navigate the three pages on the site. 
+
+The main page is the 'Trails' tab where users can search for trails based on zip-codes. Right now the only zip-codes that will return trail data are 37067 and 37027. 
+
+A user can create a new trail by clicking 'Add a Trail' on the 'Trails' tab. Once they do this they will see that trail when searching the zip code matching the trail the user just created. A user can also edit and delete a trail they created with the respective 'edit' and 'delete' buttons when viewing their trail. The user should not see these buttons on trails they did not create.
+
+A user can also add other riders as friends, and once the request is accepted, the user will see that friend on their 'Friends' page. To see this feature, the user can either open the database.json file in a code editor and grab another pseudo-user's email and add that user as friend, and then work between those two users. Or the user can add Luke Skywalker as a friend and then use this psuedo-user's email: 'luke@gmail.com' which will allow them to log in as Luke Skywalker and accept the friend request there. 
+
+When finished running the app, use `control + c` to close the running JSON server, and use that same command to close the npm server.
+
+
+
+
+
+
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
