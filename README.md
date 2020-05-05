@@ -14,7 +14,7 @@ You will also see any lint errors in the console.
 
 ## Viewing data
 
-To view full app with data, after running `npm start` open a new tab in the terminal and `cd` into the api directory, then run: `json-server -p 5002 -w database.json`
+To view full app with data, after running `npm start` open a new tab in the terminal and `cd` into the `api` directory, then run: `json-server -p 5002 -w database.json`
 
 ## Using the app
 
