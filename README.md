@@ -32,7 +32,7 @@ When finished running the app, use `control + c` to close the running JSON serve
 
 
 
-
+## More Available Scripts
 
 ### `npm test`
 
