@@ -28,7 +28,6 @@ const useStyles = makeStyles(theme => ({
 
 const TrailList = props => {
   const classes = useStyles();
-  const theme = useTheme();
 
   const activeUserId = props.activeUserId;
 

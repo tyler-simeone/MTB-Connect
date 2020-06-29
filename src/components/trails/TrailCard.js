@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
 
 const TrailCard = props => {
   const classes = useStyles();
-  const theme = useTheme();
 
   const deleteTrail = () => {
     const trailToDelete = props.trail.id;

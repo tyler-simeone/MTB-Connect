@@ -37,7 +37,6 @@ const useStyles = makeStyles(theme => ({
 
 const TrailEdit = props => {
   const classes = useStyles();
-  const theme = useTheme();
 
   const [trail, setTrail] = useState({
     name: "",

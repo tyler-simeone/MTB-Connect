@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme => ({
 
 const TrailRiderCard = props => {
   const classes = useStyles();
-  const theme = useTheme();
 
   const [alreadyFriends, setAlreadyFriends] = useState({});
   const [isLoading, setIsLoading] = useState(false);
