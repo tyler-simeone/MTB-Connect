@@ -39,9 +39,11 @@ const FriendCard = props => {
   const [user, setUser] = useState({});
 
   const deleteFriend = friendId => {
-    FriendsManager.deleteFriend(friendId).then(() => {
-      props.getAllFriends();
-    });
+    if (window.confirm(`Are you sure you want to delete ${user.fullName} as a friend?`)) {
+      FriendsManager.deleteFriend(friendId).then(() => {
+        props.getAllFriends();
+      });
+    }
   };
 
   // NOTE: if you're the receiving user of the friend req. you will see data (via user state) for the sender, and vice-versa if logged-in as request sender
