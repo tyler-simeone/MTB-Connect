@@ -1,90 +1,72 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# MTB Connect
+The goal of MTB Connect is to make it easier for mountain bikers to find new trails to ride and new friends to ride them with! Search for trails by zip-code, view the descriptions of different trails, and see whose ridden those trails recently so you can send them friend requests to connect for the next mountain bike adventure!
 
-In the project directory, you can run:
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
 
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-## Viewing data
-
-To view full app with data, after running `npm start` open a new tab in the terminal and `cd` into the `api` directory, then run: `json-server -p 5002 -w database.json`
-
-## Using the app
-
-If the user isn't logged in they will be brought to the register page, where they can either log in or register a new account. Once logged-in, the user can navigate the three pages on the site. 
-
-The main page is the 'Trails' tab where users can search for trails based on zip codes. Right now the only zip codes that will return trail data are 37067 and 37027. 
-
-A user can create a new trail by clicking 'Add a Trail' on the 'Trails' tab. Once they do this they will see that trail when searching the zip code matching the trail the user just created. A user can also edit and delete a trail they created with the respective 'edit' and 'delete' buttons when viewing their trail. The user should not see these buttons on trails they did not create.
-
-A user can also add other riders as friends, and once the request is accepted, the user will see that friend on their 'Friends' page. To see this feature, the user can either open the database.json file in a code editor and grab another pseudo-user's email and add that user as friend, and then work between those two users. Or the user can add Luke Skywalker as a friend and then use this psuedo-user's email: 'luke@gmail.com' which will allow them to log in as Luke Skywalker and accept the friend request there. 
-
-When finished running the app, use `control + c` to close the running JSON server, and use that same command to close the npm server.
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Usage](#usage)
+* [Contact](#contact)
+* [Acknowledgements](#acknowledgements)
 
 
 
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+![MTB Connect Screen Shot](https://snipboard.io/2EYaI3.jpg)
+
+### Built With
+* [React.js](https://reactjs.org/)
+* [JSON Server](https://www.npmjs.com/package/json-server)
+* [Material UI](https://material-ui.com/)
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+* npm
+```sh
+npm install npm@latest -g
+```
+
+### Installation
+
+1. Clone the repo
+```sh
+git clone https://github.com/tyler-simeone/MTB-Connect
+```
+2. In the project directory run `npm start`
+3. Open a new tab in the command line, `cd` into the `api` directory, and run `json-server -p 5002 -w database.json` to fetch the sample data needed to run the app
 
 
-## More Available Scripts
+<!-- USAGE EXAMPLES -->
+## Usage
 
-### `npm test`
+1. Register as a new user, or log in as a user from the sample data in `api/database.json`
+2. Search for trails in 37067 or 37027 (or add new trails with new zip codes!)
+3. View recent riders of existing trails and send them friend requests
+4. Log in as receiver of request and accept the friend request to see your friends list update
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+<!-- CONTACT -->
+## Contact
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Tyler Simeone - [LinkedIn](www.linkedin.com/in/tylerpsimeone) - tyler.simeone@gmail.com
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Project Link: [https://github.com/tyler-simeone/MTB-Connect](https://github.com/tyler-simeone/MTB-Connect)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
