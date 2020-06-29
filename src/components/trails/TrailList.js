@@ -14,7 +14,8 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-evenly"
   },
   textInput: {
-    margin: "10px 5px 10px 0"
+    margin: "10px 5px 10px 0",
+    backgroundColor: "#C1C3C6"
   },
   addTrailButton: {
     textDecoration: "none",
