@@ -15,7 +15,6 @@ const useStyles = makeStyles(theme => ({
 
 const CreateTrail = props => {
   const classes = useStyles();
-  const theme = useTheme();
 
   const [newTrail, setNewTrail] = useState({
     name: "",
