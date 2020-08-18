@@ -46,7 +46,7 @@ const TrailDetails = props => {
     description: "",
     address: "",
     zipcode: "",
-    creatorId: ""
+    creator_id: ""
   });
 
   const [riders, setRiders] = useState([]);
@@ -110,7 +110,7 @@ const TrailDetails = props => {
                 I've Ridden Here Recently!
               </Button>
 
-              {trail.creatorId === props.activeUserId ? (
+              {trail.creator_id === props.activeUserId ? (
                 <Button href={`/trails/${trail.id}/edit`}>Edit</Button>
               ) : null}
             </div>
