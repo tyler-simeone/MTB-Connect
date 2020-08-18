@@ -39,10 +39,12 @@ const TrailEdit = props => {
   const classes = useStyles();
 
   const [trail, setTrail] = useState({
-    name: "",
-    img: "",
+    trail_name: "",
+    trail_img: "",
     description: "",
-    zipcode: ""
+    address: "",
+    zipcode: "",
+    creator_id: 0
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -72,13 +74,13 @@ const TrailEdit = props => {
       <Card className={classes.root}>
         <CardMedia
           className={classes.cover}
-          image={`${trail.img}`}
+          image={`${trail.trail_img}`}
           title="Trail Image"
         />
         <div className={classes.details}>
           <CardContent className={classes.content}>
             <Typography component="h5" variant="h5">
-              {trail.name}
+              {trail.trail_name}
             </Typography>
             <div className={classes.editInputField}>
               <TextField

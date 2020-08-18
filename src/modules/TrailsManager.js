@@ -28,7 +28,7 @@ export default {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(newTrail)
-    }).then(resp => resp.json());
+    })
   },
   delete(trailId) {
     return fetch(`${baseURL}/trails/${trailId}`, {
