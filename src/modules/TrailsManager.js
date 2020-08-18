@@ -4,9 +4,6 @@ export default {
   get(trailId) {
     return fetch(`${baseURL}/trails/${trailId}`).then(resp => resp.json());
   },
-  getAll() {
-    return fetch(`${baseURL}/trails`).then(resp => resp.json());
-  },
   getSomeTrails(zipcode) {
     return fetch(`${baseURL}/trails?zipcode=${zipcode}`).then(resp =>
       resp.json()
