@@ -64,8 +64,8 @@ const TrailDetails = props => {
     setIsNewRiderLoading(true);
 
     const newUser = {
-      userId: props.activeUserId,
-      trailId: props.trailId
+      user_id: props.activeUserId,
+      trail_id: props.trailId
     };
 
     UsersManager.addUserWithTrail(newUser).then(() => {
