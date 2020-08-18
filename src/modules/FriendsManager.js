@@ -12,11 +12,11 @@ export default {
   // a request to that have accepted. Will also now be able to get friends for both the sender and the receiver based on whose logged in.
   getAllFriends(activeUserId) {
     return fetch(
-      `${baseURL}/friends?receiverId=${activeUserId}&isAccepted=true`
+      `${baseURL}/friends?receiverId=${activeUserId}&isAccepted=True`
     ).then(resp => resp.json())
     .then(receiverFriends => {
         return fetch(
-          `${baseURL}/friends?senderId=${activeUserId}&isAccepted=true`
+          `${baseURL}/friends?senderId=${activeUserId}&isAccepted=True`
         ).then(resp => resp.json())
         .then(senderFriends => {
           return receiverFriends.concat(senderFriends)

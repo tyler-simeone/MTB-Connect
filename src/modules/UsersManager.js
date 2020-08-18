@@ -3,11 +3,11 @@ const baseURL = "http://127.0.0.1:8000";
 export default {
   getUsersWithTrails(trailId) {
     return fetch(
-      `${baseURL}/trailUsers?_expand=user&trailId=${trailId}`
+      `${baseURL}/trailusers?trailId=${trailId}`
     ).then(resp => resp.json());
   },
   addUserWithTrail(newUser) {
-    return fetch(`${baseURL}/trailUsers`, {
+    return fetch(`${baseURL}/trailusers`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -16,7 +16,7 @@ export default {
     }).then(resp => resp.json());
   },
   deleteUserWithTrail(id) {
-    return fetch(`${baseURL}/trailUsers/${id}`, {
+    return fetch(`${baseURL}/trailusers/${id}`, {
       method: "DELETE"
     });
   }
