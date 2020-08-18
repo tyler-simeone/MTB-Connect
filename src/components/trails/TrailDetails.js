@@ -85,8 +85,8 @@ const TrailDetails = props => {
       <Card className={classes.root}>
         <CardMedia
           className={classes.cover}
-          image={`${trail.img}`}
-          title={`${trail.name}`}
+          image={`${trail.trail_img}`}
+          title={`${trail.trail_name}`}
         />
         <div className={classes.details}>
           <CardContent className={classes.content}>
