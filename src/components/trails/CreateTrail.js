@@ -17,12 +17,12 @@ const CreateTrail = props => {
   const classes = useStyles();
 
   const [newTrail, setNewTrail] = useState({
-    name: "",
-    img: "",
+    trail_name: "",
+    trail_img: "",
     description: "",
     address: "",
     zipcode: "",
-    creatorId: props.activeUserId
+    creator_id: props.activeUserId
   });
   const [isLoading, setIsLoading] = useState(false)
 
@@ -45,7 +45,7 @@ const CreateTrail = props => {
     <>
       <form onSubmit={addNewTrail} className="createTrailForm">
         <TextField
-          id="name"
+          id="trail_name"
           type="text"
           required
           onChange={handleFieldChange}
@@ -54,7 +54,7 @@ const CreateTrail = props => {
           className="textField"
         ></TextField>
         <TextField
-          id="img"
+          id="trail_img"
           type="text"
           onChange={handleFieldChange}
           size="small"
