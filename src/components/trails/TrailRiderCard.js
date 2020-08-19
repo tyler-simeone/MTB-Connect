@@ -90,9 +90,6 @@ const TrailRiderCard = props => {
 
   useEffect(() => {
     getAllFriends();
-    // TODO: Figure out how to get the user/rider's ID in the expanded 
-    // JSON obj response...
-    console.log(props.rider)
   }, []);
 
   return (
@@ -105,13 +102,13 @@ const TrailRiderCard = props => {
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
-            {props.rider.user.fullName}
+            {props.rider.user.user.first_name + " " + props.rider.user.user.last_name}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            {props.rider.user.username}
+            {props.rider.user.user.username}
           </Typography>
           <div className={classes.buttons}>
-            {props.rider.user.id !== props.activeUserId &&
+            {props.rider.user_id !== props.activeUserId &&
             alreadyFriends === undefined ? (
               <Button size="small" onClick={createFriendRequest} disabled={isLoading}>
                 <PersonAddIcon fontSize="small" className="addFriendIcon"></PersonAddIcon>
