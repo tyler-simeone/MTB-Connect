@@ -115,7 +115,7 @@ const TrailRiderCard = props => {
                 Add Friend
               </Button>
             ) : null}
-            {props.rider.user.id === props.activeUserId ? (
+            {props.rider.user_id === props.activeUserId ? (
               <Button size="small" onClick={removeFromRidersList}>Remove Me From List</Button>
             ) : null}
           </div>
