@@ -44,7 +44,7 @@ const TrailRiderCard = props => {
 
   const [friendRequest, setFriendRequest] = useState({
     senderId: props.activeUserId,
-    receiverId: props.rider.user.id,
+    receiverId: props.rider.user_id,
     isRequestPending: false,
     isAccepted: false
   });
