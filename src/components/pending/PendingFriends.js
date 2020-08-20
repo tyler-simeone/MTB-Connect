@@ -24,7 +24,7 @@ const PendingFriends = props => {
     <>
       <div className="pendingFriendsBox">
         {friendRequests.map(request => {
-          if (request.isAccepted === false) {
+          if (request.requestAccepted === false) {
             return (
               <FriendRequestCard
                 key={request.id}

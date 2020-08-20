@@ -18,7 +18,6 @@ const Friends = props => {
   const getAllFriends = () => {
     FriendsManager.getAllFriends(activeUser).then(friends => {
       setFriends(friends);
-      console.log(friends)
     });
   };
 

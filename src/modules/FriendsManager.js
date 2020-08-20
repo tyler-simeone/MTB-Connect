@@ -37,7 +37,7 @@ export default {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(updatedRequest)
-    }).then(resp => resp.json());
+    })
   },
   // Runs when user adds another user as a friend (creates new friend obj in DB "friends" table)
   post(newFriendRequest) {

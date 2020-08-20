@@ -39,7 +39,7 @@ const FriendCard = props => {
   const [user, setUser] = useState({});
 
   const deleteFriend = friendId => {
-    if (window.confirm(`Are you sure you want to delete ${user.fullName} as a friend?`)) {
+    if (window.confirm(`Are you sure you want to delete ${user.user.first_name + " " + user.user.last_name} as a friend?`)) {
       FriendsManager.deleteFriend(friendId).then(() => {
         props.getAllFriends();
       });
@@ -51,12 +51,10 @@ const FriendCard = props => {
   const renderFriend = () => {
     if (props.friend.receiver_id === props.activeUser) {
       FriendsManager.getFriendUserInfo(props.friend.sender_id).then(friend => {
-        // console.log(friend)
         setUser(friend);
       });
     } else if (props.friend.sender_id === props.activeUser) {
       FriendsManager.getFriendUserInfo(props.friend.receiver_id).then(friend => {
-        // console.log(friend)
         setUser(friend);
       });
     }
