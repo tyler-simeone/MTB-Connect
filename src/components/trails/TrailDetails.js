@@ -46,7 +46,7 @@ const TrailDetails = props => {
     description: "",
     address: "",
     zipcode: "",
-    creatorId: ""
+    creator_id: ""
   });
 
   const [riders, setRiders] = useState([]);
@@ -55,6 +55,7 @@ const TrailDetails = props => {
   // Runs on 'View Recent Riders' btn click
   const findTrailUsers = () => {
     UsersManager.getUsersWithTrails(props.trailId).then(usersWithTrails => {
+      console.log(usersWithTrails)
       setRiders(usersWithTrails);
     });
   };
@@ -64,8 +65,8 @@ const TrailDetails = props => {
     setIsNewRiderLoading(true);
 
     const newUser = {
-      userId: props.activeUserId,
-      trailId: props.trailId
+      user_id: props.activeUserId,
+      trail_id: props.trailId
     };
 
     UsersManager.addUserWithTrail(newUser).then(() => {
@@ -85,8 +86,8 @@ const TrailDetails = props => {
       <Card className={classes.root}>
         <CardMedia
           className={classes.cover}
-          image={`${trail.img}`}
-          title={`${trail.name}`}
+          image={`${trail.trail_img}`}
+          title={`${trail.trail_name}`}
         />
         <div className={classes.details}>
           <CardContent className={classes.content}>
@@ -110,7 +111,7 @@ const TrailDetails = props => {
                 I've Ridden Here Recently!
               </Button>
 
-              {trail.creatorId === props.activeUserId ? (
+              {trail.creator_id === props.activeUserId ? (
                 <Button href={`/trails/${trail.id}/edit`}>Edit</Button>
               ) : null}
             </div>

@@ -44,7 +44,7 @@ const TrailRiderCard = props => {
 
   const [friendRequest, setFriendRequest] = useState({
     senderId: props.activeUserId,
-    receiverId: props.rider.user.id,
+    receiverId: props.rider.user_id,
     isRequestPending: false,
     isAccepted: false
   });
@@ -68,8 +68,6 @@ const TrailRiderCard = props => {
 
   // These conditionals are to hide the 'Add Friend' button on the card if the card is either the active user or their friend (via friend req sent to them or they sent req to active user).
   const getAllFriends = () => {
-    // TODO: See what this logs....
-    console.log(props.rider.user.avatarImg);
     FriendsManager.getAllFriends(props.activeUserId).then(friends => {
       const friend = friends.find(friend => {
         if (
@@ -98,26 +96,26 @@ const TrailRiderCard = props => {
     <Card className={classes.root}>
       <CardMedia
         className={classes.cover}
-        image={`${props.rider.user.avatarImg}`}
+        image={`${props.rider.user.avatar_img}`}
         title="Trail Rider Image"
       />
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
-            {props.rider.user.fullName}
+            {props.rider.user.user.first_name + " " + props.rider.user.user.last_name}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            {props.rider.user.username}
+            {props.rider.user.user.username}
           </Typography>
           <div className={classes.buttons}>
-            {props.rider.user.id !== props.activeUserId &&
+            {props.rider.user_id !== props.activeUserId &&
             alreadyFriends === undefined ? (
               <Button size="small" onClick={createFriendRequest} disabled={isLoading}>
                 <PersonAddIcon fontSize="small" className="addFriendIcon"></PersonAddIcon>
                 Add Friend
               </Button>
             ) : null}
-            {props.rider.user.id === props.activeUserId ? (
+            {props.rider.user_id === props.activeUserId ? (
               <Button size="small" onClick={removeFromRidersList}>Remove Me From List</Button>
             ) : null}
           </div>

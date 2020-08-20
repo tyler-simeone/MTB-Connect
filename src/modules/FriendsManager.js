@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:5002";
+const baseURL = "http://127.0.0.1:8000";
 
 export default {
   // Active user viewing friend requests
@@ -12,11 +12,11 @@ export default {
   // a request to that have accepted. Will also now be able to get friends for both the sender and the receiver based on whose logged in.
   getAllFriends(activeUserId) {
     return fetch(
-      `${baseURL}/friends?receiverId=${activeUserId}&isAccepted=true`
+      `${baseURL}/friends?receiverId=${activeUserId}&isAccepted=True`
     ).then(resp => resp.json())
     .then(receiverFriends => {
         return fetch(
-          `${baseURL}/friends?senderId=${activeUserId}&isAccepted=true`
+          `${baseURL}/friends?senderId=${activeUserId}&isAccepted=True`
         ).then(resp => resp.json())
         .then(senderFriends => {
           return receiverFriends.concat(senderFriends)
@@ -37,7 +37,7 @@ export default {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(updatedRequest)
-    }).then(resp => resp.json());
+    })
   },
   // Runs when user adds another user as a friend (creates new friend obj in DB "friends" table)
   post(newFriendRequest) {

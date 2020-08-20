@@ -1,19 +1,14 @@
-const baseURL = "http://localhost:5002";
+const baseURL = "http://127.0.0.1:8000";
 
 export default {
   get(trailId) {
     return fetch(`${baseURL}/trails/${trailId}`).then(resp => resp.json());
   },
-  getAll() {
-    return fetch(`${baseURL}/trails`).then(resp => resp.json());
-  },
-  // This qs parameter is saying find and return any whose 'key = {value}'
   getSomeTrails(zipcode) {
     return fetch(`${baseURL}/trails?zipcode=${zipcode}`).then(resp =>
       resp.json()
     );
   },
-  // I believe we'll use this to post a new trail user to a specific trail.
   post(newTrailUser) {
     return fetch(`${baseURL}/trails`, {
       method: "POST",
@@ -30,7 +25,7 @@ export default {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(newTrail)
-    }).then(resp => resp.json());
+    })
   },
   delete(trailId) {
     return fetch(`${baseURL}/trails/${trailId}`, {

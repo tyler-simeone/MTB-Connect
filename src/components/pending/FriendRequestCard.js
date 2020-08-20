@@ -40,9 +40,9 @@ const TrailRiderCard = props => {
 
   const acceptFriendRequest = () => {
     const updatedRequest = {
-      senderId: props.request.senderId,
-      receiverId: props.request.receiverId,
-      isRequestPending: props.request.isRequestPending,
+      senderId: props.request.sender_id,
+      receiverId: props.request.receiver_id,
+      isRequestPending: props.request.requestPending,
       isAccepted: true
     };
     // requestId is how the fetch PUT knows which 'friend' object to update
@@ -54,7 +54,7 @@ const TrailRiderCard = props => {
   };
 
   const renderFriend = () => {
-    FriendsManager.getFriendUserInfo(props.request.senderId).then(friend => {
+    FriendsManager.getFriendUserInfo(props.request.sender_id).then(friend => {
       setUser(friend);
     });
   };
@@ -65,32 +65,30 @@ const TrailRiderCard = props => {
 
   return (
     <>
-      <Card className={classes.root}>
-        <CardMedia
-          className={classes.cover}
-          image={`${user.avatarImg}`}
-          title="Pending Friend Image"
-        />
-        <div className={classes.details}>
-          <CardContent className={classes.content}>
-            <Typography component="h5" variant="h5">
-              {user.fullName}
-            </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
-              {user.username}
-            </Typography>
-            <div className={classes.buttons}>
-              {/* TODO */}
-              {/* <Button onClick={() => deletePendingFriend(props.friend.id)}>
-                  Delete
-                </Button> */}
-              <Button onClick={acceptFriendRequest}>
-                Accept
-              </Button>
-            </div>
-          </CardContent>
-        </div>
-      </Card>
+      {user.user ? (
+        <Card className={classes.root}>
+          <CardMedia
+            className={classes.cover}
+            image={`${user.avatar_img}`}
+            title="Pending Friend Image"
+          />
+          <div className={classes.details}>
+            <CardContent className={classes.content}>
+              <Typography component="h5" variant="h5">
+                {user.user.first_name + " " + user.user.last_name}
+              </Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {user.user.username}
+              </Typography>
+              <div className={classes.buttons}>
+                <Button onClick={acceptFriendRequest}>
+                  Accept
+                </Button>
+              </div>
+            </CardContent>
+          </div>
+        </Card>
+      ) : null}
     </>
   );
 };

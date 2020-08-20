@@ -1,22 +1,22 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
 
-// Welcome goes here
+// Welcome 
 import Welcome from "./welcome/Welcome"
-// Register goes here
+// Register 
 import Register from "./auth/Register"
-// Login goes here
+// Login 
 import Login from "./auth/Login"
-// Home goes here
+// Home 
 import Home from "./home/Home"
-// Trails goes here
+// Trails 
 import TrailList from "./trails/TrailList"
 import CreateTrail from "./trails/CreateTrail"
 import TrailDetails from "./trails/TrailDetails"
 import TrailEdit from "./trails/EditTrail"
-// Friends goes here
+// Friends 
 import Friends from "./friends/Friends"
-// Pending Reqs goes here
+// Pending Reqs 
 import PendingFriends from "./pending/PendingFriends"
 
 // APPLICATION VIEWS calls/invokes the React component functions when the path matches

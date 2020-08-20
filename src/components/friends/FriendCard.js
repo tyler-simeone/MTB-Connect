@@ -39,21 +39,22 @@ const FriendCard = props => {
   const [user, setUser] = useState({});
 
   const deleteFriend = friendId => {
-    if (window.confirm(`Are you sure you want to delete ${user.fullName} as a friend?`)) {
+    if (window.confirm(`Are you sure you want to delete ${user.user.first_name + " " + user.user.last_name} as a friend?`)) {
       FriendsManager.deleteFriend(friendId).then(() => {
         props.getAllFriends();
       });
     }
   };
 
-  // NOTE: if you're the receiving user of the friend req. you will see data (via user state) for the sender, and vice-versa if logged-in as request sender
+  // NOTE: This is to see data for the person on the opposite end of
+  // the request
   const renderFriend = () => {
-    if (props.friend.receiverId === props.activeUser) {
-      FriendsManager.getFriendUserInfo(props.friend.senderId).then(friend => {
+    if (props.friend.receiver_id === props.activeUser) {
+      FriendsManager.getFriendUserInfo(props.friend.sender_id).then(friend => {
         setUser(friend);
       });
-    } else if (props.friend.senderId === props.activeUser) {
-      FriendsManager.getFriendUserInfo(props.friend.receiverId).then(friend => {
+    } else if (props.friend.sender_id === props.activeUser) {
+      FriendsManager.getFriendUserInfo(props.friend.receiver_id).then(friend => {
         setUser(friend);
       });
     }
@@ -65,20 +66,24 @@ const FriendCard = props => {
 
   return (
     <>
-      {user.fullName != null ? (
+    {/* This was a tricky one! Changed ternary to check if the 
+    nested JSON object existed, then accessed the data from it. */}
+    {/* Checking if the user state was not null wasn't enough to 
+    access the nested data. */}
+      {user.user ? (
         <Card className={classes.root}>
           <CardMedia
             className={classes.cover}
-            image={`${user.avatarImg}`}
-            title={`${user.fullName}`}
+            image={`${user.avatar_img}`}
+            title={`${user.user.first_name}`}
           />
           <div className={classes.details}>
             <CardContent className={classes.content}>
               <Typography component="h5" variant="h5">
-                {user.fullName}
+                {user.user.first_name + " " + user.user.last_name}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                {user.username}
+                {user.user.username}
               </Typography>
               <div className={classes.buttons}>
                 <Button onClick={() => deleteFriend(props.friend.id)}>
