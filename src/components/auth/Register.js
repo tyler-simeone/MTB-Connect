@@ -5,16 +5,32 @@ import "./Register.css";
 
 const Register = props => {
   const [credentials, setCredentials] = useState({
-    fullName: "",
+    first_name: "",
+    last_name: "",
     username: "",
+    password: "",
     email: "",
-    confirmEmail: "",
-    avatarImg: ""
+    avatar_img: ""
   });
   const [isLoading, setIsLoading] = useState(false);
 
   const handleFieldChange = evt => {
     const stateToChange = { ...credentials };
+
+    let first_name = ""
+    let last_name = ""
+
+    if (evt.target.id == "fullName") {
+      let fullName = evt.target.value
+      String(fullName)
+      const fullName_split = fullName.split(' ')
+      first_name = fullName_split[0]
+      last_name = fullName_split[1]
+
+      stateToChange["first_name"] = first_name
+      stateToChange["last_name"] = last_name
+    }
+    
     stateToChange[evt.target.id] = evt.target.value;
     setCredentials(stateToChange);
   };
@@ -22,14 +38,12 @@ const Register = props => {
   const handleRegister = evt => {
     evt.preventDefault();
 
-    if (credentials.fullName === "") {
+    if (credentials.first_name === "") {
       window.alert("Please enter a valid name");
     } else if (credentials.username === "") {
       window.alert("Please enter a valid username");
     } else if (credentials.email === "") {
       window.alert("Please enter a valid email address");
-    } else if (credentials.email !== credentials.confirmEmail) {
-      window.alert("Emails do not match");
     } else {
       LoginManager.getAll().then(users => {
         if (
@@ -37,29 +51,27 @@ const Register = props => {
             user =>
               user.email === credentials.email ||
               user.username === credentials.username ||
-              user.fullName === credentials.fullName
+              user.first_name === credentials.first_name &&
+              user.last_name === credentials.last_name 
           )
         ) {
           window.alert("A user is already registered with these credentials");
         } else {
           const newUser = {
-            fullName: credentials.fullName,
+            first_name: credentials.first_name,
+            last_name: credentials.last_name,
             username: credentials.username,
+            password: credentials.password,
             email: credentials.email,
-            avatarImg: credentials.avatarImg
+            avatar_img: credentials.avatar_img
           };
           setIsLoading(true);
 
-          RegisterManager.post(newUser).then(() => {
-            RegisterManager.getAll().then(users => {
-              const activeUser = users.find(
-                user => user.email === newUser.email
-              );
+          RegisterManager.post(newUser).then((resp) => {
 
-              props.setUser(activeUser.id);
+            props.setUser(resp.user_id, resp.token);
 
-              props.history.push("/trails");
-            });
+            props.history.push("/trails");
           });
         }
       });
@@ -87,6 +99,14 @@ const Register = props => {
               type="text"
               id="username"
               placeholder="LukeIAmYoFather"
+            ></input>
+          </div>
+          <div className="passwordContainer">
+            <label htmlFor="password">Password:</label>
+            <input
+              onChange={handleFieldChange}
+              type="password"
+              id="password"
             ></input>
           </div>
           <div className="emailContainer">
