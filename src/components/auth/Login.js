@@ -3,7 +3,7 @@ import LoginManager from "../../modules/LoginManager";
 import "./Login.css";
 
 const Login = props => {
-  const [credentials, setCredentials] = useState({ email: "" });
+  const [credentials, setCredentials] = useState({ username: "", password: "" });
 
   const handleFieldChange = evt => {
     const stateToChange = { ...credentials };
@@ -11,20 +11,18 @@ const Login = props => {
     setCredentials(stateToChange);
   };
 
-  // W/o the evt.preventDefault(), if user tries to submit an empty field, the form will still run/submit after the window alert.
   const handleLogin = evt => {
     evt.preventDefault();
-    if (credentials.email === "") {
-      window.alert("Please enter a valid email address");
+    
+    if (credentials.username === "") {
+      window.alert("Please enter a valid username");
     } else {
-      LoginManager.getAll().then(users => {
-        if (users.find(user => user.email === credentials.email)) {
-          const user = users.find(user => user.email === credentials.email);
-
-          props.setUser(user.id);
+      LoginManager.post(credentials).then(resp => {
+        if (resp.valid) {
+          props.setUser(resp.user_id, resp.token);
           props.history.push("/trails");
         } else {
-            window.alert("Invalid email")
+            window.alert("Invalid username or password")
         }
       });
     }
@@ -34,13 +32,20 @@ const Login = props => {
     <>
       <form onSubmit={handleLogin} className="loginFormContainer">
         <fieldset>
-          <label htmlFor="loginInputField">Email:</label>
+          <label htmlFor="loginInputField">Username:</label>
           <input
             onChange={handleFieldChange}
-            type="email"
-            id="email"
-            placeholder="example@example.com"
+            type="username"
+            id="username"
+            placeholder="username"
             autoFocus=""
+          ></input>
+
+          <label htmlFor="loginInputField">Password:</label>
+          <input
+            onChange={handleFieldChange}
+            type="password"
+            id="password"
           ></input>
           <button type="submit">Sign in</button>
         </fieldset>
