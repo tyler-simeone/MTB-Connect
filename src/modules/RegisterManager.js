@@ -5,7 +5,7 @@ export default {
     return fetch(`${baseURL}/users`).then(resp => resp.json());
   },
   post(newUser) {
-    return fetch(`${baseURL}/users`, {
+    return fetch(`${baseURL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
