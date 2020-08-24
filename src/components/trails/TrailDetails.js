@@ -55,7 +55,6 @@ const TrailDetails = props => {
   // Runs on 'View Recent Riders' btn click
   const findTrailUsers = () => {
     UsersManager.getUsersWithTrails(props.trailId).then(usersWithTrails => {
-      console.log(usersWithTrails)
       setRiders(usersWithTrails);
     });
   };
