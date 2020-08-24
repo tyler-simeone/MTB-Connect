@@ -20,7 +20,7 @@ const Register = props => {
     let first_name = ""
     let last_name = ""
 
-    if (evt.target.id == "fullName") {
+    if (evt.target.id === "fullName") {
       let fullName = evt.target.value
       String(fullName)
       const fullName_split = fullName.split(' ')
@@ -46,13 +46,14 @@ const Register = props => {
       window.alert("Please enter a valid email address");
     } else {
       LoginManager.getAll().then(users => {
+        
         if (
           users.find(
             user =>
-              user.email === credentials.email ||
-              user.username === credentials.username ||
-              user.first_name === credentials.first_name &&
-              user.last_name === credentials.last_name 
+              user.user.email === credentials.email ||
+              user.user.username === credentials.username ||
+              (user.user.first_name === credentials.first_name &&
+              user.user.last_name === credentials.last_name )
           )
         ) {
           window.alert("A user is already registered with these credentials");
