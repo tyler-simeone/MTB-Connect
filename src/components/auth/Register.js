@@ -46,7 +46,6 @@ const Register = props => {
       window.alert("Please enter a valid email address");
     } else {
       LoginManager.getAll().then(users => {
-        console.log(users)
         if (
           users.find(
             user =>
