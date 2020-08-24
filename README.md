@@ -59,7 +59,9 @@ git clone https://github.com/tyler-simeone/mtb-connect-api
 8. Make and run migrations: `python manage.py makemigrations` and `python manage.py migrate`
 9. If the app's tables are not in the database after running previous commands, run: `python manage.py makemigrations mtbconnectapi` and then `python manage.py migrate`
 10. Load fixtures in this order: 
-`python manage.py loaddata mtbconnectapi/fixtures/authuser.json`, `python manage.py loaddata mtbconnectapi/fixtures/user.json`, 
+`python manage.py loaddata mtbconnectapi/fixtures/authuser.json`,
+`python manage.py loaddata mtbconnectapi/fixtures/token.json`,
+`python manage.py loaddata mtbconnectapi/fixtures/user.json`, 
 `python manage.py loaddata mtbconnectapi/fixtures/trail.json`, `python manage.py loaddata mtbconnectapi/fixtures/trailuser.json`, `python manage.py loaddata mtbconnectapi/fixtures/friend.json`
 11. Start the server: `python manage.py runserver`
 12. Start exploring MTB Connect at the endpoint `localhost:3000/welcome` which will bring you to the welcome page where you can sign up!

@@ -93,35 +93,41 @@ const TrailRiderCard = props => {
   }, []);
 
   return (
-    <Card className={classes.root}>
-      <CardMedia
-        className={classes.cover}
-        image={`${props.rider.user.avatar_img}`}
-        title="Trail Rider Image"
-      />
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            {props.rider.user.user.first_name + " " + props.rider.user.user.last_name}
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            {props.rider.user.user.username}
-          </Typography>
-          <div className={classes.buttons}>
-            {props.rider.user_id !== props.activeUserId &&
-            alreadyFriends === undefined ? (
-              <Button size="small" onClick={createFriendRequest} disabled={isLoading}>
-                <PersonAddIcon fontSize="small" className="addFriendIcon"></PersonAddIcon>
-                Add Friend
-              </Button>
-            ) : null}
-            {props.rider.user_id === props.activeUserId ? (
-              <Button size="small" onClick={removeFromRidersList}>Remove Me From List</Button>
-            ) : null}
-          </div>
-        </CardContent>
-      </div>
-    </Card>
+    <>
+    {props.rider.user ? 
+      <Card className={classes.root}>
+        {props.rider.user.avatar_img ? 
+        <CardMedia
+          className={classes.cover}
+          image={`${props.rider.user.avatar_img}`}
+          title="Trail Rider Image"
+        />
+        : null}
+        <div className={classes.details}>
+          <CardContent className={classes.content}>
+            <Typography component="h5" variant="h5">
+              {props.rider.user.user.first_name + " " + props.rider.user.user.last_name}
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
+              {props.rider.user.user.username}
+            </Typography>
+            <div className={classes.buttons}>
+              {props.rider.user_id !== props.activeUserId &&
+              alreadyFriends === undefined ? (
+                <Button size="small" onClick={createFriendRequest} disabled={isLoading}>
+                  <PersonAddIcon fontSize="small" className="addFriendIcon"></PersonAddIcon>
+                  Add Friend
+                </Button>
+              ) : null}
+              {props.rider.user_id === props.activeUserId ? (
+                <Button size="small" onClick={removeFromRidersList}>Remove Me From List</Button>
+              ) : null}
+            </div>
+          </CardContent>
+        </div>
+      </Card>
+    : null}
+    </>
   );
 };
 
