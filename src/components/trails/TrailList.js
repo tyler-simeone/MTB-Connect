@@ -36,6 +36,26 @@ const TrailList = props => {
 
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
+  const [pushpins, setPushpins] = useState([
+      {
+        "location":[36.083286, -86.872673], "option":{ color: 'red' }
+      },
+      {
+        "location":[35.926143, -86.810809], "option":{ color: 'red' }
+      },
+      {
+        "location":[35.667251, -87.083719], "option":{ color: 'red' }
+      },
+      {
+        "location":[35.942848, -83.890747], "option":{ color: 'red' }
+      },
+      {
+        "location":[36.112470, -87.267252], "option":{ color: 'red' }
+      },
+      {
+        "location":[36.333622, -86.470243], "option":{ color: 'red' }
+      }
+    ]);
 
   const handleFieldChange = evt => {
     const stateToChange = { ...zipcode };
@@ -78,28 +98,8 @@ const TrailList = props => {
                   bingmapKey = "Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz"
                   center={[35.915133, -86.799713]}
                   zoom={9}
-                  pushPins = {
-                    [
-                      {
-                        "location":[36.083286, -86.872673], "option":{ color: 'red' }
-                      },
-                      {
-                        "location":[35.926143, -86.810809], "option":{ color: 'red' }
-                      },
-                      {
-                        "location":[35.667251, -87.083719], "option":{ color: 'red' }
-                      },
-                      {
-                        "location":[35.942848, -83.890747], "option":{ color: 'red' }
-                      },
-                      {
-                        "location":[36.112470, -87.267252], "option":{ color: 'red' }
-                      },
-                      {
-                        "location":[36.333622, -86.470243], "option":{ color: 'red' }
-                      }
-                    ]
-                  }> 
+                  pushPins = {pushpins}
+                  > 
                 </ReactBingmaps>
               </div>
             )}
