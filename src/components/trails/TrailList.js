@@ -36,6 +36,7 @@ const TrailList = props => {
 
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
+  const [center, setCenter] = useState([])
   const [pushpins, setPushpins] = useState([
       {
         "location":[36.083286, -86.872673], "option":{ color: 'red' }
@@ -67,6 +68,14 @@ const TrailList = props => {
   const findMatchingTrails = evt => {
     evt.preventDefault();
 
+    if (zipcode.value === "37067") {
+      setCenter([35.915133, -86.799713])
+    } else if (zipcode.value === "37027") {
+      setCenter([36.086687, -87.263037])
+    } else if (zipcode.value === "37920") {
+      setCenter([35.938448, -83.891190])
+    }
+
     TrailsManager.getSomeTrails(zipcode.value).then(trailsFromApi => {
       setTrails(trailsFromApi);
     });
@@ -78,11 +87,6 @@ const TrailList = props => {
       setTrails(trailsFromApi);
     });
   };
-
-
-  // const getMap = () => {
-  //   const map = new Microsoft.Maps.Map('#myMap');
-  // }
 
   return (
     <>
@@ -96,7 +100,7 @@ const TrailList = props => {
                 <ReactBingmaps 
                   mapTypeId={"canvasLight"}
                   bingmapKey = "Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz"
-                  center={[35.915133, -86.799713]}
+                  center={center}
                   zoom={9}
                   pushPins = {pushpins}
                   > 
