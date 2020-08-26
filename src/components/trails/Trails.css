@@ -13,6 +13,11 @@ img {
     border-radius: 3px;
 }
 
+.bingMapContainer {
+    height: 400px;
+    width: 700px;
+}
+
 .trailSearchBoxContainer {
     border: 1px solid lightgray;
     border-radius: 3px;

@@ -58,7 +58,7 @@ const TrailCard = props => {
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
-            {props.trail.name}
+            {props.trail.trail_name}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
             {props.trail.description}

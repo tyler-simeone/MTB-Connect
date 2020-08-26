@@ -8,6 +8,8 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
+import { ReactBingmaps } from 'react-bingmaps';
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
@@ -34,6 +36,27 @@ const TrailList = props => {
 
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
+  const [center, setCenter] = useState([])
+  const [pushpins, setPushpins] = useState([
+      {
+        "location":[36.083286, -86.872673], "option":{ color: 'red' }
+      },
+      {
+        "location":[35.926143, -86.810809], "option":{ color: 'red' }
+      },
+      {
+        "location":[35.667251, -87.083719], "option":{ color: 'red' }
+      },
+      {
+        "location":[35.942848, -83.890747], "option":{ color: 'red' }
+      },
+      {
+        "location":[36.112470, -87.267252], "option":{ color: 'red' }
+      },
+      {
+        "location":[36.333622, -86.470243], "option":{ color: 'red' }
+      }
+    ]);
 
   const handleFieldChange = evt => {
     const stateToChange = { ...zipcode };
@@ -44,6 +67,14 @@ const TrailList = props => {
   // runs when user hits search button with zipcode
   const findMatchingTrails = evt => {
     evt.preventDefault();
+
+    if (zipcode.value === "37067") {
+      setCenter([35.915133, -86.799713])
+    } else if (zipcode.value === "37027") {
+      setCenter([36.086687, -87.263037])
+    } else if (zipcode.value === "37920") {
+      setCenter([35.938448, -83.891190])
+    }
 
     TrailsManager.getSomeTrails(zipcode.value).then(trailsFromApi => {
       setTrails(trailsFromApi);
@@ -62,7 +93,20 @@ const TrailList = props => {
       <div className="trailListContainer">
         <div className="trailSearchBoxContainer">
           <div className="trailSearchBox">
+            {trails.length === 0 ? (
             <img src="https://2qibqm39xjt6q46gf1rwo2g1-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/8212290_web1_L1Darrington-trails-edh-1708.jpg" />
+            ) : (
+              <div className="bingMapContainer">
+                <ReactBingmaps 
+                  mapTypeId={"canvasLight"}
+                  bingmapKey = "Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz"
+                  center={center}
+                  zoom={9}
+                  pushPins = {pushpins}
+                  > 
+                </ReactBingmaps>
+              </div>
+            )}
           </div>
           <form onSubmit={findMatchingTrails} className={classes.root}>
             <div className={classes.searchContainer}>
