@@ -34,7 +34,6 @@ const useStyles = makeStyles(theme => ({
 
 const TrailRiderCard = props => {
   const classes = useStyles();
-  const theme = useTheme();
 
   const [user, setUser] = useState({});
 
@@ -45,13 +44,21 @@ const TrailRiderCard = props => {
       isRequestPending: props.request.requestPending,
       isAccepted: true
     };
-    // requestId is how the fetch PUT knows which 'friend' object to update
+
     const requestId = props.request.id;
 
     FriendsManager.updateRequest(updatedRequest, requestId).then(() => {
       props.viewFriendRequests();
     });
   };
+
+  const deleteFriendRequest = () => {
+    const result = window.confirm("Are you sure you want to delete this request?");
+
+    if (result) {
+      FriendsManager.deleteFriend(props.request.id).then(() => props.viewFriendRequests())
+    }
+  }
 
   const renderFriend = () => {
     FriendsManager.getFriendUserInfo(props.request.sender_id).then(friend => {
@@ -83,6 +90,9 @@ const TrailRiderCard = props => {
               <div className={classes.buttons}>
                 <Button onClick={acceptFriendRequest}>
                   Accept
+                </Button>
+                <Button onClick={deleteFriendRequest} color="secondary">
+                  Delete
                 </Button>
               </div>
             </CardContent>
