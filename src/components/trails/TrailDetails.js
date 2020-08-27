@@ -37,7 +37,6 @@ const useStyles = makeStyles(theme => ({
 
 const TrailDetails = props => {
   const classes = useStyles();
-  const theme = useTheme();
 
   // Contains the data being displayed to the user
   const [trail, setTrail] = useState({
@@ -51,6 +50,10 @@ const TrailDetails = props => {
 
   const [riders, setRiders] = useState([]);
   const [isNewRiderLoading, setIsNewRiderLoading] = useState(false);
+  const [viewRiders, setViewRiders] = useState(false)
+
+  // If the active user is one of the riders, disable the 'Add me as rider' button
+  const activeUser = riders.find(rider => rider.user_id === props.activeUserId)
 
   // Runs on 'View Recent Riders' btn click
   const findTrailUsers = () => {
@@ -58,6 +61,10 @@ const TrailDetails = props => {
       setRiders(usersWithTrails);
     });
   };
+
+  const viewRecentRiders = () => {
+    setViewRiders(true)
+  }
 
   // Runs when user wishes to add his/herself as a recent rider of the trail
   const addRecentRider = () => {
@@ -75,9 +82,11 @@ const TrailDetails = props => {
     });
   };
 
-  // Gets the trail being viewed and sets trail state to display info on that trail
+  // Gets the trail being viewed and sets trail state to display info on that trail 
+  // Also getting all the riders of the trail and setting state.
   useEffect(() => {
     TrailsManager.get(props.trailId).then(trail => setTrail(trail));
+    findTrailUsers();
   }, []);
 
   return (
@@ -105,10 +114,17 @@ const TrailDetails = props => {
               </Typography>
             </div>
             <div className={classes.buttons}>
-              <Button onClick={findTrailUsers}>View Recent Riders</Button>
-              <Button onClick={addRecentRider} disabled={isNewRiderLoading}>
-                I've Ridden Here Recently!
-              </Button>
+              <Button onClick={viewRecentRiders}>View Recent Riders</Button>
+              
+              {activeUser ? (
+                <Button onClick={addRecentRider} disabled>
+                  I've Ridden Here Recently!
+                </Button>
+              ) : (
+                <Button onClick={addRecentRider} disabled={isNewRiderLoading}>
+                  I've Ridden Here Recently!
+                </Button>
+              )}
 
               {trail.creator_id === props.activeUserId ? (
                 <Button href={`/trails/${trail.id}/edit`}>Edit</Button>
@@ -118,7 +134,7 @@ const TrailDetails = props => {
         </div>
       </Card>
 
-      {riders.length === 0 ? null : (
+      {!viewRiders ? null : (
         <section className="recentRidersContainer">
           {riders.map(rider => {
             return (
