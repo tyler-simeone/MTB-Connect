@@ -38,10 +38,10 @@ const TrailList = props => {
   const [trails, setTrails] = useState([]);
   const [center, setCenter] = useState([])
   const [pushpins, setPushpins] = useState([
-      {
-        "location":[36.083286, -86.872673], 
-        "option":{ color: 'red', title: 'Percy Warner' }
-      },
+      // {
+      //   "location":[36.083286, -86.872673], 
+      //   "option":{ color: 'red', title: 'Percy Warner' }
+      // },
       {
         "location":[35.926143, -86.810809], 
         "option":{ color: 'red', title: 'Cool Springs Trail' }
@@ -70,10 +70,13 @@ const TrailList = props => {
     setZipcode(stateToChange);
   };
 
-  // runs when user hits search button with zipcode
+  // TODO: fetch all trails, and dynamically create pushpins for them
+  // (will need geocode api)
   const findMatchingTrails = evt => {
     evt.preventDefault();
 
+    // TODO: dynamically set center based on zipcode 
+    // (will need geocode api)
     if (zipcode.value === "37067") {
       setCenter([35.915133, -86.799713])
     } else if (zipcode.value === "37027") {
@@ -83,6 +86,16 @@ const TrailList = props => {
     }
 
     TrailsManager.getSomeTrails(zipcode.value).then(trailsFromApi => {
+      let trail;
+      for (trail of trailsFromApi) {
+        console.log(trail)
+        // pushpins.push(
+        //   {
+        //     "location":[,], 
+        //     "option":{ color: 'red', title: trail.trail_name }
+        //   }
+        // )
+      }
       setTrails(trailsFromApi);
     });
   };
