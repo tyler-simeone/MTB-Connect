@@ -70,8 +70,7 @@ const TrailList = props => {
     setZipcode(stateToChange);
   };
 
-  // TODO: fetch all trails, and dynamically create pushpins for them
-  // (will need geocode api)
+  
   const findMatchingTrails = evt => {
     evt.preventDefault();
 
@@ -85,20 +84,56 @@ const TrailList = props => {
       setCenter([35.938448, -83.891190])
     }
 
-    TrailsManager.getSomeTrails(zipcode.value).then(trailsFromApi => {
-      let trail;
-      for (trail of trailsFromApi) {
-        console.log(trail)
-        // pushpins.push(
-        //   {
-        //     "location":[,], 
-        //     "option":{ color: 'red', title: trail.trail_name }
-        //   }
-        // )
-      }
-      setTrails(trailsFromApi);
-    });
+    // geocode(zipcode.value)
+
+    // TODO: fetch all trails, and dynamically create pushpins for them
+    // (will need geocode api)
+    TrailsManager.getSomeTrails(zipcode.value)
+      .then(trailsFromApi => {
+        // let trail;
+        // for (trail of trailsFromApi) {
+          // console.log(trail)
+          // pushpins.push(
+          //   {
+          //     "location":[,], 
+          //     "option":{ color: 'red', title: trail.trail_name }
+          //   }
+          // )
+        // }
+        setTrails(trailsFromApi);
+    }).then(geocode(zipcode.value));
   };
+
+  // ######## START OF BING GEOCODE 
+
+  const geocode = query => {
+    const geocodeRequest = `http://dev.virtualearth.net/REST/v1/Locations?query=${encodeURIComponent(query)}&jsonp=GeocodeCallback&key=Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz`
+
+    CallRestService(geocodeRequest, GeocodeCallback);
+  }
+
+  function GeocodeCallback(response) {
+    if (response &&
+        response.resourceSets &&
+        response.resourceSets.length > 0 &&
+        response.resourceSets[0].resources) {
+
+        let results = response.resourceSets[0].resources;
+
+        console.log(results)
+      }
+  }
+
+  function CallRestService(request) {
+    var script = document.createElement("script");
+    script.setAttribute("type", "text/javascript");
+    script.setAttribute("src", request);
+    document.body.appendChild(script);
+  }
+
+  // ######## END OF BING GEOCODE 
+
+
 
   // runs when user deletes a trail they created to re-set state and remove deleted trail from list in realtime (got this idea from Friends.js component)
   const findUpdatedTrails = () => {
