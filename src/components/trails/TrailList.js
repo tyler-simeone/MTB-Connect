@@ -36,7 +36,7 @@ const TrailList = props => {
 
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
-  const [center, setCenter] = useState([])
+  const [center, setCenter] = useState([]);
   const [pushpins, setPushpins] = useState([
       // {
       //   "location":[36.083286, -86.872673], 
@@ -73,19 +73,18 @@ const TrailList = props => {
   
   const findMatchingTrails = evt => {
     evt.preventDefault();
+    
 
     // TODO: dynamically set center based on zipcode 
-    // (will need geocode api)
-    if (zipcode.value === "37067") {
-      setCenter([35.915133, -86.799713])
-    } else if (zipcode.value === "37027") {
-      setCenter([36.086687, -87.263037])
-    } else if (zipcode.value === "37920") {
-      setCenter([35.938448, -83.891190])
-    }
+    getCoordinates(zipcode.value)
+      .then(data => {
+        setCenter(data)
+        console.log(data)
+        console.log(center)
+      })
 
-    // geocode(zipcode.value)
 
+  
     // TODO: fetch all trails, and dynamically create pushpins for them
     // (will need geocode api)
     TrailsManager.getSomeTrails(zipcode.value)
@@ -101,37 +100,20 @@ const TrailList = props => {
           // )
         // }
         setTrails(trailsFromApi);
-    }).then(geocode(zipcode.value));
+    })
   };
 
   // ######## START OF BING GEOCODE 
 
-  const geocode = query => {
-    const geocodeRequest = `http://dev.virtualearth.net/REST/v1/Locations?query=${encodeURIComponent(query)}&jsonp=GeocodeCallback&key=Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz`
+  const getCoordinates = (zipcode) => {
+    return fetch(`http://dev.virtualearth.net/REST/v1/Locations?postalCode=${encodeURIComponent(zipcode)}&key=Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz`)
+      .then(resp => resp.json())
+      .then(data => {
+        const result = data.resourceSets[0].resources[0].point.coordinates;
 
-    CallRestService(geocodeRequest, GeocodeCallback);
+        return result;
+      })
   }
-
-  function GeocodeCallback(response) {
-    if (response &&
-        response.resourceSets &&
-        response.resourceSets.length > 0 &&
-        response.resourceSets[0].resources) {
-
-        let results = response.resourceSets[0].resources;
-
-        console.log(results)
-      }
-  }
-
-  function CallRestService(request) {
-    var script = document.createElement("script");
-    script.setAttribute("type", "text/javascript");
-    script.setAttribute("src", request);
-    document.body.appendChild(script);
-  }
-
-  // ######## END OF BING GEOCODE 
 
 
 
@@ -141,7 +123,6 @@ const TrailList = props => {
       setTrails(trailsFromApi);
     });
   };
-
 
   return (
     <>
