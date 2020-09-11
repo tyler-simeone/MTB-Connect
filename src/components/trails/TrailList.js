@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Trails.css";
 import TrailsManager from "../../modules/TrailsManager";
 import TrailCard from "./TrailCard";
@@ -62,7 +62,7 @@ const TrailList = props => {
         "location":[36.333622, -86.470243], 
         "option":{ color: 'red', title: 'Lock 4' }
       }
-    ]);
+  ]);
 
   const handleFieldChange = evt => {
     const stateToChange = { ...zipcode };
@@ -73,15 +73,6 @@ const TrailList = props => {
   
   const findMatchingTrails = evt => {
     evt.preventDefault();
-    
-
-    // TODO: dynamically set center based on zipcode 
-    getCoordinates(zipcode.value)
-      .then(data => {
-        setCenter(data)
-        console.log(data)
-        console.log(center)
-      })
 
 
   
@@ -100,6 +91,13 @@ const TrailList = props => {
           // )
         // }
         setTrails(trailsFromApi);
+    }).then(() => {
+      getCoordinates(zipcode.value)
+        .then(data => {
+          console.log(data)
+          setCenter(data)
+          console.log(center)
+        })
     })
   };
 
@@ -116,7 +114,6 @@ const TrailList = props => {
   }
 
 
-
   // runs when user deletes a trail they created to re-set state and remove deleted trail from list in realtime (got this idea from Friends.js component)
   const findUpdatedTrails = () => {
     TrailsManager.getSomeTrails(zipcode.value).then(trailsFromApi => {
@@ -129,7 +126,7 @@ const TrailList = props => {
       <div className="trailListContainer">
         <div className="trailSearchBoxContainer">
           <div className="trailSearchBox">
-            {trails.length === 0 ? (
+            {!center.length ? (
             <img src="https://2qibqm39xjt6q46gf1rwo2g1-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/8212290_web1_L1Darrington-trails-edh-1708.jpg" />
             ) : (
               <div className="bingMapContainer">
