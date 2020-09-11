@@ -42,10 +42,10 @@ const TrailList = props => {
       //   "location":[36.083286, -86.872673], 
       //   "option":{ color: 'red', title: 'Percy Warner' }
       // },
-      {
-        "location":[35.926143, -86.810809], 
-        "option":{ color: 'red', title: 'Cool Springs Trail' }
-      },
+      // {
+      //   "location":[35.926143, -86.810809], 
+      //   "option":{ color: 'red', title: 'Cool Springs Trail' }
+      // },
       {
         "location":[35.667251, -87.083719], 
         "option":{ color: 'red', title: 'Chickasaw Trace' }
@@ -80,30 +80,36 @@ const TrailList = props => {
     // (will need geocode api)
     TrailsManager.getSomeTrails(zipcode.value)
       .then(trailsFromApi => {
-        // let trail;
-        // for (trail of trailsFromApi) {
-          // console.log(trail)
-          // pushpins.push(
-          //   {
-          //     "location":[,], 
-          //     "option":{ color: 'red', title: trail.trail_name }
-          //   }
-          // )
-        // }
+        let trail;
+
+        for (trail of trailsFromApi) {
+          // console.log(trail.trail_name)
+
+          getTrailCoordinates(trail.address)
+            .then(response => {
+              console.log(response)
+              console.log(trail.trail_name)
+              
+              pushpins.push(
+                {
+                  "location":[response[0],response[1]], 
+                  "option":{ color: 'red', title: trail.trail_name }
+                }
+              )
+            })
+        }
         setTrails(trailsFromApi);
     }).then(() => {
-      getCoordinates(zipcode.value)
+      getCenterCoordinates(zipcode.value)
         .then(data => {
-          console.log(data)
           setCenter(data)
-          console.log(center)
         })
     })
   };
 
   // ######## START OF BING GEOCODE 
 
-  const getCoordinates = (zipcode) => {
+  const getCenterCoordinates = (zipcode) => {
     return fetch(`http://dev.virtualearth.net/REST/v1/Locations?postalCode=${encodeURIComponent(zipcode)}&key=Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz`)
       .then(resp => resp.json())
       .then(data => {
@@ -112,6 +118,18 @@ const TrailList = props => {
         return result;
       })
   }
+  
+  const getTrailCoordinates = (address) => {
+    return fetch(`http://dev.virtualearth.net/REST/v1/Locations?addressLine=${encodeURIComponent(address)}&key=Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz`)
+      .then(resp => resp.json())
+      .then(data => {
+        const result = data.resourceSets[0].resources[0].point.coordinates;
+
+        return result;
+      })
+  }
+
+  // ######## END OF BING GEOCODE 
 
 
   // runs when user deletes a trail they created to re-set state and remove deleted trail from list in realtime (got this idea from Friends.js component)
@@ -134,7 +152,7 @@ const TrailList = props => {
                   mapTypeId={"canvasLight"}
                   bingmapKey = "Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz"
                   center={center}
-                  zoom={10}
+                  zoom={11}
                   pushPins = {pushpins}
                   > 
                 </ReactBingmaps>
