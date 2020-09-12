@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Trails.css";
 import TrailsManager from "../../modules/TrailsManager";
 import TrailCard from "./TrailCard";
 
 import { TextField } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
 import { ReactBingmaps } from 'react-bingmaps';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     justifyContent: "space-evenly"
@@ -36,34 +36,8 @@ const TrailList = props => {
 
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
-  const [allTrails, setAllTrails] = useState([]);
   const [center, setCenter] = useState([]);
-  const [pushpins, setPushpins] = useState([
-      // {
-      //   "location":[36.083286, -86.872673], 
-      //   "option":{ color: 'red', title: 'Percy Warner' }
-      // },
-      // {
-      //   "location":[35.926143, -86.810809], 
-      //   "option":{ color: 'red', title: 'Cool Springs Trail' }
-      // },
-      // {
-      //   "location":[35.667251, -87.083719], 
-      //   "option":{ color: 'red', title: 'Chickasaw Trace' }
-      // },
-      // {
-      //   "location":[35.942848, -83.890747], 
-      //   "option":{ color: 'red', title: 'Baker Creek Preserve' }
-      // },
-      // {
-      //   "location":[36.112470, -87.267252], 
-      //   "option":{ color: 'red', title: 'Montgomery Bell' }
-      // },
-      // {
-      //   "location":[36.333622, -86.470243], 
-      //   "option":{ color: 'red', title: 'Lock 4' }
-      // }
-  ]);
+  const [pushpins] = useState([]);
 
   const handleFieldChange = evt => {
     const stateToChange = { ...zipcode };
@@ -75,17 +49,12 @@ const TrailList = props => {
   const findMatchingTrails = evt => {
     evt.preventDefault();
 
-
-  
-    // TODO: fetch all trails, and dynamically create pushpins for them
-    // (will need geocode api)
-
-    // TODO: Instead, get & set ALL trails and just use the zipcode
-    // for the maps's center.
+    // Fetch all trails and dynamically create pushpins for them,
+    // then set map center based on zipcode, then get local trails
+    // for the trail list based on zipcode
     TrailsManager.getAllTrails()
       .then(trailsFromApi => {
         let trail;
-        console.log(trailsFromApi)
 
         for (trail of trailsFromApi) {
 
@@ -93,8 +62,6 @@ const TrailList = props => {
 
           getTrailCoordinates(trail.address)
             .then(data => {
-              console.log(data)
-              console.log(trailName)
               
               pushpins.push(
                 {
@@ -140,7 +107,9 @@ const TrailList = props => {
   // ######## END OF BING GEOCODE 
 
 
-  // runs when user deletes a trail they created to re-set state and remove deleted trail from list in realtime (got this idea from Friends.js component)
+  // runs when user deletes a trail they created from the trail card
+  // to re-set state and remove deleted trail from list in realtime 
+  // (got this idea from Friends.js component)
   const findUpdatedTrails = () => {
     TrailsManager.getSomeTrails(zipcode.value).then(trailsFromApi => {
       setTrails(trailsFromApi);

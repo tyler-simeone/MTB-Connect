@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TrailsManager from "../../modules/TrailsManager";
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
