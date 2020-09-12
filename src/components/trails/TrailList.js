@@ -46,22 +46,22 @@ const TrailList = props => {
       //   "location":[35.926143, -86.810809], 
       //   "option":{ color: 'red', title: 'Cool Springs Trail' }
       // },
-      {
-        "location":[35.667251, -87.083719], 
-        "option":{ color: 'red', title: 'Chickasaw Trace' }
-      },
-      {
-        "location":[35.942848, -83.890747], 
-        "option":{ color: 'red', title: 'Baker Creek Preserve' }
-      },
-      {
-        "location":[36.112470, -87.267252], 
-        "option":{ color: 'red', title: 'Montgomery Bell' }
-      },
-      {
-        "location":[36.333622, -86.470243], 
-        "option":{ color: 'red', title: 'Lock 4' }
-      }
+      // {
+      //   "location":[35.667251, -87.083719], 
+      //   "option":{ color: 'red', title: 'Chickasaw Trace' }
+      // },
+      // {
+      //   "location":[35.942848, -83.890747], 
+      //   "option":{ color: 'red', title: 'Baker Creek Preserve' }
+      // },
+      // {
+      //   "location":[36.112470, -87.267252], 
+      //   "option":{ color: 'red', title: 'Montgomery Bell' }
+      // },
+      // {
+      //   "location":[36.333622, -86.470243], 
+      //   "option":{ color: 'red', title: 'Lock 4' }
+      // }
   ]);
 
   const handleFieldChange = evt => {
@@ -83,27 +83,32 @@ const TrailList = props => {
         let trail;
 
         for (trail of trailsFromApi) {
-          // console.log(trail.trail_name)
+
+          const trailName = trail.trail_name
 
           getTrailCoordinates(trail.address)
-            .then(response => {
-              console.log(response)
-              console.log(trail.trail_name)
+            .then(data => {
+              console.log(data)
+              console.log(trailName)
               
               pushpins.push(
                 {
-                  "location":[response[0],response[1]], 
-                  "option":{ color: 'red', title: trail.trail_name }
+                  "location":[data[0],data[1]], 
+                  "option":{ color: 'red', title: trailName }
                 }
               )
             })
         }
+
         setTrails(trailsFromApi);
+
     }).then(() => {
+
       getCenterCoordinates(zipcode.value)
         .then(data => {
           setCenter(data)
         })
+
     })
   };
 
@@ -138,6 +143,10 @@ const TrailList = props => {
       setTrails(trailsFromApi);
     });
   };
+
+  useEffect(() => {
+
+  }, [pushpins])
 
   return (
     <>
