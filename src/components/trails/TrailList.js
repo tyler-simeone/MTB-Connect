@@ -4,13 +4,13 @@ import TrailsManager from "../../modules/TrailsManager";
 import TrailCard from "./TrailCard";
 
 import { TextField } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
 import { ReactBingmaps } from 'react-bingmaps';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     justifyContent: "space-evenly"
@@ -36,27 +36,8 @@ const TrailList = props => {
 
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
-  const [center, setCenter] = useState([])
-  const [pushpins, setPushpins] = useState([
-      {
-        "location":[36.083286, -86.872673], "option":{ color: 'red' }
-      },
-      {
-        "location":[35.926143, -86.810809], "option":{ color: 'red' }
-      },
-      {
-        "location":[35.667251, -87.083719], "option":{ color: 'red' }
-      },
-      {
-        "location":[35.942848, -83.890747], "option":{ color: 'red' }
-      },
-      {
-        "location":[36.112470, -87.267252], "option":{ color: 'red' }
-      },
-      {
-        "location":[36.333622, -86.470243], "option":{ color: 'red' }
-      }
-    ]);
+  const [center, setCenter] = useState([]);
+  const [pushpins] = useState([]);
 
   const handleFieldChange = evt => {
     const stateToChange = { ...zipcode };
@@ -64,24 +45,71 @@ const TrailList = props => {
     setZipcode(stateToChange);
   };
 
-  // runs when user hits search button with zipcode
+  
   const findMatchingTrails = evt => {
     evt.preventDefault();
 
-    if (zipcode.value === "37067") {
-      setCenter([35.915133, -86.799713])
-    } else if (zipcode.value === "37027") {
-      setCenter([36.086687, -87.263037])
-    } else if (zipcode.value === "37920") {
-      setCenter([35.938448, -83.891190])
-    }
+    // Fetch all trails and dynamically create pushpins for them,
+    // then set map center based on zipcode, then get local trails
+    // for the trail list based on zipcode
+    TrailsManager.getAllTrails()
+      .then(trailsFromApi => {
+        let trail;
 
-    TrailsManager.getSomeTrails(zipcode.value).then(trailsFromApi => {
-      setTrails(trailsFromApi);
-    });
+        for (trail of trailsFromApi) {
+
+          const trailName = trail.trail_name
+
+          getTrailCoordinates(trail.address)
+            .then(data => {
+              
+              pushpins.push(
+                {
+                  "location":[data[0],data[1]], 
+                  "option":{ color: 'red', title: trailName }
+                }
+              )
+            })
+        }
+      }).then(() => {
+        getCenterCoordinates(zipcode.value)
+          .then(data => {
+            setCenter(data)
+          })
+      }).then(() => {
+        TrailsManager.getSomeTrails(zipcode.value)
+          .then(response => setTrails(response))
+      })
   };
 
-  // runs when user deletes a trail they created to re-set state and remove deleted trail from list in realtime (got this idea from Friends.js component)
+  // ######## START OF BING GEOCODE 
+
+  const getCenterCoordinates = (zipcode) => {
+    return fetch(`http://dev.virtualearth.net/REST/v1/Locations?postalCode=${encodeURIComponent(zipcode)}&key=Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz`)
+      .then(resp => resp.json())
+      .then(data => {
+        const result = data.resourceSets[0].resources[0].point.coordinates;
+
+        return result;
+      })
+  }
+  
+  const getTrailCoordinates = (address) => {
+    return fetch(`http://dev.virtualearth.net/REST/v1/Locations?addressLine=${encodeURIComponent(address)}&key=Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz`)
+      .then(resp => resp.json())
+      .then(data => {
+        const result = data.resourceSets[0].resources[0].point.coordinates;
+
+        return result;
+      })
+  }
+
+  // ######## END OF BING GEOCODE 
+
+
+  // runs when user deletes a trail they created from the trail card
+  // to re-set state and remove deleted trail from list in realtime 
+  // (got this idea from Friends.js component)
   const findUpdatedTrails = () => {
     TrailsManager.getSomeTrails(zipcode.value).then(trailsFromApi => {
       setTrails(trailsFromApi);
@@ -93,7 +121,7 @@ const TrailList = props => {
       <div className="trailListContainer">
         <div className="trailSearchBoxContainer">
           <div className="trailSearchBox">
-            {trails.length === 0 ? (
+            {!center.length ? (
             <img src="https://2qibqm39xjt6q46gf1rwo2g1-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/8212290_web1_L1Darrington-trails-edh-1708.jpg" />
             ) : (
               <div className="bingMapContainer">
@@ -101,7 +129,7 @@ const TrailList = props => {
                   mapTypeId={"canvasLight"}
                   bingmapKey = "Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz"
                   center={center}
-                  zoom={9}
+                  zoom={11}
                   pushPins = {pushpins}
                   > 
                 </ReactBingmaps>

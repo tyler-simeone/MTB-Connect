@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { withRouter, Link } from "react-router-dom";
-import { slide as Menu } from "react-burger-menu";
+import React from "react";
+import { withRouter } from "react-router-dom";
 import "./NavBar.css";
 import Typography from "@material-ui/core/Typography";
 import CustomizedMenu from "./CustomizedMenu.js";

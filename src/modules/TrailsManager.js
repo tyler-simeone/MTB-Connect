@@ -9,6 +9,11 @@ export default {
       resp.json()
     );
   },
+  getAllTrails() {
+    return fetch(`${baseURL}/trails`).then(resp =>
+      resp.json()
+    );
+  },
   post(newTrailUser) {
     return fetch(`${baseURL}/trails`, {
       method: "POST",
