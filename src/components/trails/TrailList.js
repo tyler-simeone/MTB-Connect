@@ -36,6 +36,7 @@ const TrailList = props => {
 
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
+  const [allTrails, setAllTrails] = useState([]);
   const [center, setCenter] = useState([]);
   const [pushpins, setPushpins] = useState([
       // {
@@ -78,6 +79,9 @@ const TrailList = props => {
   
     // TODO: fetch all trails, and dynamically create pushpins for them
     // (will need geocode api)
+
+    // TODO: Instead, get & set ALL trails and just use the zipcode
+    // for the maps's center.
     TrailsManager.getSomeTrails(zipcode.value)
       .then(trailsFromApi => {
         let trail;
@@ -103,12 +107,10 @@ const TrailList = props => {
         setTrails(trailsFromApi);
 
     }).then(() => {
-
       getCenterCoordinates(zipcode.value)
         .then(data => {
           setCenter(data)
         })
-
     })
   };
 
