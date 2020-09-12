@@ -82,9 +82,10 @@ const TrailList = props => {
 
     // TODO: Instead, get & set ALL trails and just use the zipcode
     // for the maps's center.
-    TrailsManager.getSomeTrails(zipcode.value)
+    TrailsManager.getAllTrails()
       .then(trailsFromApi => {
         let trail;
+        console.log(trailsFromApi)
 
         for (trail of trailsFromApi) {
 
@@ -103,15 +104,15 @@ const TrailList = props => {
               )
             })
         }
-
-        setTrails(trailsFromApi);
-
-    }).then(() => {
-      getCenterCoordinates(zipcode.value)
-        .then(data => {
-          setCenter(data)
-        })
-    })
+      }).then(() => {
+        getCenterCoordinates(zipcode.value)
+          .then(data => {
+            setCenter(data)
+          })
+      }).then(() => {
+        TrailsManager.getSomeTrails(zipcode.value)
+          .then(response => setTrails(response))
+      })
   };
 
   // ######## START OF BING GEOCODE 
@@ -145,10 +146,6 @@ const TrailList = props => {
       setTrails(trailsFromApi);
     });
   };
-
-  useEffect(() => {
-
-  }, [pushpins])
 
   return (
     <>
