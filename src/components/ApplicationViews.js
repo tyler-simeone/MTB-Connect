@@ -27,7 +27,7 @@ const ApplicationViews = props => {
     
     return (
         <>
-            <Route exact path="/welcome" render={props => {
+            <Route exact path="/" render={props => {
                 return <Welcome {...props} />
             }}/>
             
@@ -41,49 +41,49 @@ const ApplicationViews = props => {
                 if (hasUser) {
                     return <Home />
                 } else {
-                    return <Redirect to="/welcome" />
+                    return <Redirect to="/" />
                 }
             }}/>
             <Route exact path="/trails" render={props => {
                 if (hasUser) {
                     return <TrailList activeUserId={parseInt(activeUser)} {...props} />
                 } else {
-                    return <Redirect to="/welcome" />
+                    return <Redirect to="/" />
                 }
             }}/>
             <Route exact path="/trails/addTrail" render={props => {
                 if (hasUser) {
                     return <CreateTrail activeUserId={parseInt(activeUser)} {...props} />
                 } else {
-                    return <Redirect to="/welcome" />
+                    return <Redirect to="/" />
                 }
             }}/>
             <Route exact path="/trails/:trailId(\d+)" render={props => {
                 if (hasUser) {
                     return <TrailDetails trailId={parseInt(props.match.params.trailId)} activeUserId={parseInt(activeUser)} {...props} />
                 } else {
-                    return <Redirect to="/welcome" />
+                    return <Redirect to="/" />
                 }
             }}/>
             <Route path="/trails/:trailId(\d+)/edit" render={props => {
                 if (hasUser) {
                     return <TrailEdit trailId={parseInt(props.match.params.trailId)} {...props} />
                 } else {
-                    return <Redirect to="/welcome" />
+                    return <Redirect to="/" />
                 }
             }}/>
             <Route exact path="/friends" render={props => {
                 if (hasUser) {
                     return <Friends activeUserId={parseInt(activeUser)} {...props} />
                 } else {
-                    return <Redirect to="/welcome" />
+                    return <Redirect to="/" />
                 }
             }}/>
             <Route exact path="/pending" render={props => {
                 if (hasUser) {
                     return <PendingFriends activeUserId={parseInt(activeUser)} {...props} />
                 } else {
-                    return <Redirect to="/welcome" />
+                    return <Redirect to="/" />
                 }
             }}/>
         </>
