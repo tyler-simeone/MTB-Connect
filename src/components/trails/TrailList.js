@@ -36,7 +36,6 @@ const TrailList = props => {
 
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
-  const [trailId, setTrailId] = useState();
   const [center, setCenter] = useState([]);
   const [pushpins] = useState([]);
 
@@ -46,16 +45,8 @@ const TrailList = props => {
     setZipcode(stateToChange);
   };
 
-  const pushpinClick = (trailName) => {
-    var trail;
-    for (trail of trails) {
-      console.log(trail)
-      // if (pin.option.title === trailName) {
-      //   return props.history.push(`/trails/${pin.}`)
-      // }
-    }
-    console.log(trailName)
-    // return props.history.push(`/trails/${trailId}`)
+  const pushpinClick = (trailId) => {
+    return props.history.push(`/trails/${trailId}`)
   }
 
   
@@ -72,17 +63,21 @@ const TrailList = props => {
         for (trail of trailsFromApi) {
 
           const trailName = trail.trail_name
+          const trailId = trail.id
 
-          console.log(trail)
+          const trailAddress = trail.address.split(',')
+          const city = trailAddress[1]
+          const address = trailAddress[0]
+          const state = trailAddress[2]
 
-          getTrailCoordinates(trail.address)
+          getTrailCoordinates(state, city, address)
             .then(data => {
               
               pushpins.push(
                 {
                   "location":[data[0],data[1]], 
                   "option":{ color: 'red', title: trailName },
-                  "addHandler": {"type" : "click", "callback": () => pushpinClick(trailName)}
+                  "addHandler": {"type" : "click", "callback": () => pushpinClick(trailId)}
                 }
               )
             })
@@ -109,9 +104,9 @@ const TrailList = props => {
         return result;
       })
   }
-  
-  const getTrailCoordinates = (address) => {
-    return fetch(`http://dev.virtualearth.net/REST/v1/Locations?addressLine=${encodeURIComponent(address)}&key=Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz`)
+
+  const getTrailCoordinates = (state, city, address) => {
+    return fetch(`http://dev.virtualearth.net/REST/v1/Locations?adminDistrict=${encodeURIComponent(state)}&locality=${encodeURIComponent(city)}&addressLine=${encodeURIComponent(address)}&key=Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz`)
       .then(resp => resp.json())
       .then(data => {
         const result = data.resourceSets[0].resources[0].point.coordinates;
