@@ -36,6 +36,7 @@ const TrailList = props => {
 
   const [zipcode, setZipcode] = useState({ value: "" });
   const [trails, setTrails] = useState([]);
+  const [trailId, setTrailId] = useState();
   const [center, setCenter] = useState([]);
   const [pushpins] = useState([]);
 
@@ -44,6 +45,18 @@ const TrailList = props => {
     stateToChange.value = evt.target.value;
     setZipcode(stateToChange);
   };
+
+  const pushpinClick = (trailName) => {
+    var trail;
+    for (trail of trails) {
+      console.log(trail)
+      // if (pin.option.title === trailName) {
+      //   return props.history.push(`/trails/${pin.}`)
+      // }
+    }
+    console.log(trailName)
+    // return props.history.push(`/trails/${trailId}`)
+  }
 
   
   const findMatchingTrails = evt => {
@@ -60,13 +73,16 @@ const TrailList = props => {
 
           const trailName = trail.trail_name
 
+          console.log(trail)
+
           getTrailCoordinates(trail.address)
             .then(data => {
               
               pushpins.push(
                 {
                   "location":[data[0],data[1]], 
-                  "option":{ color: 'red', title: trailName }
+                  "option":{ color: 'red', title: trailName },
+                  "addHandler": {"type" : "click", "callback": () => pushpinClick(trailName)}
                 }
               )
             })
