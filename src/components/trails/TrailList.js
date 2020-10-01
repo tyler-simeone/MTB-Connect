@@ -140,7 +140,7 @@ const TrailList = props => {
                   mapTypeId={"canvasLight"}
                   bingmapKey = "Ag8GCDrZaiH9APHgfUUFslli9JwA8NHO38GRr4LvN1fi4ZOlCreit-juSSX9trBz"
                   center={center}
-                  zoom={11}
+                  zoom={10}
                   pushPins = {pushpins}
                   > 
                 </ReactBingmaps>
