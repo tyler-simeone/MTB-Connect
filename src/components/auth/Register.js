@@ -10,6 +10,7 @@ const Register = props => {
     username: "",
     password: "",
     email: "",
+    confirm_email: "",
     avatar_img: ""
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -17,20 +18,6 @@ const Register = props => {
   const handleFieldChange = evt => {
     const stateToChange = { ...credentials };
 
-    let first_name = ""
-    let last_name = ""
-
-    if (evt.target.id === "fullName") {
-      let fullName = evt.target.value
-      String(fullName)
-      const fullName_split = fullName.split(' ')
-      first_name = fullName_split[0]
-      last_name = fullName_split[1]
-
-      stateToChange["first_name"] = first_name
-      stateToChange["last_name"] = last_name
-    }
-    
     stateToChange[evt.target.id] = evt.target.value;
     setCredentials(stateToChange);
   };
@@ -44,18 +31,26 @@ const Register = props => {
       window.alert("Please enter a valid username");
     } else if (credentials.email === "") {
       window.alert("Please enter a valid email address");
+    } else if (credentials.email !== credentials.confirm_email) {
+      window.alert("Emails provided do not match");
+    } else if (credentials.password === "") {
+      window.alert("Please enter a valid password");
     } else {
       LoginManager.getAll().then(users => {
         if (
           users.find(
             user =>
-              user.user.email === credentials.email ||
-              user.user.username === credentials.username ||
-              (user.user.first_name === credentials.first_name &&
-              user.user.last_name === credentials.last_name )
+              user.user.email === credentials.email 
           )
         ) {
-          window.alert("A user is already registered with these credentials");
+          window.alert("A user is already registered with this email");
+        } else if (
+          users.find(
+            user =>
+              user.user.username === credentials.username
+          )
+        ) {
+          window.alert("A user is already registered with this username");
         } else {
           const newUser = {
             first_name: credentials.first_name,
@@ -83,12 +78,20 @@ const Register = props => {
       <form onSubmit={handleRegister} className="registerFormContainer">
         <fieldset>
           <div className="fullNameContainer">
-            <label htmlFor="registerName">Full Name:</label>
+            <label htmlFor="registerName">First Name:</label>
             <input
               onChange={handleFieldChange}
               type="text"
-              id="fullName"
-              placeholder="Luke Skywalker"
+              id="first_name"
+              autoFocus=""
+            ></input>
+          </div>
+          <div className="fullNameContainer">
+            <label htmlFor="registerName">Last Name:</label>
+            <input
+              onChange={handleFieldChange}
+              type="text"
+              id="last_name"
               autoFocus=""
             ></input>
           </div>
@@ -98,7 +101,6 @@ const Register = props => {
               onChange={handleFieldChange}
               type="text"
               id="username"
-              placeholder="LukeIAmYoFather"
             ></input>
           </div>
           <div className="passwordContainer">
@@ -115,16 +117,14 @@ const Register = props => {
               onChange={handleFieldChange}
               type="email"
               id="email"
-              placeholder="lukeskywalker@gmail.com"
             ></input>
           </div>
           <div className="confirmEmailContainer">
-            <label htmlFor="confirmEmail">Confirm Email:</label>
+            <label htmlFor="confirm_email">Confirm Email:</label>
             <input
               onChange={handleFieldChange}
               type="email"
-              id="confirmEmail"
-              placeholder="Confirm email address"
+              id="confirm_email"
             ></input>
           </div>
           <div className="avatarContainer">
@@ -133,7 +133,7 @@ const Register = props => {
               onChange={handleFieldChange}
               type="text"
               id="avatarImg"
-              placeholder="Save image link here"
+              placeholder="Image url"
             ></input>
           </div>
           <button type="submit" disabled={isLoading}>
