@@ -15,7 +15,7 @@ const NavBar = props => {
         <CustomizedMenu className="burgerBtn" />
         <div className="logoutBtn">
         {hasUser ? (
-          <Button onClick={clearUser} className="logoutBtn" href="/welcome">
+          <Button onClick={clearUser} className="logoutBtn" href="/">
             Logout
           </Button>
         ) : null}
