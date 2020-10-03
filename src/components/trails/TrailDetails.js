@@ -18,8 +18,8 @@ import clsx from 'clsx';
 // import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Autorenew } from "@material-ui/icons";
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -75,6 +75,12 @@ const useMoreStyles = makeStyles(theme => ({
   },
   avatar: {
     // backgroundColor: red[500],
+  },
+  riders: {
+    marginLeft: '10px'
+  },
+  reviews: {
+    marginLeft: '50px'
   },
 }));
 
@@ -187,11 +193,6 @@ const TrailDetails = props => {
             //     R
             //   </Avatar>
             // }
-            // action={
-            //   <IconButton aria-label="settings">
-            //     <MoreVertIcon />
-            //   </IconButton>
-            // }
             title={`${trail.trail_name}`}
             subheader={`${trail.address}`}
           /> 
@@ -209,12 +210,17 @@ const TrailDetails = props => {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            {/* <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton> */}
-            {/* <IconButton aria-label="share">
-              <ShareIcon />
-            </IconButton> */}
+            <Typography className={mobileScreenClasses.riders}>
+              Recent Riders
+            </Typography>
+            <IconButton
+              onClick={viewRecentRiders}
+            >
+              <PeopleAltIcon size="medium" />
+              </IconButton>
+            <Typography className={mobileScreenClasses.reviews}>
+              Reviews
+            </Typography>
             <IconButton
               className={clsx(mobileScreenClasses.expand, {
                 [mobileScreenClasses.expandOpen]: expanded,
@@ -228,7 +234,6 @@ const TrailDetails = props => {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <Typography paragraph>Reviews:</Typography>
               <Typography paragraph>
                 Future trail reviews go here!!!
               </Typography>
