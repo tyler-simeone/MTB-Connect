@@ -26,7 +26,9 @@ const useStyles = makeStyles(theme => ({
     flex: "1 0 auto",
   },
   header: {
-    fontSize: '20px'
+    ['@media (max-width:600px)']: {
+      fontSize: '20px'
+    }
   },
   description: {
     ['@media (max-width:600px)']: {
@@ -53,7 +55,9 @@ const useStyles = makeStyles(theme => ({
     }
   },
   detailsButton: {
-    color: 'gray'
+    ['@media (max-width:600px)']: {
+      color: 'gray'
+    }
   }
 }));
 
