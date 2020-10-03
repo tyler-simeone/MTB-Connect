@@ -30,6 +30,8 @@ const Register = props => {
       window.alert("Please enter a valid name");
     } else if (credentials.username === "") {
       window.alert("Please enter a valid username");
+    } else if (credentials.password !== credentials.confirm_password) {
+      window.alert("Passwords do not match");
     } else if (credentials.email === "") {
       window.alert("Please enter a valid email address");
     } else if (credentials.email !== credentials.confirm_email) {
