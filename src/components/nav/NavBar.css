@@ -33,8 +33,48 @@
   }
   
   .logoutBtn {
-    margin-top: -34px;
+    margin-top: -31px;
     margin-left: 220px;
+  }
+
+  .logoutBtn span {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  header {
+    width: 100%;
+  }
+  
+  .headerBannerOne {
+    border: 2px solid #2c77b8;
+    height: 35px;
+    background-color: #2c77b8;
+  }
+  
+  .headerBannerTwo {
+    background-color: rgb(207, 203, 203);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+  }
+  
+  .headerBannerTwo > h1 {
+    margin: 0 auto;
+  }
+  
+  ul > li {
+    list-style-type: none;
+    cursor: pointer;
+  }
+
+  
+  .logoutBtn {
+    margin-top: -34px;
+    margin-left: 700px;
   }
 }
 
@@ -67,14 +107,46 @@
     list-style-type: none;
     cursor: pointer;
   }
+
   
-  .menu-item {
-    color: white;
+  .logoutBtn {
+    margin-top: -34px;
+    margin-left: 700px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  header {
+    width: 100%;
+  }
+  
+  .headerBannerOne {
+    border: 2px solid #2c77b8;
+    height: 35px;
+    background-color: #2c77b8;
+  }
+  
+  .headerBannerTwo {
+    background-color: rgb(207, 203, 203);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+  }
+  
+  .headerBannerTwo > h1 {
+    margin: 0 auto;
+  }
+  
+  ul > li {
+    list-style-type: none;
+    cursor: pointer;
   }
   
   .logoutBtn {
     margin-top: -34px;
-    margin-left: 750px;
+    margin-left: 800px;
   }
 }
 
