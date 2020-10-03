@@ -144,7 +144,7 @@ const Register = props => {
               onChange={handleFieldChange}
               type="text"
               id="avatarImg"
-              placeholder="Image url"
+              placeholder="Optional"
             ></input>
           </div>
           <button type="submit" disabled={isLoading}>
