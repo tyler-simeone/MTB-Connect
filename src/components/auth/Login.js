@@ -30,26 +30,28 @@ const Login = props => {
 
   return (
     <>
-      <form onSubmit={handleLogin} className="loginFormContainer">
-        <fieldset>
-          <label htmlFor="loginInputField">Username:</label>
-          <input
-            onChange={handleFieldChange}
-            type="username"
-            id="username"
-            placeholder="username"
-            autoFocus=""
-          ></input>
-
-          <label htmlFor="loginInputField">Password:</label>
-          <input
-            onChange={handleFieldChange}
-            type="password"
-            id="password"
-          ></input>
+      <div className="loginFormContainer">
+        <form onSubmit={handleLogin}>
+          <div className="usernameContainer">
+            <label htmlFor="loginInputField" className="username">Username:</label>
+            <input
+              onChange={handleFieldChange}
+              type="username"
+              id="username"
+              autoFocus=""
+            ></input>
+          </div>
+          <div className="passwordContainer">
+            <label htmlFor="loginInputField">Password:</label>
+            <input
+              onChange={handleFieldChange}
+              type="password"
+              id="password"
+            ></input>
+          </div>
           <button type="submit">Sign in</button>
-        </fieldset>
-      </form>
+        </form>
+      </div>
     </>
   );
 };

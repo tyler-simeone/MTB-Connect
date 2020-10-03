@@ -12,24 +12,52 @@ import Button from "@material-ui/core/Button";
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
-    margin: "20px 0 20px 0"
+    margin: "20px 0 20px 0",
+    ['@media (max-width:600px)']: {
+      maxWidth: '300px',
+      maxHeight: '100px'
+    }
   },
   details: {
     display: "flex",
     flexDirection: "column-reverse"
   },
   content: {
-    flex: "1 0 auto"
+    flex: "1 0 auto",
+  },
+  header: {
+    ['@media (max-width:600px)']: {
+      fontSize: '20px'
+    }
+  },
+  description: {
+    ['@media (max-width:600px)']: {
+      display: 'none'    
+    }
   },
   cover: {
     width: 151,
     minWidth: 296,
-    minHeight: 237
+    minHeight: 237,
+    ['@media (max-width:600px)']: {
+      minWidth: 120,
+      minHeight: 120
+    }
   },
   buttons: {
     textDecoration: "none",
     marginTop: "15px",
-    marginLeft: "-7px"
+    marginLeft: "-7px",
+    ['@media (max-width:600px)']: {
+      display: 'flex',
+      margin: '0 0 -30px 80px',
+      padding: 0      
+    }
+  },
+  detailsButton: {
+    ['@media (max-width:600px)']: {
+      color: 'gray'
+    }
   }
 }));
 
@@ -57,14 +85,14 @@ const TrailCard = props => {
       />
       <div className={classes.details}>
         <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
+          <Typography component="h5" variant="h5" className={classes.header}>
             {props.trail.trail_name}
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
+          <Typography variant="subtitle1" color="textSecondary" className={classes.description}>
             {props.trail.description}
           </Typography>
           <div className={classes.buttons}>
-            <Button href={`/trails/${props.trail.id}`}>Details</Button>
+            <Button href={`/trails/${props.trail.id}`} className={classes.detailsButton}>Details</Button>
 
             {props.trail.creator_id === props.activeUserId ? (
               <>
