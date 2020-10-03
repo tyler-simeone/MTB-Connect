@@ -10,14 +10,15 @@ import Typography from "@material-ui/core/Typography";
 
 import { ReactBingmaps } from 'react-bingmaps';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     justifyContent: "space-evenly"
   },
   searchContainer: {
     ['@media (max-width:600px)']: {
-      display: 'flex'
+      display: 'flex',
+      marginLeft: '5px'
     }
   },
   textInput: {
@@ -39,6 +40,9 @@ const useStyles = makeStyles(() => ({
           fontSize: '10px',
         },
     },
+    '& .MuiInputLabel-root': {
+      marginBottom: '5px'
+    }
     }
   },
   addTrailButton: {
@@ -202,7 +206,7 @@ const TrailList = props => {
               size="small"
               className={classes.addTrailButton}
             >
-              Add a Trail
+              Add Trail
             </Button>
           </form>
         </div>
