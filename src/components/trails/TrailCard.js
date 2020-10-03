@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
   cover: {
     width: 151,
-    minWidth: 120,
+    minWidth: 296,
     minHeight: 237,
     ['@media (max-width:600px)']: {
       minWidth: 120,
