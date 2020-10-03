@@ -1,7 +1,7 @@
 @media only screen and (max-width: 600px) {
     .loginFormContainer {
         margin: 50px auto;
-        max-width: 200px;
+        max-width: 80%;
         display: flex;
         flex-direction: column;
         align-items: center;
