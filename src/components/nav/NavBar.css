@@ -23,15 +23,6 @@
     font-size: 30px;
   }
   
-  ul > li {
-    list-style-type: none;
-    cursor: pointer;
-  }
-  
-  .menu-item {
-    color: white;
-  }
-  
   .logoutBtn {
     margin-top: -31px;
     margin-left: 220px;
@@ -65,11 +56,6 @@
   .headerBannerTwo > h1 {
     margin: 0 auto;
   }
-  
-  ul > li {
-    list-style-type: none;
-    cursor: pointer;
-  }
 
   
   .logoutBtn {
@@ -101,11 +87,6 @@
   
   .headerBannerTwo > h1 {
     margin: 0 auto;
-  }
-  
-  ul > li {
-    list-style-type: none;
-    cursor: pointer;
   }
 
   
@@ -139,11 +120,6 @@
     margin: 0 auto;
   }
   
-  ul > li {
-    list-style-type: none;
-    cursor: pointer;
-  }
-  
   .logoutBtn {
     margin-top: -34px;
     margin-left: 800px;
@@ -172,15 +148,6 @@
   
   .headerBannerTwo > h1 {
     margin: 0 auto;
-  }
-  
-  ul > li {
-    list-style-type: none;
-    cursor: pointer;
-  }
-  
-  .menu-item {
-    color: white;
   }
   
   .logoutBtn {
