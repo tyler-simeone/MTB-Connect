@@ -9,6 +9,7 @@ const Register = props => {
     last_name: "",
     username: "",
     password: "",
+    confirm_password: "",
     email: "",
     confirm_email: "",
     avatar_img: ""
@@ -29,6 +30,8 @@ const Register = props => {
       window.alert("Please enter a valid name");
     } else if (credentials.username === "") {
       window.alert("Please enter a valid username");
+    } else if (credentials.password !== credentials.confirm_password) {
+      window.alert("Passwords do not match");
     } else if (credentials.email === "") {
       window.alert("Please enter a valid email address");
     } else if (credentials.email !== credentials.confirm_email) {
@@ -111,6 +114,14 @@ const Register = props => {
               id="password"
             ></input>
           </div>
+          <div className="confirmPasswordContainer">
+            <label htmlFor="confirm_password">Confirm Password:</label>
+            <input
+              onChange={handleFieldChange}
+              type="password"
+              id="confirm_password"
+            ></input>
+          </div>
           <div className="emailContainer">
             <label htmlFor="registerEmail">Email:</label>
             <input
@@ -133,7 +144,7 @@ const Register = props => {
               onChange={handleFieldChange}
               type="text"
               id="avatarImg"
-              placeholder="Image url"
+              placeholder="Optional"
             ></input>
           </div>
           <button type="submit" disabled={isLoading}>
