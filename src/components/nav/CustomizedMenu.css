@@ -1,4 +1,33 @@
-.burgerBtnContainer {
-    margin-left: 100px;
-    margin-top: 50px;
+@media only screen and (max-width: 600px) {
+    .burgerMenu {
+        margin-left: 10px;
+        margin-top: 0px;
+    }
+
+    .burgerMenu Button {
+        padding: 0px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .burgerMenu {
+        margin-left: 30px;
+        margin-top: 52px;
+    }
+
+    .burgerMenu Button {
+        padding: 0px;
+    }
+}
+
+
+@media only screen and (min-width: 1200px) {
+    .burgerMenu {
+        margin-left: 270px;
+        margin-top: 52px;
+    }
+
+    .burgerMenu Button {
+        padding: 0px;
+    }
 }

@@ -63,18 +63,16 @@ export default function CustomizedMenu() {
   };
 
   return (
-    <div>
-      <div className="burgerBtnContainer">
-        <Button
-          aria-controls="customized-menu"
-          aria-haspopup="true"
-          variant="text"
-          onClick={handleClick}
-          className="menuIcon"
-        >
-          <MenuIcon fontSize="large" />
-        </Button>
-      </div>
+    <div className="burgerMenu">
+      <Button
+        aria-controls="customized-menu"
+        aria-haspopup="true"
+        variant="text"
+        onClick={handleClick}
+        className="menuIcon"
+      >
+        <MenuIcon fontSize="large" />
+      </Button>
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}
