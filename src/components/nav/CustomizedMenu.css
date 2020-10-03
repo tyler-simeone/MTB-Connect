@@ -5,13 +5,29 @@
     }
 
     .burgerMenu Button {
-        padding: 0px;
+        padding: 0px;        
+    }
+
+    .burgerMenu svg {
+        width: 30px;
+        height: 30px;
     }
 }
 
 @media only screen and (min-width: 600px) {
     .burgerMenu {
         margin-left: 30px;
+        margin-top: 52px;
+    }
+
+    .burgerMenu Button {
+        padding: 0px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .burgerMenu {
+        margin-left: 75px;
         margin-top: 52px;
     }
 
