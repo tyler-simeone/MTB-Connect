@@ -9,6 +9,7 @@ const Register = props => {
     last_name: "",
     username: "",
     password: "",
+    confirm_password: "",
     email: "",
     confirm_email: "",
     avatar_img: ""
@@ -109,6 +110,14 @@ const Register = props => {
               onChange={handleFieldChange}
               type="password"
               id="password"
+            ></input>
+          </div>
+          <div className="confirmPasswordContainer">
+            <label htmlFor="confirm_password">Confirm Password:</label>
+            <input
+              onChange={handleFieldChange}
+              type="password"
+              id="confirm_password"
             ></input>
           </div>
           <div className="emailContainer">
