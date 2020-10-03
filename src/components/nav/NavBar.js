@@ -12,14 +12,16 @@ const NavBar = props => {
   return (
     <header className="header">
       <div className="headerBannerOne">
+        {hasUser ? (
+        <>
         <CustomizedMenu className="burgerBtn" />
         <div className="logoutBtn">
-        {hasUser ? (
           <Button onClick={clearUser} className="logoutBtn" href="/">
             Logout
           </Button>
+        </div>
+        </>
         ) : null}
-      </div>
       </div>
       <div className="headerBannerTwo">
         <Typography component="h1" variant="h2">
