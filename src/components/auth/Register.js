@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LoginManager from "../../modules/LoginManager";
 import RegisterManager from "../../modules/RegisterManager";
-import "./Register.css";
+import "./Login.css";
 
 const Register = props => {
   const [credentials, setCredentials] = useState({
@@ -75,8 +75,8 @@ const Register = props => {
 
   return (
     <>
-      <form onSubmit={handleRegister} className="registerFormContainer">
-        <fieldset>
+      <div className="loginFormContainer">
+        <form onSubmit={handleRegister} className="registerFormContainer">
           <div className="fullNameContainer">
             <label htmlFor="registerName">First Name:</label>
             <input
@@ -139,8 +139,8 @@ const Register = props => {
           <button type="submit" disabled={isLoading}>
             Register!
           </button>
-        </fieldset>
-      </form>
+        </form>
+      </div>
     </>
   );
 };
