@@ -15,17 +15,46 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "space-evenly"
   },
+  searchContainer: {
+    ['@media (max-width:600px)']: {
+      display: 'flex'
+    }
+  },
   textInput: {
     margin: "10px 5px 10px 0",
-    backgroundColor: "#C1C3C6"
+    backgroundColor: "#C1C3C6",
+    ['@media (max-width:600px)']: {
+      fontSize: '20px',
+      height: 35,
+      '& label.Mui-focused': {
+        color: 'gray',
+      },
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: 'gray',
+          height: 40,
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: '#2c77b8e8',
+          fontSize: '10px',
+        },
+    },
+    }
   },
   addTrailButton: {
     textDecoration: "none",
     marginTop: "10px",
-    marginBottom: "10px"
+    marginBottom: "10px",
+    ['@media (max-width:600px)']: {
+      padding: "0",
+      marginLeft: "10px"
+    }
   },
   searchButton: {
-    marginTop: "14px"
+    marginTop: "14px",
+    ['@media (max-width:600px)']: {
+      marginTop: "5px"
+    }
   }
 }));
 
@@ -151,12 +180,13 @@ const TrailList = props => {
             <div className={classes.searchContainer}>
               <TextField
                 id="outlined-basic"
-                label="Enter Zip Code"
+                label="Zip Code"
                 variant="outlined"
                 size="small"
                 color="white"
                 className={classes.textInput}
                 onChange={handleFieldChange}
+                required
               />
               <Button
                 type="submit"
