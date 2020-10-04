@@ -8,6 +8,7 @@ import { Button } from "@material-ui/core";
 const useStyles = makeStyles(theme => ({
   root: {
     margin: '0 auto',
+    padding: '5px 0',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -22,11 +23,17 @@ const useStyles = makeStyles(theme => ({
       width: '80%',
       marginTop: '60px',
       border: '2px solid #2c77b8',
-      borderRadius: '2px'
+      borderRadius: '5px'
     }
   },
   textfield: {
-    marginTop: '7px'
+    marginTop: '7px',
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#2c77b8',
+    },
+  },
+  button: {
+    marginTop: '5px'
   }
 }));
 
@@ -105,7 +112,11 @@ const CreateTrail = props => {
           placeholder="Zipcode"
           className={classes.textfield}
         ></TextField>
-        <Button type="submit" disabled={isLoading} className="submitBtn">Add Trail</Button>
+        <Button 
+          className={classes.button} 
+          type="submit" 
+          disabled={isLoading}
+        >Add Trail</Button>
       </form>
     </>
   );
