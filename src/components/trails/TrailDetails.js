@@ -77,10 +77,11 @@ const useMoreStyles = makeStyles(theme => ({
     // backgroundColor: red[500],
   },
   riders: {
-    marginLeft: '10px'
+    display: 'flex',
+    marginLeft: '3%'
   },
   reviews: {
-    marginLeft: '50px'
+    marginLeft: '3%'
   },
 }));
 
@@ -210,7 +211,8 @@ const TrailDetails = props => {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <Typography className={mobileScreenClasses.riders}>
+            <div className={mobileScreenClasses.riders}>
+            <Typography >
               Recent Riders
             </Typography>
             <IconButton
@@ -218,6 +220,7 @@ const TrailDetails = props => {
             >
               <PeopleAltIcon size="medium" />
               </IconButton>
+            </div>
             <Typography className={mobileScreenClasses.reviews}>
               Reviews
             </Typography>

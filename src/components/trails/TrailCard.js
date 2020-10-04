@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "-7px",
     ['@media (max-width:600px)']: {
       display: 'flex',
-      margin: '0 0 0px 15%',
+      margin: '0 0 0px 20%',
       padding: 0      
     }
   },
