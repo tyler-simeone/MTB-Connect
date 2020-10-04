@@ -11,6 +11,9 @@ import Typography from "@material-ui/core/Typography";
 import { ReactBingmaps } from 'react-bingmaps';
 
 const useStyles = makeStyles((theme) => ({
+  trailListContainer: {
+    width: '80%'
+  },
   root: {
     display: "flex",
     justifyContent: "space-evenly"
@@ -39,6 +42,10 @@ const useStyles = makeStyles((theme) => ({
     ['@media (max-width:600px)']: {
       fontSize: '20px',
       height: 35,
+      minWidth: '50%',
+      '& label': {
+        fontSize: '50%',
+      },
       '& label.Mui-focused': {
         color: 'gray',
       },
@@ -174,7 +181,7 @@ const TrailList = props => {
 
   return (
     <>
-      <div className="trailListContainer">
+      <div >
         <div className="trailSearchBoxContainer">
           <div className="trailSearchBox">
             {!center.length ? (
