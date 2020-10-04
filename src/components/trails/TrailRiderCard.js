@@ -45,6 +45,7 @@ const useStyles = makeStyles(theme => ({
   cover: {
     width: "30%",
     borderRadius: "3px",
+    minHeight: 150,
     ['@media (max-width:600px)']: {
       minWidth: "40%",
       minHeight: 120
