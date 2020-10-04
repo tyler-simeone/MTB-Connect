@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     margin: "20px 0 20px 0",
     ['@media (max-width:600px)']: {
-      maxWidth: '300px',
+      maxWidth: '100%',
       maxHeight: '100px'
     }
   },
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: 296,
     minHeight: 237,
     ['@media (max-width:600px)']: {
-      minWidth: 120,
+      minWidth: "40%",
       minHeight: 120
     }
   },
@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "-7px",
     ['@media (max-width:600px)']: {
       display: 'flex',
-      margin: '0 0 -30px 80px',
+      margin: '0 0 0px 85px',
       padding: 0      
     }
   },

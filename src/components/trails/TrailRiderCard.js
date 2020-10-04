@@ -16,23 +16,51 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     margin: "20px auto",
     maxWidth: "500px",
+    ['@media (max-width:600px)']: {
+      maxWidth: '80%',
+      maxHeight: '100px'
+    }
   },
   details: {
     display: "flex",
-    flexDirection: "column-reverse"
+    flexDirection: "column-reverse",
+    ['@media (max-width:600px)']: {
+      marginTop: '50%'
+    }
   },
   content: {
     flex: "1 0 auto",
     paddingBottom: "10px"
   },
+  name: {
+    ['@media (max-width:600px)']: {
+      fontSize: 'large'
+    }
+  },
+  username: {
+    ['@media (max-width:600px)']: {
+      fontSize: 'small'
+    }
+  },
   cover: {
-    width: "100px",
-    borderRadius: "3px"
+    width: "30%",
+    borderRadius: "3px",
+    minHeight: 150,
+    ['@media (max-width:600px)']: {
+      minWidth: "40%",
+      minHeight: 120
+    }
   },
   buttons: {
     textDecoration: "none",
     marginLeft: "-5px",
-    marginBottom: "-10px"
+    marginBottom: "-10px",
+    ['@media (max-width:600px)']: {
+      display: 'flex',
+      marginTop: "8px",
+      marginBottom: "12px",
+      marginLeft: "-7px",
+    }
   }
 }));
 
@@ -105,10 +133,10 @@ const TrailRiderCard = props => {
         : null}
         <div className={classes.details}>
           <CardContent className={classes.content}>
-            <Typography component="h5" variant="h5">
+            <Typography className={classes.name} component="h5" variant="h5">
               {props.rider.user.user.first_name + " " + props.rider.user.user.last_name}
             </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
+            <Typography className={classes.username} variant="subtitle1" color="textSecondary">
               {props.rider.user.user.username}
             </Typography>
             <div className={classes.buttons}>

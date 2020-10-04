@@ -18,12 +18,24 @@ const useStyles = makeStyles((theme) => ({
   searchContainer: {
     ['@media (max-width:600px)']: {
       display: 'flex',
-      marginLeft: '5px'
+      marginLeft: '5px',
     }
   },
   textInput: {
     margin: "10px 5px 10px 0",
     backgroundColor: "#C1C3C6",
+    '& label.Mui-focused': {
+      color: 'gray',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'gray',
+      },
+      '&.Mui-focused fieldset': {
+        border: '3px solid #2c77b8',
+        fontSize: '10px',
+      },
+    },
     ['@media (max-width:600px)']: {
       fontSize: '20px',
       height: 35,
@@ -33,10 +45,10 @@ const useStyles = makeStyles((theme) => ({
       '& .MuiOutlinedInput-root': {
         '& fieldset': {
           borderColor: 'gray',
-          height: 40,
+          height: '100%',
         },
         '&.Mui-focused fieldset': {
-          borderColor: '#2c77b8e8',
+          border: '1px solid #2c77b8',
           fontSize: '10px',
         },
     },
@@ -50,14 +62,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     marginBottom: "10px",
     ['@media (max-width:600px)']: {
-      padding: "0",
-      marginLeft: "10px"
+      margin: "0 0 0 16px",
     }
   },
   searchButton: {
     marginTop: "14px",
     ['@media (max-width:600px)']: {
-      marginTop: "5px"
+      marginTop: "5px",
+      marginBottom: "5px"
     }
   }
 }));
