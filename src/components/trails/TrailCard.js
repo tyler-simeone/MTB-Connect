@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   },
   header: {
     ['@media (max-width:600px)']: {
-      fontSize: '20px'
+      fontSize: '1rem'
     }
   },
   description: {
@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "-7px",
     ['@media (max-width:600px)']: {
       display: 'flex',
-      margin: '0 0 0px 85px',
+      margin: '0 0 0px 20%',
       padding: 0      
     }
   },
