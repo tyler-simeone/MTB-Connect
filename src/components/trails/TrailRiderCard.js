@@ -16,6 +16,10 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     margin: "20px auto",
     maxWidth: "500px",
+    ['@media (max-width:600px)']: {
+      maxWidth: '300px',
+      maxHeight: '100px'
+    }
   },
   details: {
     display: "flex",
