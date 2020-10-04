@@ -13,22 +13,49 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     margin: "20px auto",
-    maxWidth: "700px"
+    maxWidth: "700px",
+    ['@media (max-width:600px)']: {
+      maxWidth: '80%',
+      maxHeight: '100px'
+    }
   },
   details: {
     display: "flex",
-    flexDirection: "column-reverse"
+    flexDirection: "column-reverse",
+    ['@media (max-width:600px)']: {
+      marginTop: '50%'
+    }
   },
   content: {
     flex: "1 0 auto"
   },
+  name: {
+    ['@media (max-width:600px)']: {
+      fontSize: 'large'
+    }
+  },
+  username: {
+    ['@media (max-width:600px)']: {
+      fontSize: 'medium'
+    }
+  },
   cover: {
     minWidth: 296,
-    minHeight: 237
+    minHeight: 237,
+    ['@media (max-width:600px)']: {
+      minWidth: "40%",
+      minHeight: 120
+    }
   },
   buttons: {
     marginTop: "15px",
-    marginLeft: "-7px"
+    marginLeft: "-7px",
+    ['@media (max-width:600px)']: {
+      display: 'flex',
+      marginTop: "7px",
+      marginBottom: "10px",
+      marginLeft: "-7px",
+    }
   }
 }));
 
@@ -81,10 +108,10 @@ const TrailRiderCard = props => {
           />
           <div className={classes.details}>
             <CardContent className={classes.content}>
-              <Typography component="h5" variant="h5">
+              <Typography className={classes.name} component="h5" variant="h5">
                 {user.user.first_name + " " + user.user.last_name}
               </Typography>
-              <Typography variant="subtitle1" color="textSecondary">
+              <Typography className={classes.username} variant="subtitle1" color="textSecondary">
                 {user.user.username}
               </Typography>
               <div className={classes.buttons}>
