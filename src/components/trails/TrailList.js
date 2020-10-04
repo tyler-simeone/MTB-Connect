@@ -30,10 +30,9 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
         borderColor: 'gray',
-        height: '100%',
       },
       '&.Mui-focused fieldset': {
-        border: '2px solid #2c77b8',
+        border: '3px solid #2c77b8',
         fontSize: '10px',
       },
     },
@@ -49,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
           height: '100%',
         },
         '&.Mui-focused fieldset': {
-          borderColor: '#2c77b8',
+          border: '1px solid #2c77b8',
           fontSize: '10px',
         },
     },
