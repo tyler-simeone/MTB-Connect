@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   searchContainer: {
     ['@media (max-width:600px)']: {
       display: 'flex',
-      marginLeft: '5px'
+      marginLeft: '5px',
     }
   },
   textInput: {
@@ -50,14 +50,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     marginBottom: "10px",
     ['@media (max-width:600px)']: {
-      padding: "0",
-      marginLeft: "10px"
+      margin: "0 0 0 16px",
     }
   },
   searchButton: {
     marginTop: "14px",
     ['@media (max-width:600px)']: {
-      marginTop: "5px"
+      marginTop: "5px",
+      marginBottom: "5px"
     }
   }
 }));
