@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
           height: 40,
         },
         '&.Mui-focused fieldset': {
-          borderColor: '#2c77b8e8',
+          borderColor: '#2c77b8',
           fontSize: '10px',
         },
     },

@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     margin: "20px auto",
     maxWidth: "500px",
     ['@media (max-width:600px)']: {
-      maxWidth: '300px',
+      maxWidth: '80%',
       maxHeight: '100px'
     }
   },
