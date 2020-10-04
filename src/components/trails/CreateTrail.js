@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./CreateTrail.css";
 import TrailsManager from "../../modules/TrailsManager";
 
 import { TextField } from "@material-ui/core";
@@ -8,8 +7,26 @@ import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex",
-    justifyContent: "space-evenly"
+    margin: '0 auto',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '20%',
+    marginTop: '60px',
+    border: '3px solid #2c77b8',
+    borderRadius: '2px',
+    ['@media (max-width:600px)']: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '80%',
+      marginTop: '60px',
+      border: '2px solid #2c77b8',
+      borderRadius: '2px'
+    }
+  },
+  textfield: {
+    marginTop: '7px'
   }
 }));
 
@@ -45,7 +62,7 @@ const CreateTrail = props => {
 
   return (
     <>
-      <form onSubmit={addNewTrail} className="createTrailForm">
+      <form onSubmit={addNewTrail} className={classes.root}>
         <TextField
           id="trail_name"
           type="text"
@@ -53,14 +70,15 @@ const CreateTrail = props => {
           onChange={handleFieldChange}
           size="small"
           placeholder="Name"
-          className="textField"
+          className={classes.textfield}
         ></TextField>
         <TextField
           id="trail_img"
           type="text"
           onChange={handleFieldChange}
           size="small"
-          placeholder="Image"
+          placeholder="Image Link (optional)"
+          className={classes.textfield}
         ></TextField>
         <TextField
           id="description"
@@ -68,6 +86,7 @@ const CreateTrail = props => {
           onChange={handleFieldChange}
           size="small"
           placeholder="Description"
+          className={classes.textfield}
         ></TextField>
         <TextField
           id="address"
@@ -75,6 +94,7 @@ const CreateTrail = props => {
           onChange={handleFieldChange}
           size="small"
           placeholder="Address"
+          className={classes.textfield}
         ></TextField>
         <TextField
           id="zipcode"
@@ -83,6 +103,7 @@ const CreateTrail = props => {
           onChange={handleFieldChange}
           size="small"
           placeholder="Zipcode"
+          className={classes.textfield}
         ></TextField>
         <Button type="submit" disabled={isLoading} className="submitBtn">Add Trail</Button>
       </form>
