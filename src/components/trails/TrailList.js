@@ -24,6 +24,19 @@ const useStyles = makeStyles((theme) => ({
   textInput: {
     margin: "10px 5px 10px 0",
     backgroundColor: "#C1C3C6",
+    '& label.Mui-focused': {
+      color: 'gray',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'gray',
+        height: '100%',
+      },
+      '&.Mui-focused fieldset': {
+        border: '2px solid #2c77b8',
+        fontSize: '10px',
+      },
+    },
     ['@media (max-width:600px)']: {
       fontSize: '20px',
       height: 35,
@@ -33,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
       '& .MuiOutlinedInput-root': {
         '& fieldset': {
           borderColor: 'gray',
-          height: 40,
+          height: '100%',
         },
         '&.Mui-focused fieldset': {
           borderColor: '#2c77b8',
