@@ -36,7 +36,7 @@ const useStyles = makeStyles(() => ({
   },
   username: {
     ['@media (max-width:600px)']: {
-      fontSize: 'medium'
+      fontSize: 'small'
     }
   },
   cover: {
