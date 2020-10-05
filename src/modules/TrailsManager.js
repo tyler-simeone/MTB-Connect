@@ -1,4 +1,4 @@
-const baseURL = "http://127.0.0.1:8000";
+const baseURL = "http://3.136.97.112";
 
 export default {
   get(trailId) {
