@@ -1,4 +1,4 @@
-const baseURL = "http://18.216.29.32:8080";
+const baseURL = "http://3.18.215.253:8080";
 
 export default {
   getUsersWithTrails(trailId) {
