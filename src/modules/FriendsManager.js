@@ -1,4 +1,4 @@
-const baseURL = "http://3.18.215.253:8080";
+const baseURL = "https://3.18.215.253:8080";
 
 export default {
   // Active user viewing friend requests
