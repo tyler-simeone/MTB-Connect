@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '5px',
     }
   },
+  trailsImg: {
+    width: '100%'
+  },
   textInput: {
     margin: "10px 5px 10px 0",
     backgroundColor: "#C1C3C6",
@@ -35,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         borderColor: 'gray',
       },
       '&.Mui-focused fieldset': {
-        border: '3px solid #2c77b8',
+        border: '2px solid #2c77b8',
         fontSize: '10px',
       },
     },
@@ -185,7 +188,7 @@ const TrailList = props => {
         <div className="trailSearchBoxContainer">
           <div className="trailSearchBox">
             {!center.length ? (
-            <img src="https://2qibqm39xjt6q46gf1rwo2g1-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/8212290_web1_L1Darrington-trails-edh-1708.jpg" />
+            <img className={classes.trailsImg} src="https://2qibqm39xjt6q46gf1rwo2g1-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/8212290_web1_L1Darrington-trails-edh-1708.jpg" />
             ) : (
               <div className="bingMapContainer">
                 <ReactBingmaps 
