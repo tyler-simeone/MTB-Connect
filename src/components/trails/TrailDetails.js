@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 
 const useMoreStyles = makeStyles(theme => ({
   root: {
-    maxWidth: '80%',
+    maxWidth: '90%',
     margin: '20px auto',
   },
   media: {
@@ -80,9 +80,16 @@ const useMoreStyles = makeStyles(theme => ({
     display: 'flex',
     marginLeft: '3%'
   },
-  reviews: {
-    marginLeft: '3%'
+  riderLabel: {
+    marginTop: '7%'
   },
+  reviews: {
+    marginTop: '9%'
+  },
+  reviewContainer: {
+    display: 'flex',
+    marginLeft: '10%'
+  }
 }));
 
 const TrailDetails = props => {
@@ -211,29 +218,30 @@ const TrailDetails = props => {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <div className={mobileScreenClasses.riders}>
-            <Typography >
+            <div onClick={viewRecentRiders} className={mobileScreenClasses.riders}>
+            <Typography className={mobileScreenClasses.riderLabel}>
               Recent Riders
             </Typography>
             <IconButton
-              onClick={viewRecentRiders}
+              
             >
               <PeopleAltIcon size="medium" />
               </IconButton>
             </div>
-            <Typography className={mobileScreenClasses.reviews}>
-              Reviews
-            </Typography>
-            <IconButton
-              className={clsx(mobileScreenClasses.expand, {
-                [mobileScreenClasses.expandOpen]: expanded,
-              })}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
+            <div onClick={handleExpandClick} className={mobileScreenClasses.reviewContainer}>
+              <Typography className={mobileScreenClasses.reviews}>
+                Reviews
+              </Typography>
+              <IconButton
+                className={clsx(mobileScreenClasses.expand, {
+                  [mobileScreenClasses.expandOpen]: expanded,
+                })}
+                aria-expanded={expanded}
+                aria-label="show more"
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+            </div>
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
