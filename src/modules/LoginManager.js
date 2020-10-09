@@ -1,4 +1,4 @@
-const baseURL = "https://3.18.215.253:8080";
+const baseURL = "https://api.mtb-connect.com:8080";
 
 export default {
     getAll() {
