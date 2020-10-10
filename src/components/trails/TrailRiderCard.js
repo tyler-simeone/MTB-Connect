@@ -30,7 +30,11 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flex: "1 0 auto",
-    paddingBottom: "10px"
+    paddingBottom: "10px",
+    ['@media (max-width:600px)']: {
+      paddingTop: "0px",
+      marginBottom: "10%"
+    },
   },
   name: {
     ['@media (max-width:600px)']: {
@@ -61,7 +65,7 @@ const useStyles = makeStyles(theme => ({
       marginBottom: "12px",
       marginLeft: "-7px",
     }
-  }
+  },
 }));
 
 const TrailRiderCard = props => {
@@ -142,7 +146,7 @@ const TrailRiderCard = props => {
             <div className={classes.buttons}>
               {props.rider.user_id !== props.activeUserId &&
               alreadyFriends === undefined ? (
-                <Button size="small" onClick={createFriendRequest} disabled={isLoading}>
+                <Button className={classes.addButton} onClick={createFriendRequest} disabled={isLoading}>
                   <PersonAddIcon fontSize="small" className="addFriendIcon"></PersonAddIcon>
                   Add Friend
                 </Button>
