@@ -1,7 +1,7 @@
 @media only screen and (max-width: 600px) {
     .trailSearchBoxContainer {
         border: 1px solid lightgray;
-        border-radius: 3px;
+        border-radius: 4px;
         max-width: 90%;
         max-height: 400px;
         margin: 0 auto;
@@ -11,7 +11,7 @@
         background-color: lightgray;
     }
 
-    img {
+    .trailSearchBoxContainer img {
         max-height: 200px;
         max-width: 100%;
         border-radius: 3px;
@@ -56,21 +56,20 @@
         margin-bottom: 5px;
     }
     
-    img {
+    .trailSearchBoxContainer img {
         height: 400px;
-        width: 700px;
+        width: 100%;
         border-radius: 3px;
     }
     
     .bingMapContainer {
         height: 400px;
-        width: 700px;
     }
     
     .trailSearchBoxContainer {
         border: 1px solid lightgray;
         border-radius: 3px;
-        max-width: 700px;
+        width: 90%;
         margin: 0 auto;
         margin-top: 40px;
         margin-bottom: 20px;
@@ -79,7 +78,7 @@
     }
     
     .dynamicTrailListContainer {
-        max-width: 700px;
+        max-width: 90%;
         margin: 0 auto;
     }
     
