@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         borderColor: 'gray',
       },
       '&.Mui-focused fieldset': {
-        border: '2px solid #2c77b8',
+        border: '3px solid #2c77b8',
         fontSize: '10px',
       },
     },
