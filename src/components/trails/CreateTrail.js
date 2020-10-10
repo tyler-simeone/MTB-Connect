@@ -14,35 +14,55 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 const useStyles = makeStyles(theme => ({
   root: {
     margin: '0 auto',
-    padding: '5px 0',
+    padding: '10px 30px',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    width: '20%',
+    width: '50%',
     marginTop: '60px',
-    border: '3px solid #2c77b8',
-    borderRadius: '2px',
+    border: '3px solid #2b94d1',
+    borderRadius: '8px',
     ['@media (max-width:600px)']: {
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
       width: '80%',
+      padding: '10px 30px',
       marginTop: '60px',
-      border: '2px solid #2c77b8',
-      borderRadius: '5px'
+      border: '2px solid #2b94d1',
+      borderRadius: '8px'
+    },
+    ['@media (min-width:1200px)']: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: '50%',
+      padding: '30px 70px',
+      marginTop: '60px',
+      border: '3px solid #2b94d1',
+      borderRadius: '8px',
+      fontSize: '25px'
     }
   },
   textfield: {
     marginTop: '7px',
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#2c77b8',
+    '& .MuiInput-underline::after': {
+      borderBottomColor: '#2b94d1',
     },
+    '& .MuiInputBase-input': {
+      height: '1.5em'
+    }
   },
   selectLabel: {
-    marginTop: '7px'
+    marginTop: '14px',
+  },
+  select: {
+    '&:after': {
+      borderBottomColor: '#2b94d1',
+    }
   },
   button: {
-    marginTop: '5px'
+    marginTop: '5px',
+    ['@media (min-width:1200px)']: {
+      marginTop: '15px',
+    }
   }
 }));
 

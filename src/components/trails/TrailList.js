@@ -12,7 +12,7 @@ import { ReactBingmaps } from 'react-bingmaps';
 
 const useStyles = makeStyles((theme) => ({
   trailListContainer: {
-    width: '80%'
+    width: '100%'
   },
   root: {
     display: "flex",
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   trailsImg: {
-    width: '100%'
+    minWidth: '100%'
   },
   textInput: {
     margin: "10px 5px 10px 0",
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         borderColor: 'gray',
       },
       '&.Mui-focused fieldset': {
-        border: '2px solid #2c77b8',
+        border: '3px solid #2c77b8',
         fontSize: '10px',
       },
     },
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
       height: 35,
       minWidth: '50%',
       '& label': {
-        fontSize: '50%',
+        fontSize: '70%',
       },
       '& label.Mui-focused': {
         color: 'gray',
@@ -62,9 +62,6 @@ const useStyles = makeStyles((theme) => ({
           fontSize: '10px',
         },
     },
-    '& .MuiInputLabel-root': {
-      marginBottom: '5px'
-    }
     }
   },
   addTrailButton: {

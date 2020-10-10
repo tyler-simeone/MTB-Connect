@@ -1,13 +1,13 @@
 @media only screen and (max-width: 600px) {
     .loginFormContainer {
         margin: 30px auto;
-        max-width: 80%;
+        max-width: 90%;
         display: flex;
         flex-direction: column;
         
-        border: 2px solid #2c77b8;
+        border: 2px solid #2b94d1;
         border-radius: 8px;
-        padding: 10px;
+        padding: 10px 25px;
     }
 
     .loginFormContainer div {
@@ -15,9 +15,15 @@
         flex-direction: column;
     }
 
-    input {
+    .loginFormContainer input {
         line-height: 25px;
-        font-size: 17px;
+        font-size: 15px;
+    }
+    .loginFormContainer input:focus {   
+        border-color: rgba(42, 147, 207, 0.88);
+        box-shadow: 0 0 6px rgba(42, 147, 207, 0.88);
+        outline: 0 none;
+        border-radius: 3px;
     }
 
     label {
@@ -26,7 +32,7 @@
     }
 
     .loginFormContainer button {
-        margin: 10px 0 0 0;
+        margin: 15px 0 10px 0;
         font-size: 17px;
     }
 
@@ -35,13 +41,13 @@
 
 @media only screen and (min-width: 600px) {
     .loginFormContainer {
-        margin: 30px auto;
-        max-width: 25%;
+        margin: 40px auto;
+        max-width: 70%;
         display: flex;
         flex-direction: column;
-        border: 4px solid #2c77b8;
+        border: 3px solid #2b94d1;
         border-radius: 8px;
-        padding: 10px;
+        padding: 20px 40px;
     }
 
     .loginFormContainer div {
@@ -52,6 +58,12 @@
     input {
         line-height: 25px;
     }
+    .loginFormContainer input:focus {   
+        border-color: rgba(42, 147, 207, 0.88);
+        box-shadow: 0 0 6px rgba(42, 147, 207, 0.88);
+        outline: 0 none;
+        border-radius: 3px;
+    }
 
     label {
         font-size: 17px;
@@ -59,8 +71,125 @@
     }
 
     .loginFormContainer button {
-        margin: 10px 0 0 0;
+        margin: 15px 0 10px 0;
         font-size: 17px;
     }
 
+}
+
+@media only screen and (min-width: 768px) {
+    .loginFormContainer {
+        margin: 40px auto;
+        max-width: 50%;
+        display: flex;
+        flex-direction: column;
+        border: 3px solid #2b94d1;
+        border-radius: 8px;
+        padding: 30px 60px;
+    }
+
+    .loginFormContainer div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input {
+        line-height: 25px;
+    }
+    .loginFormContainer input:focus {   
+        border-color: rgba(42, 147, 207, 0.88);
+        box-shadow: 0 0 6px rgba(42, 147, 207, 0.88);
+        outline: 0 none;
+        border-radius: 3px;
+    }
+
+    label {
+        font-size: 17px;
+        margin-top: 5px;
+    }
+
+    .loginFormContainer button {
+        margin: 15px 0 10px 0;
+        font-size: 17px;
+    }
+
+}
+
+@media only screen and (min-width: 992px) {
+    .loginFormContainer {
+        margin: 40px auto;
+        max-width: 50%;
+        display: flex;
+        flex-direction: column;
+        border: 4px solid #2b94d1;
+        border-radius: 8px;
+        padding: 30px 60px;
+    }
+
+    .loginFormContainer div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input {
+        line-height: 25px;
+    }
+    .loginFormContainer input:focus {   
+        border-color: rgba(42, 147, 207, 0.88);
+        box-shadow: 0 0 6px rgba(42, 147, 207, 0.88);
+        outline: 0 none;
+        border-radius: 3px;
+    }
+
+    label {
+        font-size: 17px;
+        margin-top: 5px;
+    }
+
+    .loginFormContainer button {
+        margin: 15px 0 10px 0;
+        font-size: 17px;
+    }
+
+}
+
+@media only screen and (min-width: 1200px) {
+    .loginFormContainer {
+        margin: 40px auto;
+        max-width: 40%;
+        display: flex;
+        flex-direction: column;
+        border: 4px solid #2b94d1;
+        border-radius: 8px;
+        padding: 30px 70px;
+    }
+
+    .loginFormContainer div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input {
+        line-height: 30px;
+        font-size: 17px;
+    }
+    .loginFormContainer input:focus {   
+        border-color: rgba(42, 147, 207, 0.88);
+        box-shadow: 0 0 6px rgba(42, 147, 207, 0.88);
+        outline: 0 none;
+        border-radius: 3px;
+    }
+
+    label {
+        font-size: 17px;
+        margin-top: 5px;
+        margin-bottom: 2px;
+    }
+
+    .loginFormContainer button {
+        margin: 15px 0 10px 0;
+        font-size: 17px;
+        height: 35px;
+        padding: 5px;
+    }
 }

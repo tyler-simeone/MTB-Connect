@@ -16,7 +16,7 @@
 
 @media only screen and (min-width: 600px) {
     .burgerMenu {
-        margin-left: 30px;
+        margin-left: 6%;
         margin-top: 52px;
     }
 
@@ -27,33 +27,36 @@
 
 @media only screen and (min-width: 768px) {
     .burgerMenu {
-        margin-left: 45px;
+        margin-left: 13%;
         margin-top: 52px;
     }
 
-    .burgerMenu Button {
-        padding: 0px;        
+    .burgerMenu svg {
+        width: 40px;
+        height: 40px;
     }
 }
 
 @media only screen and (min-width: 992px) {
     .burgerMenu {
-        margin-left: 230px;
+        margin-left: 20%;
         margin-top: 52px;
     }
 
-    .burgerMenu Button {
-        padding: 0px;
+    .burgerMenu svg {
+        width: 40px;
+        height: 40px;
     }
 }
 
 @media only screen and (min-width: 1200px) {
     .burgerMenu {
-        margin-left: 330px;
+        margin-left: 25%;
         margin-top: 52px;
     }
 
-    .burgerMenu Button {
-        padding: 0px;
+    .burgerMenu svg {
+        width: 40px;
+        height: 40px;
     }
 }

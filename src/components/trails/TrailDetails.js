@@ -25,11 +25,19 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     margin: "20px auto",
-    maxWidth: "1000px",
+    minWidth: "50%",
     ['@media (max-width:600px)']: {
       maxWidth: '300px',
       maxHeight: '400px',
       display: "none"
+    },
+    ['@media (max-width:1199px)']: {
+      maxWidth: '90%',
+      maxHeight: '200px',
+    },
+    ['@media (min-width:1199px)']: {
+      maxWidth: '60%',
+      maxHeight: '300px',
     }
   },
   details: {
@@ -38,6 +46,11 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flex: "1 0 auto"
+  },
+  trailDescription: {
+    ['@media (max-width:1199px)']: {
+      display: 'none'
+    },
   },
   cover: {
     width: 151,
@@ -161,7 +174,7 @@ const TrailDetails = props => {
             <Typography component="h5" variant="h5">
               {trail.trail_name}
             </Typography>
-            <div className="trailDescription">
+            <div className={fullScreenClasses.trailDescription}>
               <Typography variant="subtitle1" color="textSecondary">
                 {trail.description}
               </Typography>

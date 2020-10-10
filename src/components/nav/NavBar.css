@@ -22,15 +22,6 @@
     margin: 0 auto;
     font-size: 30px;
   }
-  
-  .logoutBtn {
-    margin-top: -31px;
-    margin-left: 70%;
-  }
-
-  .logoutBtn span {
-    font-size: 12px;
-  }
 }
 
 @media only screen and (min-width: 600px) {
@@ -55,12 +46,6 @@
   
   .headerBannerTwo > h1 {
     margin: 0 auto;
-  }
-
-  
-  .logoutBtn {
-    margin-top: -34px;
-    margin-left: 700px;
   }
 }
 
@@ -88,12 +73,6 @@
   .headerBannerTwo > h1 {
     margin: 0 auto;
   }
-
-  
-  .logoutBtn {
-    margin-top: -34px;
-    margin-left: 700px;
-  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -119,11 +98,6 @@
   .headerBannerTwo > h1 {
     margin: 0 auto;
   }
-  
-  .logoutBtn {
-    margin-top: -34px;
-    margin-left: 800px;
-  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -148,10 +122,5 @@
   
   .headerBannerTwo > h1 {
     margin: 0 auto;
-  }
-  
-  .logoutBtn {
-    margin-top: -34px;
-    margin-left: 1025px;
   }
 }
