@@ -14,6 +14,7 @@ import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import MenuIcon from "@material-ui/icons/Menu";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import GroupIcon from '@material-ui/icons/Group';
 
 import "./CustomizedMenu.css";
 
@@ -44,6 +45,9 @@ const StyledMenuItem = withStyles(theme => ({
       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
         color: theme.palette.common.white
       }
+    },
+    '& .MuiListItemIcon-root': {
+      minWidth: '36px'
     }
   }
 }))(MenuItem);
@@ -91,7 +95,7 @@ export default function CustomizedMenu(props) {
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
-            <PersonOutlineIcon fontSize="normal" />
+            <GroupIcon fontSize="normal" />
           </ListItemIcon>
           <ListItemLink href="/friends">
             <ListItemText primary="Friends" />
