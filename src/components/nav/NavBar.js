@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import "./NavBar.css";
 import Typography from "@material-ui/core/Typography";
 import CustomizedMenu from "./CustomizedMenu.js";
-import Button from "@material-ui/core/Button";
 
 const NavBar = props => {
   const hasUser = props.hasUser;
@@ -14,12 +13,7 @@ const NavBar = props => {
       <div className="headerBannerOne">
         {hasUser ? (
         <>
-        <CustomizedMenu className="burgerBtn" />
-        <div className="logoutBtn">
-          <Button onClick={clearUser} className="logoutBtn" href="/">
-            Logout
-          </Button>
-        </div>
+          <CustomizedMenu hasUser={hasUser} clearUser={clearUser} className="burgerBtn" />
         </>
         ) : null}
       </div>

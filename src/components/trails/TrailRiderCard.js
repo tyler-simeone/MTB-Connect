@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     margin: "20px auto",
     maxWidth: "500px",
     ['@media (max-width:600px)']: {
-      maxWidth: '80%',
+      maxWidth: '90%',
       maxHeight: '100px'
     }
   },
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
   name: {
     ['@media (max-width:600px)']: {
-      fontSize: 'large'
+      fontSize: '22px'
     }
   },
   username: {
