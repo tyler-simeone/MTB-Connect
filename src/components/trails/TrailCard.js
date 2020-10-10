@@ -27,7 +27,8 @@ const useStyles = makeStyles(theme => ({
   },
   header: {
     ['@media (max-width:600px)']: {
-      fontSize: '1rem'
+      fontSize: '1rem',
+      fontWeight: '500'
     }
   },
   description: {
@@ -41,6 +42,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: 237,
     ['@media (max-width:600px)']: {
       minWidth: "40%",
+      maxWidth: "40%",
       minHeight: 120
     }
   },

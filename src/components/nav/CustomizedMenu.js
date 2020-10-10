@@ -13,6 +13,7 @@ import FilterHdrIcon from "@material-ui/icons/FilterHdr";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import MenuIcon from "@material-ui/icons/Menu";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import "./CustomizedMenu.css";
 
@@ -51,7 +52,7 @@ function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
-export default function CustomizedMenu() {
+export default function CustomizedMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = event => {
@@ -102,6 +103,14 @@ export default function CustomizedMenu() {
           </ListItemIcon>
           <ListItemLink href="/pending">
             <ListItemText primary="Pending" />
+          </ListItemLink>
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <ListItemIcon>
+            <ExitToAppIcon fontSize="normal" />
+          </ListItemIcon>
+          <ListItemLink onClick={props.clearUser} href="/">
+            <ListItemText primary="Logout" />
           </ListItemLink>
         </StyledMenuItem>
       </StyledMenu>
