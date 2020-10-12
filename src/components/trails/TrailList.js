@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
   },
   textInput: {
     margin: "10px 5px 10px 0",
-    // backgroundColor: "#C1C3C6",
     '& label.Mui-focused': {
       color: 'gray',
     },
@@ -52,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
     },
     ['@media (max-width:600px)']: {
       fontSize: '18px',
-      // height: 35,
       width: '45%',
       margin: '10px 0 0 5px',
       '& label': {
@@ -68,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
         },
         '&.Mui-focused fieldset': {
           border: '2px solid #2c77b8',
-          // fontSize: '10px',
         },
     },
     }
@@ -85,8 +82,6 @@ const useStyles = makeStyles((theme) => ({
   searchButton: {
     marginTop: "14px",
     ['@media (max-width:600px)']: {
-      // marginTop: "8px",
-      // marginLeft: "2px",
       margin: '8px 3px 0 2px',
       fontSize: '12px'
     },

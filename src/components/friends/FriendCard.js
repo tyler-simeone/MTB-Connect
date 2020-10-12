@@ -15,19 +15,21 @@ const useStyles = makeStyles(() => ({
     margin: "20px auto",
     maxWidth: "700px",
     ['@media (max-width:600px)']: {
-      maxWidth: '80%',
+      maxWidth: '90%',
       maxHeight: '100px'
     }
   },
   details: {
     display: "flex",
     flexDirection: "column-reverse",
-    ['@media (max-width:600px)']: {
-      marginTop: '50%'
-    }
   },
   content: {
-    flex: "1 0 auto"
+    flex: "1 0 auto",
+    paddingBottom: "10px",
+    ['@media (max-width:600px)']: {
+      paddingTop: "13px",
+      maxHeight: '100px',
+    },
   },
   name: {
     ['@media (max-width:600px)']: {
@@ -36,7 +38,8 @@ const useStyles = makeStyles(() => ({
   },
   username: {
     ['@media (max-width:600px)']: {
-      fontSize: 'small'
+      fontSize: 'small',
+      paddingLeft: '2px'
     }
   },
   cover: {
@@ -44,16 +47,21 @@ const useStyles = makeStyles(() => ({
     minHeight: 237,
     ['@media (max-width:600px)']: {
       minWidth: "40%",
-      minHeight: 120
+      minHeight: 120,
     }
   },
   buttons: {
     marginTop: "15px",
     marginLeft: "-7px",
     ['@media (max-width:600px)']: {
+      fontSize: 'small',
       marginTop: "7px",
-      marginBottom: "10px",
-      marginLeft: "-7px"
+    }
+  },
+  deleteBtn: {
+    ['@media (max-width:600px)']: {
+      fontSize: '12px',
+      paddingLeft: "3px",
     }
   }
 }));
@@ -111,7 +119,7 @@ const FriendCard = props => {
                 {user.user.username}
               </Typography>
               <div className={classes.buttons}>
-                <Button onClick={() => deleteFriend(props.friend.id)}>
+                <Button className={classes.deleteBtn} color="secondary" onClick={() => deleteFriend(props.friend.id)}>
                   Delete
                 </Button>
               </div>

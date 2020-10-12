@@ -10,15 +10,31 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     margin: "20px auto",
     maxWidth: "500px",
-    ['@media (max-width:600px)']: {
+    ['@media (max-width:400px)']: {
       maxWidth: '90%',
       maxHeight: '100px'
+    },
+    ['@media (min-width:401px)']: {
+      maxWidth: '70%',
+      maxHeight: '100px'
+    },
+    ['@media (min-width:600px)']: {
+      maxWidth: '70%',
+      maxHeight: '200px'
+    },
+    ['@media (min-width:768px)']: {
+      maxWidth: '60%',
+      maxHeight: '200px'
+    },
+    ['@media (min-width:1200px)']: {
+      maxWidth: '30%',
+      maxHeight: '200px'
     }
   },
   details: {
@@ -36,12 +52,12 @@ const useStyles = makeStyles(theme => ({
   },
   name: {
     ['@media (max-width:600px)']: {
-      fontSize: '22px'
+      fontSize: '18px'
     }
   },
   username: {
     ['@media (max-width:600px)']: {
-      fontSize: 'small'
+      fontSize: '14px'
     }
   },
   cover: {
@@ -50,7 +66,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: 150,
     ['@media (max-width:600px)']: {
       minWidth: "40%",
-      minHeight: 120
+      minHeight: 120,
     }
   },
   buttons: {
@@ -61,10 +77,19 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       marginTop: "8px",
       paddingBottom: '0',
-      // marginBottom: "12px",
       marginLeft: "-7px",
     }
   },
+  addButton: {
+    ['@media (max-width:600px)']: {
+      paddingLeft: "0"
+    }
+  },
+  removeButton: {
+    ['@media (max-width:600px)']: {
+      paddingLeft: '0'
+    }
+  }
 }));
 
 const TrailRiderCard = props => {
@@ -146,12 +171,14 @@ const TrailRiderCard = props => {
               {props.rider.user_id !== props.activeUserId &&
               alreadyFriends === undefined ? (
                 <Button className={classes.addButton} onClick={createFriendRequest} disabled={isLoading}>
-                  <PersonAddIcon fontSize="small" className="addFriendIcon"></PersonAddIcon>
-                  Add Friend
+                  <PersonAddIcon fontSize="medium" className="addFriendIcon"></PersonAddIcon>
                 </Button>
               ) : null}
+              
               {props.rider.user_id === props.activeUserId ? (
-                <Button size="small" onClick={removeFromRidersList}>Remove Me From List</Button>
+                <Button className={classes.removeButton} size="small" onClick={removeFromRidersList}>
+                  <RemoveCircleOutlineIcon color="secondary" fontSize="medium" />
+                </Button>
               ) : null}
             </div>
           </CardContent>
