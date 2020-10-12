@@ -24,16 +24,14 @@ const useStyles = makeStyles(theme => ({
   details: {
     display: "flex",
     flexDirection: "column-reverse",
-    ['@media (max-width:600px)']: {
-      marginTop: '50%'
-    }
   },
   content: {
     flex: "1 0 auto",
     paddingBottom: "10px",
     ['@media (max-width:600px)']: {
-      paddingTop: "0px",
-      marginBottom: "10%"
+      paddingTop: "5px",
+      margin: '22px 0 0 0',
+      maxHeight: '100px',
     },
   },
   name: {
@@ -62,7 +60,8 @@ const useStyles = makeStyles(theme => ({
     ['@media (max-width:600px)']: {
       display: 'flex',
       marginTop: "8px",
-      marginBottom: "12px",
+      paddingBottom: '0',
+      // marginBottom: "12px",
       marginLeft: "-7px",
     }
   },

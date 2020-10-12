@@ -37,15 +37,18 @@ const useStyles = makeStyles((theme) => ({
       '& fieldset': {
         borderColor: 'gray',
       },
-      '&.Mui-focused fieldset': {
-        border: '3px solid #2c77b8',
-        fontSize: '10px',
+      ['@media (min-width:601px)']: {
+        '&.Mui-focused fieldset': {
+          border: '3px solid #2c77b8',
+          fontSize: '10px',
+        },
       },
     },
     ['@media (max-width:600px)']: {
-      fontSize: '20px',
+      fontSize: '18px',
       height: 35,
       minWidth: '50%',
+      margin: '10px 0 0 5px',
       '& label': {
         fontSize: '70%',
       },
@@ -58,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
           height: '100%',
         },
         '&.Mui-focused fieldset': {
-          border: '1px solid #2c77b8',
+          border: '2px solid #2c77b8',
           fontSize: '10px',
         },
     },
@@ -69,14 +72,19 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     marginBottom: "10px",
     ['@media (max-width:600px)']: {
-      margin: "0 0 0 16px",
+      margin: "0 0 0 10px",
+      fontSize: '12px'
     }
   },
   searchButton: {
     marginTop: "14px",
     ['@media (max-width:600px)']: {
-      marginTop: "5px",
-      marginBottom: "5px"
+      marginTop: "17px",
+      marginLeft: "5px",
+      fontSize: '12px'
+    },
+    ['@media (min-width:601px)']: {
+      margin: '15px 0 5px 10px'
     }
   }
 }));
@@ -232,18 +240,19 @@ const TrailList = props => {
         
         <div className="dynamicTrailListContainer">
           {/* Before submit btn clicked and api fetch runs, trails.length is 0, after search its length is > than 0 so will render the cards!! */}
-          {trails.length === 0 ? (
+          {trails.length === 0 ? (            
             <div className="searchDescriptionContainer">
               <Typography
                 className="searchDescription"
                 component="h3"
                 variant="h3"
               >
-                Search For Nearby Trails!
+                Find Nearby Trails!
               </Typography>
             </div>
           ) : (
             <div>
+              
               <section>
                 {trails.map(trail => {
                   return (

@@ -102,6 +102,13 @@ const useMoreStyles = makeStyles(theme => ({
   reviewContainer: {
     display: 'flex',
     marginLeft: '10%'
+  },
+  addRiderBtn: {
+    border: '2px solid black'
+  },
+  btnContainer: {
+    display: 'flex',
+    justifyContent: 'center'
   }
 }));
 
@@ -267,19 +274,26 @@ const TrailDetails = props => {
       </MediaQuery>
 
       {!viewRiders ? null : (
-        <section className="recentRidersContainer">
-          {riders.map(rider => {
-            return (
-              <TrailRiderCard
-                key={rider.id}
-                activeUserId={props.activeUserId}
-                rider={rider}
-                findTrailUsers={findTrailUsers}
-                {...props}
-              />
-            );
-          })}
-        </section>
+        <>
+          <div className={mobileScreenClasses.btnContainer}>
+            <Button className={mobileScreenClasses.addRiderBtn} onClick={addRecentRider}>
+              I've Ridden Here Recently!
+            </Button>
+          </div>
+          <section className="recentRidersContainer">
+            {riders.map(rider => {
+              return (
+                <TrailRiderCard
+                  key={rider.id}
+                  activeUserId={props.activeUserId}
+                  rider={rider}
+                  findTrailUsers={findTrailUsers}
+                  {...props}
+                />
+              );
+            })}
+          </section>
+        </>
       )}
     </>
   );

@@ -13,7 +13,15 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     margin: "20px auto",
-    maxWidth: "1000px"
+    maxWidth: "90%",
+    ['@media (max-width:600px)']: {
+      display: 'flex',
+      flexDirection: 'column',
+      maxWidth: '90%'
+    },
+    ['@media (min-width:1200px)']: {
+      maxWidth: '1000px'
+    }
   },
   details: {
     display: "flex",
@@ -24,14 +32,20 @@ const useStyles = makeStyles(theme => ({
   },
   cover: {
     minWidth: 296,
-    minHeight: 237
+    minHeight: 237,
+    ['@media (max-width:600px)']: {
+      minHeight: 200
+    }
   },
   buttons: {
     marginTop: "15px",
     marginLeft: "-7px"
   },
   editInputField: {
-    marginTop: "10px"
+    marginTop: "10px",
+    '& .MuiInputBase-root': {
+      minWidth: '270px',        
+    },
   }
 }));
 
