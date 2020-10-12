@@ -252,6 +252,7 @@ const TrailList = props => {
             </div>
           ) : (
             <div>
+              
               <section>
                 {trails.map(trail => {
                   return (

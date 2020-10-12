@@ -13,11 +13,14 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     margin: "20px auto",
-    maxWidth: "1000px",
+    maxWidth: "90%",
     ['@media (max-width:600px)']: {
       display: 'flex',
       flexDirection: 'column',
       maxWidth: '90%'
+    },
+    ['@media (min-width:1200px)']: {
+      maxWidth: '1000px'
     }
   },
   details: {
@@ -40,14 +43,9 @@ const useStyles = makeStyles(theme => ({
   },
   editInputField: {
     marginTop: "10px",
-    ['@media (max-width:600px)']: {
-      '& .MuiInputBase-root': {
-        minWidth: '270px',        
-      },
-      '& .MuiOutlinedInput-root': {
-          borderColor: '#2b94d1'
-      }
-    }
+    '& .MuiInputBase-root': {
+      minWidth: '270px',        
+    },
   }
 }));
 
