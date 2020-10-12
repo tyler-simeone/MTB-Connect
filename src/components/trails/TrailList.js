@@ -43,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
           fontSize: '10px',
         },
       },
+      ['@media (max-width:600px)']: {
+        '& .MuiInputBase-input': {
+          height: '1.5em'
+        }
+      }
     },
     ['@media (max-width:600px)']: {
       fontSize: '18px',
@@ -72,14 +77,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     marginBottom: "10px",
     ['@media (max-width:600px)']: {
-      margin: "0 0 0 10px",
+      margin: "5px 0 0 10px",
       fontSize: '12px'
     }
   },
   searchButton: {
     marginTop: "14px",
     ['@media (max-width:600px)']: {
-      marginTop: "17px",
+      marginTop: "8px",
       marginLeft: "5px",
       fontSize: '12px'
     },
