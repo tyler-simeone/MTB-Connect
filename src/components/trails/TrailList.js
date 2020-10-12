@@ -52,8 +52,8 @@ const useStyles = makeStyles((theme) => ({
     },
     ['@media (max-width:600px)']: {
       fontSize: '18px',
-      height: 35,
-      minWidth: '50%',
+      // height: 35,
+      width: '45%',
       margin: '10px 0 0 5px',
       '& label': {
         fontSize: '70%',
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
         },
         '&.Mui-focused fieldset': {
           border: '2px solid #2c77b8',
-          fontSize: '10px',
+          // fontSize: '10px',
         },
     },
     }
@@ -78,15 +78,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     marginBottom: "10px",
     ['@media (max-width:600px)']: {
-      margin: "8px 5px 0 10px",
+      margin: "8px 5px 0 0px",
       fontSize: '12px'
     }
   },
   searchButton: {
     marginTop: "14px",
     ['@media (max-width:600px)']: {
-      marginTop: "8px",
-      marginLeft: "5px",
+      // marginTop: "8px",
+      // marginLeft: "2px",
+      margin: '8px 3px 0 2px',
       fontSize: '12px'
     },
     ['@media (min-width:601px)']: {
@@ -232,8 +233,6 @@ const TrailList = props => {
               >
                 Search
               </Button>
-            </div>
-
             <Button
               href="/trails/addTrail"
               size="small"
@@ -241,6 +240,8 @@ const TrailList = props => {
             >
               Add Trail
             </Button>
+            </div>
+
           </form>
         </div>
         
