@@ -15,12 +15,13 @@ const useStyles = makeStyles((theme) => ({
     width: '100%'
   },
   root: {
-    display: "flex",
-    justifyContent: "space-evenly"
+  
   },
   searchContainer: {
+    display: 'flex',
+    // justifyContent: 'space-evenly',
     ['@media (max-width:600px)']: {
-      display: 'flex',
+      
       marginLeft: '5px',
       height: '50px'
     }
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '100%'
   },
   textInput: {
-    margin: "10px 5px 10px 0",
+    margin: "10px 5px 10px 80px",
     '& label.Mui-focused': {
       color: 'gray',
     },
@@ -68,25 +69,30 @@ const useStyles = makeStyles((theme) => ({
           border: '2px solid #2c77b8',
         },
     },
+    ['@media (min-width:768px)']: {
+      
+    }
     }
   },
   addTrailButton: {
     textDecoration: "none",
     marginTop: "10px",
-    marginBottom: "10px",
+    marginBottom: "9px",
+    marginLeft: '20%',
+    fontSize: '15px',
     ['@media (max-width:600px)']: {
       margin: "8px 5px 0 0px",
       fontSize: '12px'
     }
   },
   searchButton: {
-    marginTop: "14px",
+    fontSize: '15px',
     ['@media (max-width:600px)']: {
       margin: '8px 3px 0 2px',
       fontSize: '12px'
     },
     ['@media (min-width:601px)']: {
-      margin: '15px 0 5px 10px'
+      margin: '10px 0 5px 2%'
     }
   }
 }));
