@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
       },
       ['@media (max-width:600px)']: {
         '& .MuiInputBase-input': {
-          height: '1.5em'
+          height: '2em'
         }
       }
     },
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     marginBottom: "10px",
     ['@media (max-width:600px)']: {
-      margin: "5px 0 0 10px",
+      margin: "8px 5px 0 10px",
       fontSize: '12px'
     }
   },
