@@ -61,12 +61,13 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "-7px",
     ['@media (max-width:600px)']: {
       display: 'flex',
-      margin: '15px 0 5px 20%',
+      margin: '15px 0 5px 0',
     }
   },
   detailsButton: {
     ['@media (max-width:600px)']: {
-      color: 'gray'
+      color: 'gray',
+      paddingLeft: "2px"
     }
   }
 }));
