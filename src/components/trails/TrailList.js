@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textInput: {
     margin: "10px 5px 10px 0",
-    backgroundColor: "#C1C3C6",
+    // backgroundColor: "#C1C3C6",
     '& label.Mui-focused': {
       color: 'gray',
     },
