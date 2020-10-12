@@ -275,11 +275,31 @@ const TrailDetails = props => {
 
       {!viewRiders ? null : (
         <>
-          <div className={mobileScreenClasses.btnContainer}>
-            <Button className={mobileScreenClasses.addRiderBtn} onClick={addRecentRider}>
-              I've Ridden Here Recently!
-            </Button>
-          </div>
+          {activeUser ? (
+                <MediaQuery maxDeviceWidth={600}>
+                <div className={mobileScreenClasses.btnContainer}>
+                  <Button className={mobileScreenClasses.addRiderBtn} onClick={addRecentRider} disabled>
+                    I've Ridden Here Recently!
+                  </Button>
+                </div>
+              </MediaQuery>
+              ) : (
+                <MediaQuery maxDeviceWidth={600}>
+                  <div className={mobileScreenClasses.btnContainer}>
+                    <Button className={mobileScreenClasses.addRiderBtn} onClick={addRecentRider} disabled={isNewRiderLoading}>
+                      I've Ridden Here Recently!
+                    </Button>
+                  </div>
+                </MediaQuery>
+              )}
+
+          <MediaQuery maxDeviceWidth={600}>
+            <div className={mobileScreenClasses.btnContainer}>
+              <Button className={mobileScreenClasses.addRiderBtn} onClick={addRecentRider}>
+                I've Ridden Here Recently!
+              </Button>
+            </div>
+          </MediaQuery>
           <section className="recentRidersContainer">
             {riders.map(rider => {
               return (
