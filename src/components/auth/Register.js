@@ -143,7 +143,7 @@ const Register = props => {
             <input
               onChange={handleFieldChange}
               type="text"
-              id="avatarImg"
+              id="avatar_img"
               placeholder="Optional"
             ></input>
           </div>
