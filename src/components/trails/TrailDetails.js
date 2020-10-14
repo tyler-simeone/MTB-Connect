@@ -135,7 +135,7 @@ const TrailDetails = props => {
   const findTrailUsers = () => {
     UsersManager.getUsersWithTrails(props.trailId).then(usersWithTrails => {
       setRiders(usersWithTrails);
-    }).then(() => console.log(riders));
+    });
   };
 
   const viewRecentRiders = () => {

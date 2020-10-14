@@ -95,7 +95,7 @@ const useStyles = makeStyles(theme => ({
 const TrailRiderCard = props => {
   const classes = useStyles();
 
-  const [alreadyFriends, setAlreadyFriends] = useState({});
+  const [alreadyFriends, setAlreadyFriends] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const [friendRequest, setFriendRequest] = useState({
@@ -127,14 +127,14 @@ const TrailRiderCard = props => {
     FriendsManager.getAllFriends(props.activeUserId).then(friends => {      
       const friend = friends.find(friend => {
         if (
-          (friend.receiverId === props.activeUserId &&
-            friend.senderId === props.rider.user_id) ||
+          (friend.receiver_id === props.activeUserId &&
+            friend.sender_id === props.rider.user_id) ||
           props.rider.user_id === props.activeUserId
         ) {
           return true;
         } else if (
-          (friend.senderId === props.activeUserId &&
-            friend.receiverId === props.rider.user_id) ||
+          (friend.sender_id === props.activeUserId &&
+            friend.receiver_id === props.rider.user_id) ||
           props.rider.user_id === props.activeUserId
         ) {
           return true;
@@ -146,7 +146,6 @@ const TrailRiderCard = props => {
 
   useEffect(() => {
     getAllFriends();
-    debugger;
   }, []);
 
   return (
@@ -170,7 +169,7 @@ const TrailRiderCard = props => {
             </Typography>
             <div className={classes.buttons}>
               {props.rider.user_id !== props.activeUserId &&
-              alreadyFriends === undefined ? (
+              !alreadyFriends ? (
                 <Button className={classes.addButton} onClick={createFriendRequest} disabled={isLoading}>
                   <PersonAddIcon fontSize="medium" className="addFriendIcon"></PersonAddIcon>
                 </Button>
