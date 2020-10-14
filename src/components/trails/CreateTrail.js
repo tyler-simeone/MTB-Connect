@@ -99,7 +99,7 @@ const CreateTrail = props => {
 
     const newTrail = {
       trail_name: trail.trail_name,
-      trail_img: trail.trail_name,
+      trail_img: trail.trail_img,
       description: trail.description,
       address: joinedAddress,
       zipcode: trail.zipcode,
