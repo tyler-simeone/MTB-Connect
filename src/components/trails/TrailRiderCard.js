@@ -124,18 +124,18 @@ const TrailRiderCard = props => {
 
   // These conditionals are to hide the 'Add Friend' button on the card if the card is either the active user or their friend (via friend req sent to them or they sent req to active user).
   const getAllFriends = () => {
-    FriendsManager.getAllFriends(props.activeUserId).then(friends => {
+    FriendsManager.getAllFriends(props.activeUserId).then(friends => {      
       const friend = friends.find(friend => {
         if (
           (friend.receiverId === props.activeUserId &&
-            friend.senderId === props.rider.user.id) ||
-          props.rider.user.id === props.activeUserId
+            friend.senderId === props.rider.user_id) ||
+          props.rider.user_id === props.activeUserId
         ) {
           return true;
         } else if (
           (friend.senderId === props.activeUserId &&
-            friend.receiverId === props.rider.user.id) ||
-          props.rider.user.id === props.activeUserId
+            friend.receiverId === props.rider.user_id) ||
+          props.rider.user_id === props.activeUserId
         ) {
           return true;
         }
@@ -146,6 +146,7 @@ const TrailRiderCard = props => {
 
   useEffect(() => {
     getAllFriends();
+    debugger;
   }, []);
 
   return (

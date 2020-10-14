@@ -135,7 +135,7 @@ const TrailDetails = props => {
   const findTrailUsers = () => {
     UsersManager.getUsersWithTrails(props.trailId).then(usersWithTrails => {
       setRiders(usersWithTrails);
-    });
+    }).then(() => console.log(riders));
   };
 
   const viewRecentRiders = () => {
@@ -162,7 +162,6 @@ const TrailDetails = props => {
   // Also getting all the riders of the trail and setting state.
   useEffect(() => {
     TrailsManager.get(props.trailId).then(trail => {
-      console.log(trail)
       setTrail(trail)
     });
     findTrailUsers();
