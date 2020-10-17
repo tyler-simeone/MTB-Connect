@@ -260,7 +260,6 @@ const TrailDetails = props => {
           <CardActions disableSpacing>
             <div onClick={viewRecentRiders} className={mobileScreenClasses.riders}>
             <Typography className={mobileScreenClasses.riderLabel}>
-              {/* Recent Riders */}
             </Typography>
             <IconButton>
               <PeopleAltIcon size="medium" />
@@ -309,12 +308,6 @@ const TrailDetails = props => {
         </>
       )
       : null}
-
-      {/* <MediaQuery maxDeviceWidth={600}>
-        <div className={fullScreenClasses.trailVidsContainer}>
-          <iframe width="90%" height="315" className={fullScreenClasses.trailVid} src="https://www.youtube.com/embed/pSnhGmqrQA8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-      </MediaQuery> */}
 
       {!viewRiders ? null : (
         <>
