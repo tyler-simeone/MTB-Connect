@@ -260,14 +260,15 @@ const TrailDetails = props => {
           <CardActions disableSpacing>
             <div onClick={viewRecentRiders} className={mobileScreenClasses.riders}>
             <Typography className={mobileScreenClasses.riderLabel}>
-              Recent Riders
+              {/* Recent Riders */}
             </Typography>
-            <IconButton
-              
-            >
+            <IconButton>
               <PeopleAltIcon size="medium" />
-              </IconButton>
+            </IconButton>
             </div>
+            <Button onClick={handleTrailVids}>
+                <YouTubeIcon />
+            </Button>
             <div onClick={handleExpandClick} className={mobileScreenClasses.reviewContainer}>
               <Typography className={mobileScreenClasses.reviews}>
                 Reviews
@@ -295,6 +296,11 @@ const TrailDetails = props => {
 
       {viewTrailVids ? (
         <>
+        <MediaQuery maxDeviceWidth={600}>
+          <div className={fullScreenClasses.trailVidsContainer}>
+            <iframe width="90%" height="315" className={fullScreenClasses.trailVid} src="https://www.youtube.com/embed/pSnhGmqrQA8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </MediaQuery>
         <MediaQuery minDeviceWidth={601}>
           <div className={fullScreenClasses.trailVidsContainer}>
             <iframe width="560" height="315" className={fullScreenClasses.trailVid} src="https://www.youtube.com/embed/pSnhGmqrQA8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -304,11 +310,11 @@ const TrailDetails = props => {
       )
       : null}
 
-      <MediaQuery maxDeviceWidth={600}>
+      {/* <MediaQuery maxDeviceWidth={600}>
         <div className={fullScreenClasses.trailVidsContainer}>
           <iframe width="90%" height="315" className={fullScreenClasses.trailVid} src="https://www.youtube.com/embed/pSnhGmqrQA8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-      </MediaQuery>
+      </MediaQuery> */}
 
       {!viewRiders ? null : (
         <>
