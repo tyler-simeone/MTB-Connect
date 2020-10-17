@@ -19,6 +19,7 @@ import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import YouTubeIcon from '@material-ui/icons/YouTube';
 
 
 const useStyles = makeStyles(theme => ({
@@ -64,6 +65,16 @@ const useStyles = makeStyles(theme => ({
   buttons: {
     marginTop: "15px",
     marginLeft: "-7px"
+  },
+  trailVidsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: '30px',
+    marginBottom: '30px'
+  },
+  trailVid: {
+    borderRadius: '8px'
   }
 }));
 
@@ -127,6 +138,7 @@ const TrailDetails = props => {
   const [riders, setRiders] = useState([]);
   const [isNewRiderLoading, setIsNewRiderLoading] = useState(false);
   const [viewRiders, setViewRiders] = useState(false)
+  const [viewTrailVids, setViewTrailVids] = useState(false)
 
   // If the active user is one of the riders, disable the 'Add me as rider' button
   const activeUser = riders.find(rider => rider.user_id === props.activeUserId)
@@ -157,6 +169,11 @@ const TrailDetails = props => {
       });
     });
   };
+
+  const handleTrailVids = () => {
+    setViewTrailVids(!viewTrailVids)
+  }
+
 
   // Gets the trail being viewed and sets trail state to display info on that trail 
   // Also getting all the riders of the trail and setting state.
@@ -207,6 +224,10 @@ const TrailDetails = props => {
               {trail.creator_id === props.activeUserId ? (
                 <Button href={`/trails/${trail.id}/edit`}>Edit</Button>
               ) : null}
+
+              <Button onClick={handleTrailVids}>
+                <YouTubeIcon />
+              </Button>
             </div>
           </CardContent>
         </div>
@@ -270,6 +291,23 @@ const TrailDetails = props => {
             </CardContent>
           </Collapse>
         </Card>
+      </MediaQuery>
+
+      {viewTrailVids ? (
+        <>
+        <MediaQuery minDeviceWidth={601}>
+          <div className={fullScreenClasses.trailVidsContainer}>
+            <iframe width="560" height="315" className={fullScreenClasses.trailVid} src="https://www.youtube.com/embed/pSnhGmqrQA8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </MediaQuery>
+        </>
+      )
+      : null}
+
+      <MediaQuery maxDeviceWidth={600}>
+        <div className={fullScreenClasses.trailVidsContainer}>
+          <iframe width="90%" height="315" className={fullScreenClasses.trailVid} src="https://www.youtube.com/embed/pSnhGmqrQA8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </MediaQuery>
 
       {!viewRiders ? null : (
