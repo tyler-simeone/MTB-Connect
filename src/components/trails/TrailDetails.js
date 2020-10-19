@@ -71,10 +71,12 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     marginTop: '30px',
-    marginBottom: '30px'
+    marginBottom: '30px',
+    borderRadius: '8px'
   },
   trailVid: {
-    borderRadius: '8px'
+    borderRadius: '8px',
+    marginBottom: '20px'
   }
 }));
 
@@ -117,9 +119,13 @@ const useMoreStyles = makeStyles(theme => ({
   addRiderBtn: {
     border: '2px solid black'
   },
-  btnContainer: {
+  addRiderBtnContainer: {
     display: 'flex',
     justifyContent: 'center'
+  },
+  iconContainer: {
+    display: 'flex',
+    justifyContent: 'space-evenly'
   }
 }));
 
@@ -151,7 +157,11 @@ const TrailDetails = props => {
   };
 
   const viewRecentRiders = () => {
-    setViewRiders(true)
+    setViewRiders(!viewRiders)
+  }
+
+  const handleTrailVids = () => {
+    setViewTrailVids(!viewTrailVids)
   }
 
   // Runs when user wishes to add his/herself as a recent rider of the trail
@@ -170,15 +180,12 @@ const TrailDetails = props => {
     });
   };
 
-  const handleTrailVids = () => {
-    setViewTrailVids(!viewTrailVids)
-  }
-
 
   // Gets the trail being viewed and sets trail state to display info on that trail 
   // Also getting all the riders of the trail and setting state.
   useEffect(() => {
     TrailsManager.get(props.trailId).then(trail => {
+      console.log(trail.videos.length)
       setTrail(trail)
     });
     findTrailUsers();
@@ -257,7 +264,7 @@ const TrailDetails = props => {
               {trail.description}
             </Typography>
           </CardContent>
-          <CardActions disableSpacing>
+          <CardActions className={mobileScreenClasses.iconContainer} disableSpacing>
             <div onClick={viewRecentRiders} className={mobileScreenClasses.riders}>
             <Typography className={mobileScreenClasses.riderLabel}>
             </Typography>
@@ -293,16 +300,20 @@ const TrailDetails = props => {
         </Card>
       </MediaQuery>
 
-      {viewTrailVids ? (
+      {viewTrailVids && trail.videos ? (
         <>
         <MediaQuery maxDeviceWidth={600}>
           <div className={fullScreenClasses.trailVidsContainer}>
-            <iframe width="90%" height="315" className={fullScreenClasses.trailVid} src="https://www.youtube.com/embed/pSnhGmqrQA8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            {trail.videos.map(video => {             
+              return <iframe width="90%" height="315" className={fullScreenClasses.trailVid} src={video.video_url} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            })}
           </div>
         </MediaQuery>
         <MediaQuery minDeviceWidth={601}>
           <div className={fullScreenClasses.trailVidsContainer}>
-            <iframe width="560" height="315" className={fullScreenClasses.trailVid} src="https://www.youtube.com/embed/pSnhGmqrQA8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            {trail.videos.map(video => {             
+              return <iframe width="560" height="315" className={fullScreenClasses.trailVid} src={video.video_url} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            })}
           </div>
         </MediaQuery>
         </>
@@ -313,13 +324,13 @@ const TrailDetails = props => {
         <>
           <MediaQuery maxDeviceWidth={600}>
           {activeUser ? (
-            <div className={mobileScreenClasses.btnContainer}>
+            <div className={mobileScreenClasses.addRiderBtnContainer}>
               <Button className={mobileScreenClasses.addRiderBtn} onClick={addRecentRider} disabled>
                 I've Ridden Here Recently!
               </Button>
             </div>
           ) : (
-              <div className={mobileScreenClasses.btnContainer}>
+              <div className={mobileScreenClasses.addRiderBtnContainer}>
                 <Button className={mobileScreenClasses.addRiderBtn} onClick={addRecentRider} disabled={isNewRiderLoading}>
                   I've Ridden Here Recently!
                 </Button>
