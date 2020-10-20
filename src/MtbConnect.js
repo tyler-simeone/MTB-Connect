@@ -12,6 +12,7 @@ const MtbConnect = () => {
   const setUser = (userId, token) => {
     sessionStorage.setItem("Active User Id", JSON.stringify(userId));
     sessionStorage.setItem("Token", JSON.stringify(token));
+
     setHasUser(isAuthenticated());
   }
 
