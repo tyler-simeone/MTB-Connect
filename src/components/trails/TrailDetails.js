@@ -231,10 +231,16 @@ const TrailDetails = props => {
               {trail.creator_id === props.activeUserId ? (
                 <Button href={`/trails/${trail.id}/edit`}>Edit</Button>
               ) : null}
-
-              <Button onClick={handleTrailVids}>
-                <YouTubeIcon />
-              </Button>
+              {/* Had to do the below to wait for the async state to set */}
+              {!trail.videos ? null : (
+                <div>
+                {trail.videos.length > 0 ? (
+                  <Button onClick={handleTrailVids}>
+                    <YouTubeIcon />
+                  </Button>
+                ) : null}
+                </div>
+              )}
             </div>
           </CardContent>
         </div>
@@ -272,9 +278,16 @@ const TrailDetails = props => {
               <PeopleAltIcon size="medium" />
             </IconButton>
             </div>
-            <Button onClick={handleTrailVids}>
-                <YouTubeIcon />
-            </Button>
+            {/* Had to do the below to wait for the async state to set */}
+            {!trail.videos ? null : (
+                <div>
+                {trail.videos.length > 0 ? (
+                  <Button onClick={handleTrailVids}>
+                    <YouTubeIcon />
+                  </Button>
+                ) : null}
+                </div>
+              )}
             <div onClick={handleExpandClick} className={mobileScreenClasses.reviewContainer}>
               <Typography className={mobileScreenClasses.reviews}>
                 Reviews

@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     ['@media (max-width:600px)']: {
       
       marginLeft: '5px',
-      height: '50px'
+      height: '60px'
     }
   },
   trailsImg: {
