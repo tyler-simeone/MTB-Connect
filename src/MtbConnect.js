@@ -25,6 +25,7 @@ const MtbConnect = () => {
 
   const [avatarLogo, setAvatarLogo] = useState();
   const [avatarImg, setAvatarImg] = useState();
+  const [userInfo, setUserInfo] = useState();
   
   // Below two fns are to get user's initials for avatar logo
   const getUserInitials = (user) => {
@@ -38,19 +39,20 @@ const MtbConnect = () => {
       const lastNameInitial = lastNameArr[0]
 
       const avatarInitials = firstNameInitial + lastNameInitial
-      console.log(avatarInitials)
-      console.log(user.avatar_img)
+
       setAvatarLogo(avatarInitials)
       setAvatarImg(user.avatar_img)
   }
 
   const getActiveUser = () => {
     LoginManager.getAll().then(users => {
-      const userId = sessionStorage.getItem("Active User Id")
+      const activeUserId = sessionStorage.getItem("Active User Id")
       var user;
       for (user of users) {
-        if (user.id === parseInt(userId)) {
+        if (user.id === parseInt(activeUserId)) {
+          console.log(user)
           getUserInitials(user);
+          setUserInfo(user)
         }
       }
     })
@@ -64,7 +66,7 @@ const MtbConnect = () => {
   return (
     <>
       <NavBar hasUser={hasUser} clearUser={clearUser} avatarImg={avatarImg} avatarLogo={avatarLogo} />
-      <ApplicationViews hasUser={hasUser} setUser={setUser} />
+      <ApplicationViews hasUser={hasUser} setUser={setUser} userInfo={userInfo} />
     </>
   );
 };

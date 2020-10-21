@@ -26,6 +26,7 @@ const ApplicationViews = props => {
     const activeUser = sessionStorage.getItem("Active User Id");
     const hasUser = props.hasUser;
     const setUser = props.setUser;
+    const userInfo = props.userInfo;
     
     return (
         <>
@@ -48,7 +49,7 @@ const ApplicationViews = props => {
             }}/>
             <Route exact path="/profile" render={props => {
                 if (hasUser) {
-                    return <Profile />
+                    return <Profile userInfo={userInfo} />
                 } else {
                     return <Redirect to="/" />
                 }

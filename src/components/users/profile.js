@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoginManager from "../../modules/LoginManager";
 
 import { TextField } from "@material-ui/core";
@@ -8,6 +8,20 @@ import { Button } from "@material-ui/core";
 
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+  },
+  photoContainer: {
+    marginTop: '60px',
+    marginLeft: '20%',
+    height: '250px',
+    width: '250px',
+  },
+  photo: {
+    width: '250px',
+    height: '250px',
+    borderRadius: '8px'
+  },
   root: {
     margin: '0 auto',
     padding: '10px 30px',
@@ -34,6 +48,7 @@ const useStyles = makeStyles(theme => ({
       width: '40%',
       padding: '30px 70px',
       marginTop: '60px',
+      marginLeft: '30px',
       border: '3px solid #2b94d1',
       borderRadius: '8px',
       fontSize: '25px'
@@ -75,8 +90,17 @@ const Profile = props => {
     // setTrail(stateToChange);
   };
 
+  useEffect(() => {
+    console.log(props.userInfo)
+  })
+
   return (
-    <>
+    <div className={classes.container}>
+      <div className={classes.photoContainer}>
+        {props.userInfo !== undefined ? (
+          <img src={props.userInfo.avatar_img} className={classes.photo} />
+        ) : null}
+      </div>
       <form className={classes.root}>
         <TextField
           id="trail_name"
@@ -134,7 +158,7 @@ const Profile = props => {
           disabled={isLoading}
         >Update</Button>
       </form>
-    </>
+    </div>
   );
 };
 
