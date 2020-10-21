@@ -24,6 +24,7 @@ const MtbConnect = () => {
   }
 
   const [avatarLogo, setAvatarLogo] = useState();
+  const [avatarImg, setAvatarImg] = useState();
   
   // Below two fns are to get user's initials for avatar logo
   const getUserInitials = (user) => {
@@ -38,7 +39,9 @@ const MtbConnect = () => {
 
       const avatarInitials = firstNameInitial + lastNameInitial
       console.log(avatarInitials)
+      console.log(user.avatar_img)
       setAvatarLogo(avatarInitials)
+      setAvatarImg(user.avatar_img)
   }
 
   const getActiveUser = () => {
@@ -53,13 +56,14 @@ const MtbConnect = () => {
     })
   }
 
+  // This is what's causing the avatar logo to re-render
   useEffect(() => {
     getActiveUser();
   }, [hasUser]);
 
   return (
     <>
-      <NavBar hasUser={hasUser} clearUser={clearUser} avatarLogo={avatarLogo} />
+      <NavBar hasUser={hasUser} clearUser={clearUser} avatarImg={avatarImg} avatarLogo={avatarLogo} />
       <ApplicationViews hasUser={hasUser} setUser={setUser} />
     </>
   );

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import "./NavBar.css";
-import LoginManager from "../../modules/LoginManager"
 
 import Typography from "@material-ui/core/Typography";
 import CustomizedMenu from "./CustomizedMenu.js";
@@ -17,9 +16,15 @@ const NavBar = props => {
         {hasUser ? (
         <>
           <CustomizedMenu hasUser={hasUser} clearUser={clearUser} className="burgerBtn" />
-          <Avatar onClick={() => props.history.push('/profile')} aria-label="profile-avatar" className="avatar">
+
+          {props.avatarImg ? (
+            <Avatar onClick={() => props.history.push('/profile')} src={props.avatarImg} aria-label="profile-avatar" className="avatar">
+            </Avatar>
+          ) : (
+            <Avatar onClick={() => props.history.push('/profile')} aria-label="profile-avatar" className="avatar">
               {props.avatarLogo}
-          </Avatar>
+            </Avatar>
+          )}
         </>
         ) : null}
       </div>
