@@ -9,6 +9,8 @@ import Register from "./auth/Register"
 import Login from "./auth/Login"
 // Home 
 import Home from "./home/Home"
+// User Profile
+import Profile from "./users/profile"
 // Trails 
 import TrailList from "./trails/TrailList"
 import CreateTrail from "./trails/CreateTrail"
@@ -40,6 +42,13 @@ const ApplicationViews = props => {
             <Route exact path="/home" render={props => {
                 if (hasUser) {
                     return <Home />
+                } else {
+                    return <Redirect to="/" />
+                }
+            }}/>
+            <Route exact path="/profile" render={props => {
+                if (hasUser) {
+                    return <Profile />
                 } else {
                     return <Redirect to="/" />
                 }

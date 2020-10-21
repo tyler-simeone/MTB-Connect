@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "./components/nav/NavBar";
 import ApplicationViews from "./components/ApplicationViews";
 import "./MtbConnect.css";
+import LoginManager from "./modules/LoginManager"
+
 
 const MtbConnect = () => {
 
@@ -21,9 +23,43 @@ const MtbConnect = () => {
     setHasUser(isAuthenticated());
   }
 
+  const [avatarLogo, setAvatarLogo] = useState();
+  
+  // Below two fns are to get user's initials for avatar logo
+  const getUserInitials = (user) => {
+    
+      const firstName = user.user.first_name
+      const firstNameArr = firstName.split('')
+      const firstNameInitial = firstNameArr[0]
+
+      const lastName = user.user.last_name
+      const lastNameArr = lastName.split('')
+      const lastNameInitial = lastNameArr[0]
+
+      const avatarInitials = firstNameInitial + lastNameInitial
+      console.log(avatarInitials)
+      setAvatarLogo(avatarInitials)
+  }
+
+  const getActiveUser = () => {
+    LoginManager.getAll().then(users => {
+      const userId = sessionStorage.getItem("Active User Id")
+      var user;
+      for (user of users) {
+        if (user.id === parseInt(userId)) {
+          getUserInitials(user);
+        }
+      }
+    })
+  }
+
+  useEffect(() => {
+    getActiveUser();
+  }, [hasUser]);
+
   return (
     <>
-      <NavBar hasUser={hasUser} clearUser={clearUser} />
+      <NavBar hasUser={hasUser} clearUser={clearUser} avatarLogo={avatarLogo} />
       <ApplicationViews hasUser={hasUser} setUser={setUser} />
     </>
   );
