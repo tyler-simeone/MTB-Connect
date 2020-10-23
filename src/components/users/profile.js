@@ -4,6 +4,7 @@ import LoginManager from "../../modules/LoginManager";
 import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
+import EditIcon from '@material-ui/icons/Edit';
 
 
 
@@ -23,13 +24,13 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '8px'
   },
   root: {
-    margin: '0 auto',
-    padding: '10px 30px',
+    padding: '10px 20px',
     display: 'flex',
     flexDirection: 'column',
     marginTop: '60px',
     border: '3px solid #2b94d1',
     borderRadius: '8px',
+    maxHeight: '250px',
     ['@media (max-width:768px)']: {
       display: 'flex',
       flexDirection: 'column',
@@ -40,13 +41,13 @@ const useStyles = makeStyles(theme => ({
       borderRadius: '8px'
     },
     ['@media (min-width:768px)']: {
-      width: '60%',
+      width: '30%',
     },
     ['@media (min-width:1200px)']: {
       display: 'flex',
       flexDirection: 'column',
-      width: '40%',
-      padding: '30px 70px',
+      width: '30%',
+      // padding: '30px 70px',
       marginTop: '60px',
       marginLeft: '30px',
       border: '3px solid #2b94d1',
@@ -63,19 +64,31 @@ const useStyles = makeStyles(theme => ({
       height: '1.5em'
     }
   },
-  selectLabel: {
-    marginTop: '14px',
-  },
-  select: {
-    '&:after': {
-      borderBottomColor: '#2b94d1',
-    }
-  },
   button: {
     marginTop: '5px',
     ['@media (min-width:1200px)']: {
       marginTop: '15px',
     }
+  },
+  buttonContainer: {
+
+  },
+  editBtn: {
+    '&:hover': {
+      cursor: 'Pointer'
+    }
+  },
+  userInfoSection: {
+    fontSize: '18px',
+    padding: '5px 0 7px',
+    marginBottom: '10px',
+    borderBottom: '1px solid gray',
+    
+  },
+  avatarURL: {
+    fontSize: '16px',
+    fontStyle: 'italic',
+    color: 'gray'
   }
 }));
 
@@ -83,16 +96,40 @@ const Profile = props => {
   const classes = useStyles();
 
   const [isLoading, setIsLoading] = useState(false)
+  const [editMode, setEditMode] = useState(false)
+  const [updatedAppUser, setUpdatedAppUser] = useState({
+    // avatar_img: props.userInfo.avatar_img,
+  })
+  const [updatedAuthUser, setUpdatedAuthUser] = useState({
+    // email: props.userInfo.user.email,
+    // first_name: props.userInfo.user.first_name,
+    // last_name: props.userInfo.user.last_name,
+    // username: props.userInfo.user.username
+  })
 
-  const handleFieldChange = evt => {
-    // const stateToChange = { ...trail };
-    // stateToChange[evt.target.id] = evt.target.value;
-    // setTrail(stateToChange);
+  const firstHandleFieldChange = evt => {
+    const stateToChange = { ...updatedAppUser };
+    stateToChange[evt.target.id] = evt.target.value;
+    setUpdatedAppUser(stateToChange);
+  };
+  const secondHandleFieldChange = evt => {
+    const stateToChange = { ...updatedAuthUser };
+    stateToChange[evt.target.id] = evt.target.value;
+    setUpdatedAuthUser(stateToChange);
   };
 
-  useEffect(() => {
-    console.log(props.userInfo)
-  })
+  const handleEditMode = () => {
+    setEditMode(!editMode)
+  }
+
+  const printUpdatedUser = evt => {
+    evt.preventDefault()
+    console.log(updatedAppUser, updatedAuthUser)
+  }
+
+  // useEffect(() => {
+  //   console.log(props.userInfo)
+  // })
 
   return (
     <div className={classes.container}>
@@ -101,63 +138,71 @@ const Profile = props => {
           <img src={props.userInfo.avatar_img} className={classes.photo} />
         ) : null}
       </div>
+      {props.userInfo !== undefined && !editMode ? (
+      <form className={classes.root}>
+        <section className={classes.userInfoSection}>
+          {`${props.userInfo.user.first_name} ${props.userInfo.user.last_name}`}
+        </section>
+        <section className={classes.userInfoSection}>
+          {props.userInfo.user.username}
+        </section>
+        <section className={classes.userInfoSection}>
+          {props.userInfo.user.email}
+        </section>
+        <section className={`${classes.userInfoSection} ${classes.avatarURL}`}>
+        Avatar Image URL
+        </section>
+        <div className={classes.buttonContainer}>
+          <EditIcon className={classes.editBtn} onClick={handleEditMode} />
+        </div>
+      </form>
+      ) : null}
+
+      {props.userInfo !== undefined && editMode ? (
       <form className={classes.root}>
         <TextField
-          id="trail_name"
+          id="full_name"
           type="text"
           required
-          onChange={handleFieldChange}
+          onChange={secondHandleFieldChange}
           size="small"
-          placeholder="Name"
+          value={`${props.userInfo.user.first_name} ${props.userInfo.user.last_name} `}
           className={classes.textfield}
         ></TextField>
         <TextField
-          id="trail_img"
+          id="username"
           type="text"
-          onChange={handleFieldChange}
+          onChange={secondHandleFieldChange}
           size="small"
-          placeholder="Image Link (optional)"
+          value={props.userInfo.user.username}
           className={classes.textfield}
         ></TextField>
         <TextField
-          id="description"
+          id="email"
           type="text"
-          onChange={handleFieldChange}
+          onChange={secondHandleFieldChange}
           size="small"
-          placeholder="Description"
+          value={props.userInfo.user.email}
           className={classes.textfield}
         ></TextField>
         <TextField
-          id="address"
+          id="avatar_img"
           type="text"
-          onChange={handleFieldChange}
+          onChange={firstHandleFieldChange}
           size="small"
-          placeholder="Street Address"
+          value={props.userInfo.avatar_img}
           className={classes.textfield}
         ></TextField>
-        <TextField
-          id="city"
-          type="text"
-          onChange={handleFieldChange}
-          size="small"
-          placeholder="City"
-          className={classes.textfield}
-        ></TextField>
-        <TextField
-          id="zipcode"
-          type="text"
-          required
-          onChange={handleFieldChange}
-          size="small"
-          placeholder="Zipcode"
-          className={classes.textfield}
-        ></TextField>
-        <Button 
-          className={classes.button} 
-          type="submit" 
-          disabled={isLoading}
-        >Update</Button>
+        <div className={classes.buttonContainer}>
+          <Button 
+            className={classes.button} 
+            type="submit" 
+            disabled={isLoading}
+            onClick={printUpdatedUser}
+          >Update</Button>
+        </div>
       </form>
+      ) : null}
     </div>
   );
 };

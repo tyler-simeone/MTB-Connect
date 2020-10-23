@@ -50,7 +50,6 @@ const MtbConnect = () => {
       var user;
       for (user of users) {
         if (user.id === parseInt(activeUserId)) {
-          console.log(user)
           getUserInitials(user);
           setUserInfo(user)
         }
