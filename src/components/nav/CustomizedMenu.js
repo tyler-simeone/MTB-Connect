@@ -15,6 +15,7 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import MenuIcon from "@material-ui/icons/Menu";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import GroupIcon from '@material-ui/icons/Group';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 import "./CustomizedMenu.css";
 
@@ -107,6 +108,14 @@ export default function CustomizedMenu(props) {
           </ListItemIcon>
           <ListItemLink href="/pending">
             <ListItemText primary="Pending" />
+          </ListItemLink>
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <ListItemIcon>
+            <SettingsIcon fontSize="normal" />
+          </ListItemIcon>
+          <ListItemLink href="/profile">
+            <ListItemText primary="Update Profile" />
           </ListItemLink>
         </StyledMenuItem>
         <StyledMenuItem>

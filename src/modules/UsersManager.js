@@ -19,5 +19,14 @@ export default {
     return fetch(`${baseURL}/trailusers/${id}`, {
       method: "DELETE"
     });
+  },
+  updateUser(updatedUser, userId) {
+    return fetch(`${baseURL}/users/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedUser)
+    })
   }
 };
