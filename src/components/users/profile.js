@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LoginManager from "../../modules/LoginManager";
+import UsersManager from "../../modules/UsersManager";
 
 import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -97,39 +97,28 @@ const Profile = props => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [editMode, setEditMode] = useState(false)
-  const [updatedAppUser, setUpdatedAppUser] = useState({
-    // avatar_img: props.userInfo.avatar_img,
-  })
-  const [updatedAuthUser, setUpdatedAuthUser] = useState({
-    // email: props.userInfo.user.email,
-    // first_name: props.userInfo.user.first_name,
-    // last_name: props.userInfo.user.last_name,
-    // username: props.userInfo.user.username
-  })
 
-  const firstHandleFieldChange = evt => {
-    const stateToChange = { ...updatedAppUser };
+  const [updatedUser, setUpdatedUser] = useState({})
+
+  const handleFieldChange = evt => {
+    const stateToChange = { ...updatedUser };
     stateToChange[evt.target.id] = evt.target.value;
-    setUpdatedAppUser(stateToChange);
-  };
-  const secondHandleFieldChange = evt => {
-    const stateToChange = { ...updatedAuthUser };
-    stateToChange[evt.target.id] = evt.target.value;
-    setUpdatedAuthUser(stateToChange);
+    setUpdatedUser(stateToChange);
   };
 
   const handleEditMode = () => {
     setEditMode(!editMode)
   }
 
-  const printUpdatedUser = evt => {
+  const updateUserInfo = evt => {
     evt.preventDefault()
-    console.log(updatedAppUser, updatedAuthUser)
+    console.log(updatedUser)
+    UsersManager.updateUser(updatedUser, props.userInfo.user_id)
   }
 
-  // useEffect(() => {
-  //   console.log(props.userInfo)
-  // })
+  useEffect(() => {
+    console.log(props.userInfo)
+  })
 
   return (
     <div className={classes.container}>
@@ -159,38 +148,37 @@ const Profile = props => {
       ) : null}
 
       {props.userInfo !== undefined && editMode ? (
-      <form className={classes.root}>
+      <form onSubmit={updateUserInfo} className={classes.root}>
         <TextField
           id="full_name"
           type="text"
-          required
-          onChange={secondHandleFieldChange}
+          onChange={handleFieldChange}
           size="small"
-          value={`${props.userInfo.user.first_name} ${props.userInfo.user.last_name} `}
+          placeholder={`${props.userInfo.user.first_name} ${props.userInfo.user.last_name} `}
           className={classes.textfield}
         ></TextField>
         <TextField
           id="username"
           type="text"
-          onChange={secondHandleFieldChange}
+          onChange={handleFieldChange}
           size="small"
-          value={props.userInfo.user.username}
+          placeholder={props.userInfo.user.username}
           className={classes.textfield}
         ></TextField>
         <TextField
           id="email"
           type="text"
-          onChange={secondHandleFieldChange}
+          onChange={handleFieldChange}
           size="small"
-          value={props.userInfo.user.email}
+          placeholder={props.userInfo.user.email}
           className={classes.textfield}
         ></TextField>
         <TextField
           id="avatar_img"
           type="text"
-          onChange={firstHandleFieldChange}
+          onChange={handleFieldChange}
           size="small"
-          value={props.userInfo.avatar_img}
+          placeholder={props.userInfo.avatar_img}
           className={classes.textfield}
         ></TextField>
         <div className={classes.buttonContainer}>
@@ -198,7 +186,7 @@ const Profile = props => {
             className={classes.button} 
             type="submit" 
             disabled={isLoading}
-            onClick={printUpdatedUser}
+            // onClick={printUpdatedUser}
           >Update</Button>
         </div>
       </form>
