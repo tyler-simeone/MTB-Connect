@@ -114,6 +114,7 @@ const Profile = props => {
     evt.preventDefault()
     console.log(updatedUser)
     UsersManager.updateUser(updatedUser, props.userInfo.user_id)
+    setEditMode(!editMode)
   }
 
   useEffect(() => {
