@@ -48,7 +48,7 @@ const ApplicationViews = props => {
                 }
             }}/>
             <Route exact path="/profile" render={props => {
-                if (hasUser) {
+                if (hasUser && userInfo !== undefined) {
                     return <Profile userInfo={userInfo} />
                 } else {
                     return <Redirect to="/" />

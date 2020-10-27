@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UsersManager from "../../modules/UsersManager";
+import LoginManager from "../../modules/LoginManager"
 
 import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -64,6 +65,13 @@ const useStyles = makeStyles(theme => ({
       height: '1.5em'
     }
   },
+  firstName: {
+    maxWidth: '100px',
+    marginRight: '25px'
+  },
+  lastName: {
+    maxWidth: '130px'
+  },
   button: {
     marginTop: '5px',
     ['@media (min-width:1200px)']: {
@@ -98,7 +106,14 @@ const Profile = props => {
   const [isLoading, setIsLoading] = useState(false)
   const [editMode, setEditMode] = useState(false)
 
-  const [updatedUser, setUpdatedUser] = useState({})
+  const [updatedUser, setUpdatedUser] = useState(
+    {
+        "first_name": props.userInfo.user.first_name,
+        "last_name": props.userInfo.user.last_name,
+        "username": props.userInfo.user.username,
+        "email": props.userInfo.user.email,
+        "avatar_img": props.userInfo.avatar_img,
+    })
 
   const handleFieldChange = evt => {
     const stateToChange = { ...updatedUser };
@@ -116,10 +131,6 @@ const Profile = props => {
     UsersManager.updateUser(updatedUser, props.userInfo.user_id)
     setEditMode(!editMode)
   }
-
-  useEffect(() => {
-    console.log(props.userInfo)
-  })
 
   return (
     <div className={classes.container}>
@@ -150,14 +161,24 @@ const Profile = props => {
 
       {props.userInfo !== undefined && editMode ? (
       <form onSubmit={updateUserInfo} className={classes.root}>
-        <TextField
-          id="full_name"
-          type="text"
-          onChange={handleFieldChange}
-          size="small"
-          placeholder={`${props.userInfo.user.first_name} ${props.userInfo.user.last_name} `}
-          className={classes.textfield}
-        ></TextField>
+        <div className={classes.nameContainer}>
+          <TextField
+            id="first_name"
+            type="text"
+            onChange={handleFieldChange}
+            size="small"
+            placeholder={`${props.userInfo.user.first_name}`}
+            className={`${classes.textfield} ${classes.firstName}`}
+          ></TextField>
+          <TextField
+            id="last_name"
+            type="text"
+            onChange={handleFieldChange}
+            size="small"
+            placeholder={`${props.userInfo.user.last_name}`}
+            className={`${classes.textfield} ${classes.lastName}`}
+          ></TextField>
+        </div>
         <TextField
           id="username"
           type="text"

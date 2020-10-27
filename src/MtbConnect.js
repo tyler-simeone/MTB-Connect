@@ -25,6 +25,7 @@ const MtbConnect = () => {
 
   const [avatarLogo, setAvatarLogo] = useState();
   const [avatarImg, setAvatarImg] = useState();
+
   const [userInfo, setUserInfo] = useState();
   
   // Below two fns are to get user's initials for avatar logo
@@ -44,6 +45,7 @@ const MtbConnect = () => {
       setAvatarImg(user.avatar_img)
   }
 
+// REVIEW: The two undefined userinfo objs are due to async state setting here...
   const getActiveUser = () => {
     LoginManager.getAll().then(users => {
       const activeUserId = sessionStorage.getItem("Active User Id")
@@ -62,6 +64,7 @@ const MtbConnect = () => {
     getActiveUser();
   }, [hasUser]);
 
+  
   return (
     <>
       <NavBar hasUser={hasUser} clearUser={clearUser} avatarImg={avatarImg} avatarLogo={avatarLogo} />
