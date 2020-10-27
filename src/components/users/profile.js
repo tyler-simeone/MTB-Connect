@@ -6,6 +6,7 @@ import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import EditIcon from '@material-ui/icons/Edit';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 
 
@@ -25,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '8px'
   },
   root: {
-    padding: '10px 20px',
+    padding: '10px 20px 0px 20px',
     display: 'flex',
     flexDirection: 'column',
     marginTop: '60px',
@@ -79,7 +80,15 @@ const useStyles = makeStyles(theme => ({
     }
   },
   buttonContainer: {
-
+    display: 'flex',
+    marginTop: '12px'
+  },
+  arrowBackIcon: {
+    marginTop: '12px',
+    marginRight: '12px',
+    '&:hover': {
+      cursor: 'Pointer'
+    }
   },
   editBtn: {
     '&:hover': {
@@ -106,6 +115,7 @@ const Profile = props => {
   const [isLoading, setIsLoading] = useState(false)
   const [editMode, setEditMode] = useState(false)
 
+  const [userInfo, setUserInfo] = useState()
   const [updatedUser, setUpdatedUser] = useState(
     {
         "first_name": props.userInfo.user.first_name,
@@ -129,37 +139,43 @@ const Profile = props => {
     evt.preventDefault()
     console.log(updatedUser)
     UsersManager.updateUser(updatedUser, props.userInfo.user_id)
+      .then(UsersManager.getUser(props.userInfo.id).then(response => setUserInfo(response)))
     setEditMode(!editMode)
   }
+
+  useEffect(() => {
+    console.log(props.userInfo)
+    UsersManager.getUser(props.userInfo.id).then(response => setUserInfo(response))  
+  }, [])
 
   return (
     <div className={classes.container}>
       <div className={classes.photoContainer}>
-        {props.userInfo !== undefined ? (
-          <img src={props.userInfo.avatar_img} className={classes.photo} />
+        {userInfo !== undefined ? (
+          <img src={userInfo.avatar_img} className={classes.photo} />
         ) : null}
       </div>
-      {props.userInfo !== undefined && !editMode ? (
+      {userInfo !== undefined && !editMode ? (
       <form className={classes.root}>
         <section className={classes.userInfoSection}>
-          {`${props.userInfo.user.first_name} ${props.userInfo.user.last_name}`}
+          {`${userInfo.user.first_name} ${userInfo.user.last_name}`}
         </section>
         <section className={classes.userInfoSection}>
-          {props.userInfo.user.username}
+          {userInfo.user.username}
         </section>
         <section className={classes.userInfoSection}>
-          {props.userInfo.user.email}
+          {userInfo.user.email}
         </section>
         <section className={`${classes.userInfoSection} ${classes.avatarURL}`}>
         Avatar Image URL
         </section>
-        <div className={classes.buttonContainer}>
+        <div>
           <EditIcon className={classes.editBtn} onClick={handleEditMode} />
         </div>
       </form>
       ) : null}
 
-      {props.userInfo !== undefined && editMode ? (
+      {userInfo !== undefined && editMode ? (
       <form onSubmit={updateUserInfo} className={classes.root}>
         <div className={classes.nameContainer}>
           <TextField
@@ -167,7 +183,7 @@ const Profile = props => {
             type="text"
             onChange={handleFieldChange}
             size="small"
-            placeholder={`${props.userInfo.user.first_name}`}
+            placeholder={`${userInfo.user.first_name}`}
             className={`${classes.textfield} ${classes.firstName}`}
           ></TextField>
           <TextField
@@ -175,7 +191,7 @@ const Profile = props => {
             type="text"
             onChange={handleFieldChange}
             size="small"
-            placeholder={`${props.userInfo.user.last_name}`}
+            placeholder={`${userInfo.user.last_name}`}
             className={`${classes.textfield} ${classes.lastName}`}
           ></TextField>
         </div>
@@ -184,7 +200,7 @@ const Profile = props => {
           type="text"
           onChange={handleFieldChange}
           size="small"
-          placeholder={props.userInfo.user.username}
+          placeholder={userInfo.user.username}
           className={classes.textfield}
         ></TextField>
         <TextField
@@ -192,7 +208,7 @@ const Profile = props => {
           type="text"
           onChange={handleFieldChange}
           size="small"
-          placeholder={props.userInfo.user.email}
+          placeholder={userInfo.user.email}
           className={classes.textfield}
         ></TextField>
         <TextField
@@ -200,15 +216,15 @@ const Profile = props => {
           type="text"
           onChange={handleFieldChange}
           size="small"
-          placeholder={props.userInfo.avatar_img}
+          placeholder={userInfo.avatar_img}
           className={classes.textfield}
         ></TextField>
         <div className={classes.buttonContainer}>
+          <ArrowBackIcon onClick={handleEditMode} className={classes.arrowBackIcon} />
           <Button 
             className={classes.button} 
             type="submit" 
             disabled={isLoading}
-            // onClick={printUpdatedUser}
           >Update</Button>
         </div>
       </form>
