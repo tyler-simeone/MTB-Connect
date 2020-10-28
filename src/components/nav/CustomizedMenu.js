@@ -110,14 +110,14 @@ export default function CustomizedMenu(props) {
             <ListItemText primary="Pending" />
           </ListItemLink>
         </StyledMenuItem>
-        <StyledMenuItem>
+        {/* <StyledMenuItem>
           <ListItemIcon>
             <SettingsIcon fontSize="normal" />
           </ListItemIcon>
           <ListItemLink href="/profile">
             <ListItemText primary="Update Profile" />
           </ListItemLink>
-        </StyledMenuItem>
+        </StyledMenuItem> */}
         <StyledMenuItem>
           <ListItemIcon>
             <ExitToAppIcon fontSize="normal" />

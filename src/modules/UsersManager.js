@@ -1,4 +1,5 @@
 const baseURL = "https://api.mtb-connect.com:8080";
+// const baseURL = "http://127.0.0.1:8000";
 
 export default {
   getUsersWithTrails(trailId) {
@@ -28,5 +29,8 @@ export default {
       },
       body: JSON.stringify(updatedUser)
     })
+  },
+  getUser(userId) {
+    return fetch(`${baseURL}/users/${userId}`).then(resp => resp.json())
   }
 };
