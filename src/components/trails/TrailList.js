@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Trails.css";
+import trail_search_image from "../../assets/images/trail_search_image.jpg"
 import TrailsManager from "../../modules/TrailsManager";
 import TrailCard from "./TrailCard";
 
@@ -201,7 +202,7 @@ const TrailList = props => {
         <div className="trailSearchBoxContainer">
           <div className="trailSearchBox">
             {!center.length ? (
-            <img className={classes.trailsImg} src="https://2qibqm39xjt6q46gf1rwo2g1-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/8212290_web1_L1Darrington-trails-edh-1708.jpg" />
+            <img className={classes.trailsImg} src={trail_search_image} />
             ) : (
               <div className="bingMapContainer">
                 <ReactBingmaps 
